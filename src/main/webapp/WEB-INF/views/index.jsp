@@ -1,12 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
+	<!-- copy 4 dòng này vào mỗi file jsp để sử dụng bootstrap -->
+	<link href="css/bootstrap.min.css" rel="stylesheet"/>
+	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Demo</title>
 </head>
 <body>
-	index
+	Trang chủ
 </body>
 </html>
