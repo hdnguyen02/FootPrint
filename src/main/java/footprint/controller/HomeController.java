@@ -1,12 +1,15 @@
-package nattan.controller.user;
+package footprint.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-	@RequestMapping("/")
-	public String index() {
-		return "user/index"; 
+
+	@RequestMapping(value = "/")
+	private String index() {
+
+		return "index";
 	}
+
 }

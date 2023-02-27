@@ -16,7 +16,8 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher-config</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>/</url-pattern> <!-- Thêm vào đây -->
+
 	</servlet-mapping>
 
 	<!-- CharacterEncodingFilter -->
