@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark position-fixed top-0 start-0 end-0 z-3">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
 	<div class="container">
-		<div class="navbar-brand">
-			<img alt="FootPrint" src="resources/user/image/logo.webp">
-		</div>
-		<div class="navbar-brand d-lg-none ms-auto">	
-			<img class="nav-item" width="32" height="32" src="resources/user/image/cart.png">
-			<img class="nav-item" width="32" height="32" src="resources/user/image/search.png">
+		<div class="navbar-brand d-flex align-items-center">
+			 <span class="fw-bold fs-2 text-uppercase">FootPrint</span>
 		</div>
 		
 
@@ -18,22 +14,30 @@
        
 		<div class="collapse navbar-collapse" id="navmenu">
 			<ul class="navbar-nav">
-				<li class="nav-item"><a href="#" class="nav-link text-uppercase fs-6 text-white fw-semibold text-green-hover">sản phẩm</a></li>
-				<li class="nav-item"><a href="#" class="nav-link text-uppercase fs-6 text-white fw-semibold text-green-hover">sale off</a>
-				</li>	
-				<li class="nav-item"><a href="#" class="nav-link text-uppercase fs-6 text-white fw-semibold text-green-hover">Đăng ký</a>
-				</li>
-				<li class="nav-item"><a href="#" class="nav-link text-uppercase fs-6 text-white fw-semibold text-green-hover">Đăng nhập</a>
-				</li>
-				<li class="nav-item"><a href="#" class="nav-link text-uppercase fs-6 text-white fw-semibold text-green-hover">Ngôn ngữ</a>
-				</li>
+				<li class="nav-item d-flex align-items-center"><a href="#" class="nav-link text-uppercase text-green-hover">Trang chủ</a></li>
+				<li class="nav-item d-flex align-items-center"><a href="#" class="nav-link text-uppercase text-green-hover">sản phẩm</a></li>
+				<li class="nav-item d-flex align-items-center"><a href="#" class="nav-link text-uppercase text-green-hover">sale off</a>
+				<!-- dropdown  -->
+					<li class="nav-item dropdown">
+				         <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+				            <span class="text-uppercase text-green-hover">Ngôn ngữ</span>
+				         </a>
+				         <ul class="dropdown-menu dropdown-menu-end">
+				           <li><a class="dropdown-item" href="#">Action</a></li>
+				           <li><a class="dropdown-item" href="#">Another action</a></li>
+				         </ul>
+			        </li>
+		
 			</ul>
 			
 			 <div class="navbar-nav ms-auto d-flex align-items-center gap-3">
-			
-				<img class="nav-item d-none d-lg-block" width="32" height="32" src="resources/user/image/search.png">
+				<span>
+					<i class="bi bi-search text-white fs-4"></i>
+				</span>
 				
-      			<img class="nav-item d-none d-lg-block" width="32" height="32" src="resources/user/image/cart.png">
+				<span>
+					<i class="bi bi-cart3 text-white fs-4"></i>
+				</span>
 			</div> 
 			 
 		</div>
