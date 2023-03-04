@@ -1,25 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<div id="carouselExampleCaptions" class="carousel slide mt-navbar" data-bs-ride="carousel">
+<div id="carouselExampleCaptions" class="carousel slide mt-navbar container" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button> 
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active" data-bs-interval="6000">
-      <img src="resources/user/image/slider/slider-1.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>First slide label</h5>
-        <p>Some representative placeholder content for the first slide.</p>
-      </div>
+      <img src="resources/image/home/slider/slider-1.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item" data-bs-interval="3000">
-      <img src="resources/user/image/slider/slider-2.jpg" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
-        <h5>Second slide label</h5>
-        <p>Some representative placeholder content for the second slide.</p>
-      </div>
+      <img src="resources/image/home/slider/slider-2.jpg" class="d-block w-100" alt="...">
+      
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">

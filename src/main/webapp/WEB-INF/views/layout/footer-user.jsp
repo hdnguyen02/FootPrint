@@ -36,7 +36,7 @@
 
 		</div>
 		
-		<div class="col-12 col-md-6 col-lg-3 text-center d-flex flex-column">
+		<div class="col-12 col-md-6 col-lg-3 text-center d-flex flex-column pb-5">
 			<h3>Hỗ trợ</h3>
 			<div class="d-flex flex-column gap-2 mt-2" style="color: #696969;">
 				<span>FAQs</span>
@@ -57,23 +57,5 @@
 			</div>
 	</div>
 	 
-	 <div class="row mt-5 text-white border-top py-5 gy-3" style="border-color: #696969 !important;">
-	 	<div class="col-12 col-md-6 col-lg-3 text-center">
-	 		<span class="fw-bolder text-uppercase fs-2">FootPrint</span>
-	 	</div>
-	 	<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
-	 		<img class="me-2" src="resources/user/image/footer/phone-fill.svg">
-			<span>ADDRESS : Your address goes here	</span>
-	 	</div>
-	 	<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
-	 		<img class="me-2" src="resources/user/image/footer/map-pin-fill.svg">
-	 		<span>EMAIL: hdnguyen7702@gmail.com</span>
-			
-	 	</div>
-	 	<div class="col-12 col-md-6 col-lg-3 d-flex align-items-center justify-content-center">
-	 		<img class="me-2" src="resources/user/image/footer/phone-fill.svg">
-			<span>PHONE : 0123456789</span>
-	 	</div>
-	 </div>
 </div>
 </div>

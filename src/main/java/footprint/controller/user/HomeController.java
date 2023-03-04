@@ -10,9 +10,8 @@ public class HomeController {
 	
 	@RequestMapping("/") 
 	public String index (ModelMap model) {
-		
-		model.addAttribute("content", "home/index"); 
-		return "layout/main";
+		model.addAttribute("content", "user/home/index.jsp"); 
+		return "layout/main-user";
 	}
 
 }

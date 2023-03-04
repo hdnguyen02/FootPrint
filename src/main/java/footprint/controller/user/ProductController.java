@@ -9,6 +9,6 @@ public class ProductController {
 	@RequestMapping(value = "product")
 	public String index(ModelMap model) {
 		model.addAttribute("content","product/index");
-		return "layout/main"; 
+		return "layout/main-user"; 
 	}
 }

@@ -19,15 +19,15 @@
 	 	<h3 class="text-uppercase text-center fw-bolder">danh mục mua hàng</h3>
 	 	<div class="row mt-4 gy-5">
 	 		<div class="col-12 col-lg-4 bg-image hover-zoom">
-	 			<img src="resources/user/image/home/catalogy-1.jpg" class="w-100">
+	 			<img src="resources/image/home/body/catalogy-1.jpg" class="w-100">
 	 		</div>
 	 		
 	 		<div class="col-12 col-lg-4 bg-image hover-zoom">
-	 			<img src="resources/user/image/home/catalogy-2.jpg" class="w-100">
+	 			<img src="resources/image/home/body/catalogy-2.jpg" class="w-100">
 	 		</div>
 	 		
 	 		<div class="col-12 col-lg-4 bg-image hover-zoom">
-	 			<img src="resources/user/image/home/catalogy-3.jpg" class="w-100">
+	 			<img src="resources/image/home/body/catalogy-3.jpg" class="w-100">
 	 		</div>
 	 	</div>
 	</div>
@@ -35,6 +35,6 @@
 	<!-- banner  -->
 	
 	<div class="mt-5">
-	 	<img alt="" src="resources/user/image/home/Banner_Clothing.jpg" class="w-100">
+	 	<img alt="" src="resources/image/home/body/Banner_Clothing.jpg" class="w-100">
 	</div>
 </div>
