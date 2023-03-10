@@ -3,6 +3,11 @@
 :root {
   --offcanvas-width: 270px;
 }
+
+a {
+ cursor: pointer;
+}
+
 .sidebar-nav {
   width: var(--offcanvas-width) !important;
 }

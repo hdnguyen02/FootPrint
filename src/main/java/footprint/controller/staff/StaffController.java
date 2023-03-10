@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class StaffController {
 	@RequestMapping(value="/staff") 
 	public String index(ModelMap model) { 
-		
-		
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/index.jsp");
 		return "layout/main-dashboard"; 
 	}
+	
+	
+
+	
 }

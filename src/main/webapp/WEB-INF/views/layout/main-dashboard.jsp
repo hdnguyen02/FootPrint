@@ -10,11 +10,13 @@
     <title>Foot Print</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css"/>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="resources/css/main-dashboard.css" rel="stylesheet">
+    <link href='<c:url value="/resources/css/main-dashboard.css"/>' rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
   </head>
-  
- <body class="container-fluid p-0 m-0">
+ 	
+ <body class="container-fluid p-0 m-0" style="overflow-x: hidden">
  
 
  
@@ -24,7 +26,7 @@
 
 
 
-				<div class="py-3 ct-navbar text-sm text-center bg-white shaldow-lg">Copyright © hdnguyen7702</div>
+			<div class="py-3 ct-navbar text-sm text-center bg-white shaldow-lg fixed-bottom">Copyright © hdnguyen7702</div>
 
  
  

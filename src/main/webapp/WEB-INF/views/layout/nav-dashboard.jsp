@@ -13,17 +13,17 @@
        
        
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-		        <form class="d-flex my-3">
+		        <!-- <form class="d-flex my-3">
 		            <div class="input-group">
 		              <input class="form-control" type="search" placeholder="Search for..." aria-label="Search"/>
 		              <button class="btn" style="background-color:#4e73df !important" type="submit">
 		                <i class="bi bi-search fw-bolder text-white"></i>
 		              </button>
 		            </div>
-          		</form>
+          		</form> -->
 		     
 		      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-		       	<li class="nav-item">Đăng nhập<li>
+		       	<li class="nav-item" style="height: 69.6px">Đăng nhập<li>
 		      </ul> 
     	</div>
     	
