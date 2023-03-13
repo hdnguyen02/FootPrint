@@ -63,5 +63,22 @@ public class CategoryDaoImpl implements CategoryDao {
 		}	
 		
 	}
+	
+	public boolean update(Category category) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+
+
+		try {
+			session.update(category);
+			transaction.commit();
+			return true; 
+		} catch (Exception e) {
+			transaction.rollback();
+			return false; 
+		} finally {
+			session.close();
+		}
+	}
 }
 

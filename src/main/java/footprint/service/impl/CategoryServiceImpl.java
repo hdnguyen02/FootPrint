@@ -43,6 +43,10 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.insert(category);
 	}
 	
+	@Override
+	public boolean update(Category category) {
+		return categoryDao.update(category); 
+	}
 
 	
 	

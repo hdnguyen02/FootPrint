@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
 	@RequestMapping("/") 
 	public String index (ModelMap model) {
-		model.addAttribute("content", "user/home/index.jsp"); 
+		model.addAttribute("content", "general/home/index.jsp"); 
 		return "layout/main-user";
 	}
 }

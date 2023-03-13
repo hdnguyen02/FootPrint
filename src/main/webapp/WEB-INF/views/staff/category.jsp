@@ -4,9 +4,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 
-
-
-
 <div
 	class="table-responsive container-fluid px-5 pt-5 pb-4 bg-white shadow-lg">
 	<div class="d-flex justify-content-between mb-4">
@@ -69,10 +66,14 @@
 		</thead>
 		<tbody id="body-table">
 			<c:forEach items="${categoriesPerPage}" var="category">
+				<div data-id-category="${ category.idCategory }"
+					 data-name-category="${ category.name }"
+					 data-diable-category="${ category.disable }"
+				 class="d-none"></div>
 				<tr>
 
 					<td class="col py-2">${category.idCategory}</td>
-					<td class="col py-2">${category.name}</td>
+					<td data-name-category="${ category.idCategory }" class="col py-2">${category.name}</td>
 					<td class="col py-2"> 
 					<fmt:formatDate value="${category.createAt}" pattern="dd/MM/yyyy HH:mm:ss" />
 					 
@@ -85,19 +86,20 @@
 								<span>not update</span>
 							</c:otherwise>
 						</c:choose></td>
-					<td class="col py-2"><c:choose>
+					<td class="col py-2">
+					<c:choose>
 							<c:when test="${category.disable == false}">
-								<button class="btn btn-success btn-sm"
+								<button class="btn btn-success btn-sm" data-disable-category="${category.idCategory}"
 									style="border-radius: 0 !important;width: 80px !important">active</button>
 							</c:when>
 							<c:otherwise>
-								<button class="btn btn-danger btn-sm"
+								<button class="btn btn-danger btn-sm" data-disable-category="${category.idCategory}"
 									style="border-radius: 0 !important;width: 80px !important">disable</button>
 							</c:otherwise>
 						</c:choose></td>
 					<td class="col py-2">
 						<div>
-							<a class="btn btn-secondary btn-sm"
+							<a data-edit-category data-id-category="${ category.idCategory }" data-bs-toggle="modal" data-bs-target="#model-edit-category" data-bs-whatever="@getbootstrap" class="btn btn-secondary btn-sm" 
 								style="border-radius: 0 !important;width: 80px !important"> <span
 								class="button breadcrumb-item active px-2">edit</span>
 							</a>
@@ -107,7 +109,7 @@
 
 					<td class="col py-2">
 						<div>
-							<a class="btn btn-dark btn-sm"
+							<a data-delete-category data-id-category="${ category.idCategory }" class="btn btn-dark btn-sm" 
 								style="border-radius: 0 !important;width: 80px !important"> <span
 								class="button breadcrumb-item active">delete</span>
 							</a>
@@ -117,7 +119,6 @@
 
 		</tbody>
 	</table>
-
 
 
 	<!-- Phân trang -->
@@ -136,12 +137,10 @@
 		</nav>
 	</div>
 </div>
-
-
-
 	<!-- form add category -->
-	<jsp:include page="/WEB-INF/views/staff/add-category.jsp" />
-	
+<jsp:include page="/WEB-INF/views/staff/add-category.jsp" />
+<jsp:include page="/WEB-INF/views/staff/edit-category.jsp" />
+<script src='<c:url value="/resources/staff/javascript/category.js"/>'></script>
 
 
 

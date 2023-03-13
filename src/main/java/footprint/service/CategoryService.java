@@ -11,6 +11,6 @@ public interface CategoryService {
 	
 	public List<Category> getCategoriesPerPage(int curentPage); 
 	public boolean insert(Category category); 
-	
+	public boolean update(Category category); 
 	
 }

@@ -47,6 +47,22 @@ public class CategoryController {
 	}
 	
 	
+	@RequestMapping(value="staff/category/edit",method = RequestMethod.POST) 
+	public String editCategory(ModelMap model,@ModelAttribute("category") Category category) {
+		
+		System.out.println(categoryService.update(category));
+
+		/*
+		 * boolean resultEdit = categoryService.update(category);
+		 * 
+		 * model.addAttribute("resultEdit", resultEdit);
+		 */
+		
+		return "forward:/staff/category";
+		
+	}
+	
+	
 
 	
 }
