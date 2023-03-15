@@ -9,7 +9,6 @@
 	
 </style>
 
-
 <div class="fixed-top">
 	<div style="background-color: #1a1a1a !important;">
 		<nav class="navbar navbar-expand-lg container py-0" data-bs-theme="dark">
@@ -23,7 +22,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 200px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 220px">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4" style="font-size: 14px">
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-uppercase d-flex gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -101,7 +100,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 200px">
+			<div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 220px">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
 					 <li class="nav-item">
 				          <a class="nav-link active text-uppercase" aria-current="page" href="#">Home</a>

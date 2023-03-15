@@ -19,13 +19,12 @@
 	 	background-color: #f8f8f8; 
 	 	display: flex; 
 	 	justify-content: space-between; 
-	/*  	margin-left: -12px; 
-	 	margin-right: -12px; */
+
 	 }
 	 .sub-item { 
 	 	background-color: #87b106;
-	 	width: 60px;
-	 	height: 60px;
+	 	width: 80px;
+	 	height: 80px;
 	 	border-radius: 50%;
 	 	display: flex; 
 	 	justify-content: center; 
@@ -40,24 +39,32 @@
 	<div class="container"> 
 		<div class="item-row text-center">
 			<div class="item-col shadow">
-				
 					<div class="sub-item">
 					<span><i class="fa-regular fa-heart fs-1 text-white"></i></span>
 					</div>
 					<h3 >Great Value</h3>
 					<p class="px-3">Nunc id ante quis tellus faucibus dictum in eget metus.</p>
-			
-				
 			</div>
 			<div class="item-col shadow">
+				<div class="sub-item">
+					<span><i class="fa-solid fa-truck fs-2 text-white"></i></span>
+				</div>
 				<h3 class="text-center">Worlwide Delivery</h3>
 				<p>Nunc id ante quis tellus faucibus dictum in eget metus.</p>
 			</div>
 			<div class="item-col shadow">
+				<div class="sub-item">
+					<span><i class="fa-sharp fa-regular fs-2 text-white fa-credit-card"></i></span>
+				</div>
+			
 				<h3 class="text-center">Safe Payment</h3>
 				<p>Nunc id ante quis tellus faucibus dictum in eget metus.</p>
 			</div>
 			<div class="item-col shadow">
+			<i class=""></i>
+				<div class="sub-item">
+					<span><i class="fa-solid fa-headphones fs-1 text-white"></i></span>
+				</div>
 				<h3 class="text-center">24/7 Help Center</h3>
 				<p>Nunc id ante quis tellus faucibus dictum in eget metus.</p>
 			</div>

@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-
 <div style="background-color: #1a1a1a;">
 	<div>
 		<h3 class="text-white fw-bolder text-uppercase pt-5 mb-0 text-center">Đăng kí nhận email</h3> 
-		<form class="mt-4 d-flex justify-content-center gap-3">
+		<!-- <form class="mt-4 d-flex justify-content-center gap-3">
 			<input class="input-footer" placeholder="Nhập vào email của bạn"/>
 			<button class="button-footer btn btn-primary fw-bolder" type="submit">Subcribe</button>
-		</form>
+		</form> -->
 		<p class='text-center mt-4 fw-bolder' style="color: #696969;">To get the latest news from us please subscribe your email.</p>
 	</div>
 
