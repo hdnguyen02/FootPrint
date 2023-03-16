@@ -27,7 +27,7 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle text-uppercase d-flex gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<span><i class="bi bi-translate"></i></span>
-							<span>Tiếng việt</span>
+							<span>Ngôn ngữ</span>
 							<span><i class="bi bi-chevron-down"></i></span>
 						</a>
 						<ul class="dropdown-menu">

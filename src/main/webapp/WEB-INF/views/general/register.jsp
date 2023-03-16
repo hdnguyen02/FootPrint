@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
 <form>
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
