@@ -1,20 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<style>
-.dropdown-toggle::after {
-  content: "";
-  display: none !important;
-}
-	
-</style>
 
 <div class="fixed-top">
 	<div style="background-color: #1a1a1a !important;">
 		<nav class="navbar navbar-expand-lg container py-0" data-bs-theme="dark">
 		<div class="container-fluid position-relative">
-			<a class="d-flex align-items-center position-absolute start-0 top-0 px-3" href="#" style="background-color: #87b106;padding-top: 23px !important; padding-bottom: 26px !important;margin-left: 12px">
-				<img alt="không hiển thị" src="resources/image/nav/logo.webp" class="w-100">
+			<a class="d-flex align-items-center position-absolute top-0 ms-0" href="#" style="background-color: #87b106;left: 12px">
+				<img alt="không hiển thị" src="resources/image/nav/logo.webp" class="w-100" style="padding: 24.5px 14px">
 			</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -114,27 +107,29 @@
 				      <li class="nav-item">
 				          <a class="nav-link active text-uppercase" aria-current="page" href="#">contact us</a>
 				      </li>
-				
-
+			
 				</ul>
 				<!-- icon  -->
 				<div class="d-flex gap-5" style="color: #fff !important;">
 					<div class="d-flex gap-4">
 						<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
 						<span> <i class="fa-solid fs-5 fa-cart-shopping"></i></span>
-					</div>
-					
-				
+					</div>		
+				</div>	
 				</div>
-				
-					
-				</div>
-			</div>
-		
+			</div>	
 	</nav>
 	</div>
-	
 </div>
+
+<style>
+	.dropdown-toggle::after {
+	  content: "";
+	  display: none !important;
+	}
+	
+	
+</style>
 
 
 

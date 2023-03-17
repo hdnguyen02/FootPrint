@@ -1,41 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<style>
-	.item-col {
-		padding-left: 5px; 
-		padding-right: 5px;
-		height: 350px;
-		width: 24%;
-		background-color: #fff;
-		display: flex; 
-		flex-direction:column;
-		justify-content: center; 
-		align-items: center;
-		
-	 }
-	 
-	 .item-row { 
-	 	background-color: #f8f8f8; 
-	 	display: flex; 
-	 	justify-content: space-between; 
-
-	 }
-	 .sub-item { 
-	 	background-color: #87b106;
-	 	width: 80px;
-	 	height: 80px;
-	 	border-radius: 50%;
-	 	display: flex; 
-	 	justify-content: center; 
-	 	align-items: center;
-	 	margin-bottom: 30px;
-	 }
-	
-</style>
-
-
-
 <section  style="background-color: #f8f8f8;padding-top: 100px">
 	<div class="container"> 
 		<div class="item-row text-center">
@@ -105,4 +70,38 @@
 	</div>
 
 </section>
+
+
+<style>
+	.item-col {
+		padding-left: 5px; 
+		padding-right: 5px;
+		height: 350px;
+		width: 24%;
+		background-color: #fff;
+		display: flex; 
+		flex-direction:column;
+		justify-content: center; 
+		align-items: center;
+		
+	 }
+	 
+	 .item-row { 
+	 	background-color: #f8f8f8; 
+	 	display: flex; 
+	 	justify-content: space-between; 
+
+	 }
+	 .sub-item { 
+	 	background-color: #87b106;
+	 	width: 80px;
+	 	height: 80px;
+	 	border-radius: 50%;
+	 	display: flex; 
+	 	justify-content: center; 
+	 	align-items: center;
+	 	margin-bottom: 30px;
+	 }
+	
+</style>
 

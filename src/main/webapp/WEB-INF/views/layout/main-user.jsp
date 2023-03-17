@@ -17,7 +17,11 @@
   <body style="overflow-x: hidden">
 
  		<jsp:include page="/WEB-INF/views/layout/nav-user.jsp" />
- 		<jsp:include page="/WEB-INF/views/${content}" /> 
+ 		
+ 		<div style="margin-top:93px">
+			<jsp:include page="/WEB-INF/views/${content}" /> 
+		</div>
+ 		
  		<jsp:include page="/WEB-INF/views/layout/footer-user.jsp" />
     	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

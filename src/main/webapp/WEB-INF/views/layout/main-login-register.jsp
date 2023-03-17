@@ -17,6 +17,7 @@
   		min-height: 100vh; 
   		background-color: #f9f8f9; 
   		display: flex; 
+  		flex-direction:column;
   		justify-content: center; 
   		align-items: center;
   	}
@@ -45,6 +46,13 @@
   </style>
   
   <body class="body" style="overflow-x: hidden">
+  
+  		<nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a href="/">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">Register</li>
+		  </ol>
+		</nav>
   
   		<div class="row content container bg-white  shadow-sm p-4">	
   			<div class="d-none d-md-block col-md-6" style="padding: 40px 70px;padding-top:80px">
