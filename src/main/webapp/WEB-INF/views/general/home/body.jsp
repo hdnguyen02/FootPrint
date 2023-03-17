@@ -38,11 +38,11 @@
 	</div> 
 	
 	<div class="container" style="margin-top: 80px;padding-bottom: 80px">
-		<div class="row">
+		<div class="row gy-3">
 			<div class="col-12 col-md-6">
 				<img class="w-100" src="resources/image/home/body/about.webp">
 			</div>
-			<div class="col-12 col-lg-6">
+			<div class="col-12 col-md-6">
 				<div>
 					<h2 class="text-uppercase fw-bolder fs-2">PULLMAN SNEAKER ABOUT US.</h2>
 					<h4 class="mt-4">Investigationes demonstraverunt lectores legere me.</h4>

@@ -1,25 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 
-<form>
+<form:form method="POST" modelAttribute="user" action="confirm">
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
 		<div class="position-relative">
-			<input class="ct-input w-100" type="email" placeholder="email">
+			<form:input path="email" class="ct-input w-100" type="email" placeholder="email"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-envelope"></i>
 			</span>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<input class="ct-input w-100" type="text" placeholder="username">
+			<form:input path="username" class="ct-input w-100" type="text" placeholder="username"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-user"></i>
 			</span>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<input class="ct-input w-100" type="password" placeholder="password">
+			<form:input path="password" class="ct-input w-100" type="password" placeholder="password"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-lock"></i>
 			</span>
@@ -31,13 +32,13 @@
 	  		</label>
 		</div>
 		<div class="d-flex justify-content-between align-items-center mt-5">
-			<button type="button" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Register</button>
+			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Register</button>
 			<a class="underline" style="cursor: pointer">Đăng nhập</a>
 		</div>
 		
 		
 	</div>
-</form>
+</form:form>
 
 <div class="d-flex gap-3 justify-content-center align-items-center mt-4">
   	<span>or register with</span>
