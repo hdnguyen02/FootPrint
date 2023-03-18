@@ -140,7 +140,7 @@
 	<!-- form add category -->
 <jsp:include page="/WEB-INF/views/staff/add-category.jsp" />
 <jsp:include page="/WEB-INF/views/staff/edit-category.jsp" />
-<script src='<c:url value="/resources/staff/javascript/category.js"/>'></script>
+<script src='<c:url value="/resources/javascript/category.js"/>'></script>
 
 
 

@@ -13,176 +13,132 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="User")
-public class User {
+@Table(name = "Account")
+public class Account {
 	@Id
 	@GeneratedValue
-	private Long idUser; 
-	
-	@Column(name="username") 
-	private String username; 
-	
-	@Column(name="password")
-	private String password; 
-	
-	@Column(name="firstName")
-	private String firstName; 
-	
-	@Column(name="lastName")
-	private String lastName; 
-	
-	@Column(name="address")
-	private String address;  
-	
-	@Column(name="imageUrl")
+	private Long idAccount;
+
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
+	private String address;
 	private String imageUrl;
-	
-	@Column(name="email")
-	private String email;  
-	
-	
-	@Column(name="phone")
-	private String phone;  
-	
-	@Column(name="createAt")
+	private String email;
+	private String phone;
+
+	@Column(name = "createAt")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
-	
-	@Column(name="disable") 
-	private Boolean disable; 
-	
+
+	private Boolean disable;
+
 	@ManyToOne
-	@JoinColumn(name="idRole")
+	@JoinColumn(name = "idRole")
 	private Role role;
 
+	public Account() {}
 
-	public Long getIdUser() {
-		return idUser;
+	public Long getIdAccount() {
+		return idAccount;
 	}
 
-
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setIdAccount(Long idAccount) {
+		this.idAccount = idAccount;
 	}
-
 
 	public String getUsername() {
 		return username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public String getFirstName() {
 		return firstName;
 	}
 
-
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
 
 	public String getLastName() {
 		return lastName;
 	}
 
-
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
 
 	public String getAddress() {
 		return address;
 	}
 
-
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-
-	public String getPhone() {
-		return phone;
-	}
-
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-
-	public Date getCreateAt() {
-		return createAt;
-	}
-
-
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-
-
-	public Boolean getDisable() {
-		return disable;
-	}
-
-
-	public void setDisable(Boolean disable) {
-		this.disable = disable;
-	}
-
-
-	public Role getRole() {
-		return role;
-	}
-
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-	
-	
-
 
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
-
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
 
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
+	public String getPhone() {
+		return phone;
+	}
 
-	public User(Long idUser, String username, String password, String firstName, String lastName, String address,
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+	public Boolean getDisable() {
+		return disable;
+	}
+
+	public void setDisable(Boolean disable) {
+		this.disable = disable;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Account(Long idAccount, String username, String password, String firstName, String lastName, String address,
 			String imageUrl, String email, String phone, Date createAt, Boolean disable, Role role) {
-		this.idUser = idUser;
+		this.idAccount = idAccount;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
@@ -196,10 +152,4 @@ public class User {
 		this.role = role;
 	}
 
-
-	public User() {
-		
-	} 
-	
-	
 }

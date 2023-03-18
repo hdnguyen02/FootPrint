@@ -1,3 +1,4 @@
+
 package footprint.entity;
 
 import java.util.Collection;
@@ -5,63 +6,58 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="role")
+
+@Table(name = "role")
 public class Role {
+
 	@Id
-	@GeneratedValue
-	private Integer idRole; 
-	
-	@Column(name="name")
+	private String idRole;
+
+	@Column(name = "name")
 	private String name;
-	
-	
+
 	@OneToMany(mappedBy = "role", fetch = FetchType.EAGER)
-	private Collection<User> users;
+	private Collection<Account> accounts;
 
-
-	public Integer getIdRole() {
+	public String getIdRole() {
 		return idRole;
 	}
 
-
-	public void setIdRole(Integer idRole) {
+	public void setIdRole(String idRole) {
 		this.idRole = idRole;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-	public Collection<User> getUsers() {
-		return users;
+	public Collection<Account> getUsers() {
+		return accounts;
 	}
 
-
-	public void setUsers(Collection<User> users) {
-		this.users = users;
-	}
-
-
-	public Role(Integer idRole, String name, Collection<User> users) {
-		this.idRole = idRole;
-		this.name = name;
-		this.users = users;
+	public void setUsers(Collection<Account> users) {
+		this.accounts = users;
 	}
 
 	public Role() {
-		
+
 	}
+
+	public Role(String idRole, String name, Collection<Account> users) {
+		this.idRole = idRole;
+		this.name = name;
+		this.accounts = users;
+	}
+	
+	
+
 }

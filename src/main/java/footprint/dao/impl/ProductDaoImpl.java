@@ -19,7 +19,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	
 	@Autowired
-	SessionFactory sessionFactory; 
+	private SessionFactory sessionFactory; 
 	
 		
 	@Override

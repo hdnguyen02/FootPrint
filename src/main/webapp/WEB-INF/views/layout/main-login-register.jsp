@@ -23,7 +23,7 @@
 			    <span>Home</span>
 			    
 			    </a></li>
-			    <li class="breadcrumb-item active" aria-current="page">Register</li>
+			    <li class="breadcrumb-item active" aria-current="page">${ nameBreadcrumb }</li>
 			  </ol>
 			</nav>
   
@@ -52,8 +52,9 @@
   	}
   
   	.content {
-  		width: 800px;
-  		height: 600px;
+  		width: 900px;
+  		min-height: 600px;
+  		max-height: 700px;
   	}
   	
   	@media screen and (max-width: 768px) {

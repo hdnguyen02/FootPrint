@@ -21,7 +21,7 @@ import footprint.entity.Category;
 public class CategoryDaoImpl implements CategoryDao {
 	
 	@Autowired 
-	SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 
 	@Override
 	public List<Category> getAllCategories() {

@@ -14,7 +14,7 @@ import footprint.service.ProductService;
 public class ProductServiceImpl implements ProductService {
 	
 	@Autowired 
-	ProductDao productDao; 
+	private ProductDao productDao; 
 	
 	@Autowired
 	@Qualifier("imageProduct")

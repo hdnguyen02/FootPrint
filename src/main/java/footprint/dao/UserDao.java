@@ -1,7 +1,7 @@
 package footprint.dao;
 
+import footprint.entity.Account;
 
-
-public class UserDao {
-	
+public interface UserDao {
+	public boolean insert(Account account); 
 }

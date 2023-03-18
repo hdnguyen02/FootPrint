@@ -13,7 +13,7 @@ import footprint.service.CategoryService;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	@Autowired
-	CategoryDao categoryDao; 
+	private CategoryDao categoryDao; 
 	private int categoryPerPage = 6; // 3 phần tử trên mỗi table 
 	
 	
