@@ -34,6 +34,9 @@ public class User {
 	@Column(name="address")
 	private String address;  
 	
+	@Column(name="imageUrl")
+	private String imageUrl;
+	
 	@Column(name="email")
 	private String email;  
 	
@@ -161,16 +164,31 @@ public class User {
 	public void setRole(Role role) {
 		this.role = role;
 	}
+	
+	
+
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
 
 
 	public User(Long idUser, String username, String password, String firstName, String lastName, String address,
-			String email, String phone, Date createAt, Boolean disable, Role role) {
+			String imageUrl, String email, String phone, Date createAt, Boolean disable, Role role) {
 		this.idUser = idUser;
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
+		this.imageUrl = imageUrl;
 		this.email = email;
 		this.phone = phone;
 		this.createAt = createAt;

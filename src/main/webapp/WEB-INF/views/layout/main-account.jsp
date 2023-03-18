@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-<div class="row container py-5 gy-4">
+
+<div class="container">
+	<div class="row py-5 gy-4">
 	<div class="col-12 col-md-3">
 		<jsp:include page="/WEB-INF/views/layout/sidebar-account.jsp" />
 	</div>
-	<div class="col-12 col-md-9 border border-1 p-4">
-		<jsp:include page="/WEB-INF/views/${ bodyAccount }" />
+	<div class="col-12 col-md-9">
+		<div class="border border-1 p-4">
+			<jsp:include page="/WEB-INF/views/${ bodyAccount }" />
+		</div>
 	</div>
 </div>
+</div>
+
 
 <style>
-
-	.container { 
-		max-width: 1178px;
-		padding-left: 0px; 
-		padding-right:0px; 
-		margin-left: auto; 
-		margin-right: auto;
-	}
 
 
 	.ct-ul {

@@ -6,21 +6,27 @@
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
 		<div class="position-relative">
-			<form:input path="email" class="ct-input w-100" type="email" placeholder="email"/>
+			<form:input path="email" class="ct-input w-100 border-bottom border-bottom-1" type="email" placeholder="email"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-envelope"></i>
 			</span>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<form:input path="username" class="ct-input w-100" type="text" placeholder="username"/>
+			<form:input path="username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-user"></i>
 			</span>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<form:input path="password" class="ct-input w-100" type="password" placeholder="password"/>
+			<form:input path="password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="password"/>
+			<span class="position-absolute start-0" style="top: 1px">
+				<i class="fa-solid fa-lock"></i>
+			</span>
+		</div>
+		<div class="position-relative" style="margin-top: 36px">
+			<form:input path="password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="confirm password"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-lock"></i>
 			</span>

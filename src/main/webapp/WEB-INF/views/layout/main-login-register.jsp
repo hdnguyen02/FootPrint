@@ -13,9 +13,10 @@
   </head>
   
 
-  <body class="body" style="overflow-x: hidden">
- 
-  			<nav aria-label="breadcrumb">
+  <body style="overflow-x: hidden container">
+  
+  			<div class="body">
+  				<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
 			    <li class="breadcrumb-item"><a class="d-flex gap-2" style="color:#87b106 !important" href="/">
 			    <span><i class="fa-solid fa-house"></i></span>
@@ -26,22 +27,19 @@
 			  </ol>
 			</nav>
   
-  		<div class="row content container bg-white  shadow-sm p-4">	
+  		<div class="row content bg-white  shadow-sm p-4">	
   			<div class="d-none col-0 d-lg-block col-lg-6" style="padding: 40px 70px;padding-top:80px">
   				<div>
   					<img class="w-100" src="resources/image/login/signin-image.jpg">
   				</div>
   			</div>
-  			<div class="col-12 col-lg-6" style="padding-top: 40px;padding-bottom:40px;padding-left: 50px;padding-right: 70px">
+  			<div class="col-12 col-lg-6" style="padding-top: 20px;padding-bottom:20px;padding-left: 50px;padding-right:50px">
   				<jsp:include page="/WEB-INF/views/${ content }" />
   			</div>
   		
   		</div>
-
- 		
- 		
-    	
-    	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> 
+  			</div>
+  	
   </body>
   <style>
   	.body {
@@ -52,21 +50,20 @@
   		justify-content: center; 
   		align-items: center;
   	}
-  	.container { 
-		max-width: 1178px;
-		padding-left: 0px; 
-		padding-right:0px; 
-		margin-left: auto; 
-		margin-right: auto;
-	}
+  
   	.content {
-  		width: 900px;
+  		width: 800px;
   		height: 600px;
   	}
   	
+  	@media screen and (max-width: 768px) {
+	  .content {
+  		width: 100%;
+  	}
+	}
+  	
   	.ct-input {
 		border: none; 
-		border-bottom: 1px solid rgba(0,0,0,0.4);
 		padding-bottom: 6px;
 		padding-left: 32px;
 		outline: none;
@@ -74,7 +71,7 @@
 	}
 	
 	.ct-input:focus {
-		border-bottom: 3.5px solid #87b106;
+		border-bottom: 1.5px solid #87b106 !important;
 	}
 
 	.ct-icon {
