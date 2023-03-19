@@ -43,7 +43,7 @@
   </body>
   <style>
   	.body {
-  		min-height: 100vh; 
+  		min-height: 101vh; 
   		background-color: #f9f8f9; 
   		display: flex; 
   		flex-direction:column;
@@ -54,7 +54,7 @@
   	.content {
   		width: 900px;
   		min-height: 600px;
-  		max-height: 700px;
+  		max-height: 1000px;
   	}
   	
   	@media screen and (max-width: 768px) {
@@ -79,6 +79,11 @@
 		position: absolute;
 		left: 0; 
 		top: 4px;
+	}
+	
+	.error {
+		color: red;
+		font-size: 14px;
 	}
   	
   </style>

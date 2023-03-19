@@ -7,14 +7,14 @@
 	<div class="text-center">
 		<h3>Enter OTP</h3>
 		<p>We have send you access code via <span>hdnguyen7702@gmail.com</span></p>
-		<form class="d-flex flex-column gap-4">
+		<form method="POST" action="auth" class="d-flex flex-column gap-4">
 			<div class="d-flex justify-content-between">
-				<input class="otp border rounded"/>
-				<input class="otp border rounded"/>
-				<input class="otp border rounded"/>
-				<input class="otp border rounded"/>
-				<input class="otp border rounded"/>
-				<input class="otp border rounded"/>
+				<input name="otp-1" class="otp border rounded"/>
+				<input name="otp-2" class="otp border rounded"/>
+				<input name="otp-3" class="otp border rounded"/>
+				<input name="otp-4" class="otp border rounded"/>
+				<input name="otp-5" class="otp border rounded"/>
+				<input name="otp-6" class="otp border rounded"/>
 			</div>
 			<div>
 				<button class="btn btn-primary rounded-0 border-0 py-2 w-100" style="background-color:#87b106 !important">Verify</button>

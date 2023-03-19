@@ -6,7 +6,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import footprint.dao.UserDao;
+import footprint.dao.AccountDao;
 import footprint.entity.Account;
 import footprint.entity.Role;
 import footprint.service.UserService;
@@ -14,7 +14,7 @@ import footprint.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 	@Autowired
-	private UserDao userDao; 
+	private AccountDao accountDao; 
 	
 	@Override
 	public boolean insert(Account account) {
@@ -22,6 +22,16 @@ public class UserServiceImpl implements UserService {
 		Role role = new Role(); 
 		role.setIdRole("USER");
 		account.setRole(role);
-		return userDao.insert(account);
+		return accountDao.insert(account);
+	}
+	
+	@Override
+	public Account getUserByUsername(String username) {
+		return accountDao.getAccountByUsername(username); 
+	}
+	
+	@Override
+	public Account getUserByEmail(String email) {
+		return accountDao.getAccountByEmail(email);
 	}
 }

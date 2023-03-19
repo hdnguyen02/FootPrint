@@ -3,38 +3,46 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 
-<form:form method="POST" modelAttribute="account" action="confirm" id="form-register">
+<form:form method="POST" modelAttribute="account" id="form-register">
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
 		<div class="position-relative">
-			<form:input path="email" id="register-email" class="ct-input w-100 border-bottom border-bottom-1" type="email" placeholder="email"/>
+			<form:input required="required" path="email" id="register-email" class="ct-input w-100 border-bottom border-bottom-1" type="email" placeholder="email"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-envelope"></i>
 			</span>
-			<span data-error-email></span>
+			<span data-error-email class="error"></span>
+			<c:if test="${not empty resultEmail}">
+			  <span data-result-email class="error">${ resultEmail }</span>
+			</c:if>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<form:input path="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username"/>
+			<form:input required="required" path="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-user"></i>
 			</span>
-			<span data-error-username></span>
+			<span data-error-username class="error"></span>
+			<c:if test="${not empty resultUsername}">
+			  <span data-result-username class="error"> ${resultUsername}</span>
+			</c:if>
 		</div>
 		
 		<div class="position-relative" style="margin-top: 36px">
-			<form:input path="password" id="register-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="password"/>
+			<form:input required="required" path="password" id="register-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="password"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-lock"></i>
 			</span>
-			<span data-error-password></span>
+			<span data-error-password class="error"></span>
 		</div>
 		<div class="position-relative" style="margin-top: 36px">
-			<input id="register-confirm-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="confirm password">
+			<input required="required" id="register-confirm-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="confirm password">
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-lock"></i>
 			</span>
-			<span data-error-password></span>
+			<span data-error-password class="error"></span>
+			<!-- Hiển thị lỗi đăng ký tại đây  -->
+		
 		</div>
 		<div class="form-check mt-4">
 			  <input class="form-check-input rounded rounded-0" type="checkbox" value="" id="flexCheckDefault">
