@@ -16,11 +16,32 @@
 
 	<!-- Cấu hình interceptor --> 
 	
-	<!-- <mvc:interceptors>  
+	 <mvc:interceptors>  
+	 
+	 	<!-- Người dùng  -->
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
-			<bean class="footprint.interceptor." />
+			
+			<mvc:mapping path="/account.htm"/>
+			<mvc:mapping path="/login.htm"/>
+			
+			<bean class="footprint.interceptor.UserFilter" />
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+		
+		<!-- Nhân viên  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/staff.htm"/>
+			<mvc:mapping path="/staff/**"/>
+
+			<bean class="footprint.interceptor.StaffFilter" />
+		</mvc:interceptor>
+		
+		<!-- admin  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/admin.htm"/>
+			<mvc:mapping path="/admin/**"/>
+			<bean class="footprint.interceptor.AdminFilter" />
+		</mvc:interceptor>
+		
+	</mvc:interceptors> 
 
 </beans>

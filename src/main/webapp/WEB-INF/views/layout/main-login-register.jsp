@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -12,13 +13,13 @@
 
   </head>
   
-
-  <body style="overflow-x: hidden container">
+<c:url var='home' value='/' />
+  <body style="overflow-x: hidden">
   
   			<div class="body">
   				<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item"><a class="d-flex gap-2" style="color:#87b106 !important" href="/">
+			    <li class="breadcrumb-item"><a class="d-flex gap-2" style="color:#87b106 !important" href="${home}">
 			    <span><i class="fa-solid fa-house"></i></span>
 			    <span>Home</span>
 			    

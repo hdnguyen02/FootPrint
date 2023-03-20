@@ -9,15 +9,15 @@ import org.springframework.stereotype.Service;
 import footprint.dao.AccountDao;
 import footprint.entity.Account;
 import footprint.entity.Role;
-import footprint.service.UserService;
+import footprint.service.AccountService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements AccountService {
 	@Autowired
 	private AccountDao accountDao; 
 	
 	@Override
-	public boolean insert(Account account) {
+	public boolean insertUser(Account account) {
 		account.setPassword(BCrypt.hashpw(account.getPassword(), BCrypt.gensalt(12)));
 		Role role = new Role(); 
 		role.setIdRole("USER");
@@ -26,12 +26,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Account getUserByUsername(String username) {
+	public Account getAccountByUsername(String username) {
 		return accountDao.getAccountByUsername(username); 
 	}
 	
 	@Override
-	public Account getUserByEmail(String email) {
+	public Account getAccountByEmail(String email) {
 		return accountDao.getAccountByEmail(email);
 	}
 }

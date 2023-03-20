@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HomeController {
-	@RequestMapping("/") 
+	@RequestMapping("/home") 
 	public String index (ModelMap model) {
 		model.addAttribute("content", "general/home/index.jsp"); 
 		return "layout/main-user";

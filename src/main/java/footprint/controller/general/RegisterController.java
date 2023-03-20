@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import footprint.entity.Account;
 import footprint.service.MailService;
 
-import footprint.service.UserService;
+import footprint.service.AccountService;
 
 @Controller
 public class RegisterController {
@@ -26,7 +26,7 @@ public class RegisterController {
 	
 	
 	@Autowired 
-	private UserService userService;
+	private AccountService userService;
 	
 	// lúc submit lên vẫn submit lên trên đó. 
 	
@@ -43,10 +43,9 @@ public class RegisterController {
 	@RequestMapping(value="register",method=RequestMethod.POST)
 	public String postRegister(ModelMap model,@ModelAttribute("account") Account account,HttpSession session) { 
 		
-		 Account userByUsername = userService.getUserByUsername(account.getUsername()); 
-		 Account userByEmail = userService.getUserByEmail(account.getEmail()); 
-		 System.out.println(account.getUsername());
-		 System.out.println(account.getEmail());
+		 Account userByUsername = userService.getAccountByUsername(account.getUsername()); 
+		 Account userByEmail = userService.getAccountByEmail(account.getEmail()); 
+
 		 
 		 boolean successRegister = true; 
 		 
@@ -100,7 +99,7 @@ public class RegisterController {
 			user.setUsername((String)session.getAttribute("username"));
 			user.setPassword((String)session.getAttribute("password"));
 			
-		    boolean resultRegister = userService.insert(user); 
+		    boolean resultRegister = userService.insertUser(user); 
 		    if (resultRegister == true) {
 		    	return "redirect:/"; 
 		    }

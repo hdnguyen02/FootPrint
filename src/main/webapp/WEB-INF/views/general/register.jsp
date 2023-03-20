@@ -3,6 +3,10 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 
+
+<c:url var='signIn' value='/sign-in.htm' />
+
+
 <form:form method="POST" modelAttribute="account" id="form-register">
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
@@ -52,7 +56,7 @@
 		</div>
 		<div class="d-flex justify-content-between align-items-center mt-5">
 			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Register</button>
-			<a class="underline" style="cursor: pointer">Đăng nhập</a>
+			<a href="${ signIn }" class="underline" style="cursor: pointer;text-decoration:underline !important">Đăng nhập</a>
 		</div>
 		
 		
