@@ -61,6 +61,12 @@ username.addEventListener("focus", () => {
 
 password.addEventListener("focus", () => {
 	document.querySelector("[data-error-password]").innerHTML = ""
+	document.querySelector("[data-error-register]").innerHTML = ""
+	
 })
 
+passwordConfirm.addEventListener("focus", () => {
+	document.querySelector("[data-error-register]").innerHTML = ""
+	
+})
 

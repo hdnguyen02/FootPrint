@@ -1,9 +1,9 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8' %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
-<c:url var='addProduct' value='/staff/product/add' />
+<c:url var='addProduct' value='/staff/product/add.htm' />
 <c:url var='listProduct' value='/staff/product/list' />
-<c:url var='categoryProduct' value='/staff/category' />
+<c:url var='categoryProduct' value='/staff/category.htm' />
 
 
 

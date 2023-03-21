@@ -17,7 +17,7 @@
 
  		<jsp:include page="/WEB-INF/views/layout/nav-user.jsp" />
  		
- 		<div style="margin-top:65px">
+ 		<div style="margin-top:93px">
 			<jsp:include page="/WEB-INF/views/${content}" /> 
 		</div>
  		

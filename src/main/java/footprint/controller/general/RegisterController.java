@@ -32,7 +32,14 @@ public class RegisterController {
 	
 	
 	@RequestMapping(value="register",method=RequestMethod.GET)
-	public String getRegister(ModelMap model,@ModelAttribute("account") Account account) { 
+	public String getRegister(ModelMap model,@ModelAttribute("account") Account account,HttpSession session) { 
+		
+		// trường hợp đăng ký bị lỗi 
+		if (session.getAttribute("errorRegister") != null) {
+			model.addAttribute("errorRegister", session.getAttribute("errorRegister"));
+			session.removeAttribute("errorRegister");
+			
+		}
 
 		model.addAttribute("nameBreadcrumb", "register");
 		model.addAttribute("content", "general/register.jsp"); 
@@ -82,7 +89,7 @@ public class RegisterController {
 		 return "layout/main-login-register";
 	}
 	
-	@RequestMapping(value="auth", method=RequestMethod.POST) 
+	@RequestMapping(value="confirm", method=RequestMethod.POST) 
 	public String authOtp (@ModelAttribute("account") Account account,HttpSession session,ModelMap model,
 			@RequestParam("otp-1") String otp1,@RequestParam("otp-2") String otp2, 
 			@RequestParam("otp-3") String otp3,@RequestParam("otp-4") String otp4, 
@@ -101,10 +108,27 @@ public class RegisterController {
 			
 		    boolean resultRegister = userService.insertUser(user); 
 		    if (resultRegister == true) {
-		    	return "redirect:/"; 
+		    	
+		    	// sau khi xác nhận đăng ký thành công -> Đăng nhập cho người dùng.
+		    	
+		    	session.removeAttribute("otp");
+		    	session.removeAttribute("email");
+		    	session.removeAttribute("username");
+		    	session.removeAttribute("password");
+		    	
+		    	session.setAttribute("successRegister", "Đăng ký tài khoản thành công!");
+		    	
+		    	return "redirect:/sign-in.htm"; 
 		    }
+		    session.setAttribute("errorRegister", "Đăng ký tài khoản thất bại!");
+		    return "redirect:/register.htm";
 		}
-		return "user/register-fail";
+		
+		// trường hợp người dùng có mã otp 
+		session.setAttribute("errorRegister", "Đăng ký tài khoản không thành công, mã otp không chính xác!");
+		
+		
+		return "redirect:/register.htm";
 	}
 	
 

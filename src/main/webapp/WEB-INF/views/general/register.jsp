@@ -44,7 +44,9 @@
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-lock"></i>
 			</span>
-			<span data-error-password class="error"></span>
+			<c:if test="${not empty errorRegister}">
+			  <span data-error-register class="error"> ${errorRegister}</span>
+			</c:if>
 			<!-- Hiển thị lỗi đăng ký tại đây  -->
 		
 		</div>

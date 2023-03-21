@@ -7,8 +7,9 @@
 <c:url var='signIn' value='/sign-in.htm' />
 <c:url var='SignOut' value='/sign-out.htm' />
 <c:url var='account' value='/account.htm' />
-<c:url var='register' value='/register.htm' /> -
-
+<c:url var='register' value='/register.htm' /> 
+<c:url var='staff' value='/staff.htm' />
+<c:url var='admin' value='/admin.htm' />
 
 
 <div class="fixed-top">
@@ -73,7 +74,7 @@
 						</div>
 						<div class="d-flex gap-3" style="font-size: 14px !important">
 							
-							<c:if test="${ not empty sessionScope.ACCOUNT }">
+							<c:if test="${ sessionScope.ROLE == 'USER' }">
 								<div>
 									<span><i class="fa-sharp fa-regular fa-credit-card"></i></span>
 									<a>Checkout</a>
@@ -154,6 +155,17 @@
 						<li class="nav-item"><a
 							class="nav-link active text-uppercase" aria-current="page"
 							href="#">contact us</a></li>
+							
+							<c:if test="${ sessionScope.ROLE == 'STAFF' }">
+								<li class="nav-item"><a
+								class="nav-link active text-uppercase" aria-current="page"
+								href="${staff}">Dashboard</a></li>
+							</c:if>
+							<c:if test="${ sessionScope.ROLE == 'ADMIN' }">
+								<li class="nav-item"><a
+								class="nav-link active text-uppercase" aria-current="page"
+								href="${admin}">Dashboard</a></li>
+							</c:if>
 
 					</ul>
 					<!-- icon  -->
@@ -161,7 +173,7 @@
 						<div class="d-flex gap-4">
 							<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
 
-							<c:if test="${ not empty sessionScope.ACCOUNT }">
+							<c:if test="${ sessionScope.ROLE == 'USER'}">
 								<span> <i class="fa-solid fs-5 fa-cart-shopping"></i></span>
 							</c:if>
 

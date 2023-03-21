@@ -7,7 +7,7 @@
 	<div class="text-center">
 		<h3>Enter OTP</h3>
 		<p>We have send you access code via <span>hdnguyen7702@gmail.com</span></p>
-		<form method="POST" action="auth" class="d-flex flex-column gap-4">
+		<form method="POST" action="confirm.htm" class="d-flex flex-column gap-4">
 			<div class="d-flex justify-content-between">
 				<input name="otp-1" class="otp border rounded"/>
 				<input name="otp-2" class="otp border rounded"/>

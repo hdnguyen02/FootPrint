@@ -29,6 +29,11 @@
 			  <span class="error">${ resultLogin }</span>
 			</c:if>
 			
+			<c:if test="${not empty successRegister}">
+			  <span class="fw-bolder" style="color: #87b106">${ successRegister }</span>
+			</c:if>
+			
+	
 		</div>
 		
 		

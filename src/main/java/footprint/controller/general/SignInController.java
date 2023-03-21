@@ -16,9 +16,17 @@ import footprint.service.AccountService;
 @Controller
 public class SignInController {
 	@Autowired 
-	AccountService userService;
+	AccountService accountService;
 	@RequestMapping(value="sign-in")
-	public String Getlogin(ModelMap model) {
+	public String Getlogin(ModelMap model, HttpSession session) {
+		
+		
+		// thông báo đăng ký tài khoản thành công.
+		if (session.getAttribute("successRegister") != null) {
+			model.addAttribute("successRegister", session.getAttribute("successRegister"));
+			session.removeAttribute("successRegister");
+		}
+		
 		model.addAttribute("content", "general/sign-in.jsp"); 
 		model.addAttribute("nameBreadcrumb", "login"); 
 		
@@ -29,7 +37,7 @@ public class SignInController {
 	public String Postlogin(ModelMap model,HttpSession session,
 			@RequestParam("username") String username,@RequestParam("password") String password) 
 	{
-		Account account = userService.getAccountByUsername(username);
+		Account account = accountService.getAccountByUsername(username);
 	
 		if (account == null || !BCrypt.checkpw(password,account.getPassword())) { 
 			
