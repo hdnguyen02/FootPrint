@@ -34,13 +34,15 @@
 		<div class="col-12 col-md-6 mt-2">
 			<div>
 			   <label for="name-product" class="form-label">Tên giày</label>
-			  <form:input path="name" class="form-control" id="name-product"/> 
+			  <form:input path="name" required="required" class="form-control" id="name-product"/> 
 			</div>
 		
 			<div class="mt-4">
 				<label for="description-product" class="form-label">Mô tả</label>
-	  			<form:textarea path="description" class="form-control" id="description-product" rows="3"/>
+	  			<form:textarea path="description" required="required" class="form-control" id="description-product" rows="3"/>
 			</div>
+			
+			
 			
 			<div class="row"> 
 				<div class="mt-4 col-12 col-md-6">
@@ -62,18 +64,18 @@
 			
 			<div class="mt-4"> 
 				<label for="cost-product" class="form-label">Giá tiền</label>
-			   <form:input path="cost" type="number" class="form-control" id="cost-product"/>
+			   <form:input path="cost" min="1" required="required" type="number" class="form-control" id="cost-product"/>
 			</div>
 		
 			<div class="row mt-4">
 				<div class="col-6">
 					<label for="image-product" class="form-label">image</label>
-					<input type="file" name="imageProduct" id="image-product">
+					<input required type="file" accept="image/*" name="imageProduct" id="image-product">
 				</div>
-				<!-- <div class="col-6">
+				 <div class="col-6">
 					<label for="exampleFormControlInput1" class="form-label">thumbnail images</label>
-					<input type="file" multiple id="exampleFormControlInput1">
-				</div> -->
+					<input required type="file" multiple id="exampleFormControlInput1">
+				</div> 
 			</div>
 		 
 		</div>

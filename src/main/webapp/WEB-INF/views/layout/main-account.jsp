@@ -38,7 +38,7 @@
 	
 	.ct-a.active {
 		background-color: #87b106;
-		color: white;
+		color: white !important;
 	}
 	
 	.ct-input {

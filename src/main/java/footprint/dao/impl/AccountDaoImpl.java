@@ -1,5 +1,7 @@
 package footprint.dao.impl;
 
+import java.util.Date;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -23,6 +25,10 @@ public class AccountDaoImpl implements AccountDao {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
 		try {
+			
+			account.setCreateAt(new Date());
+			account.setDisable(false);
+	
 			session.save(account);
 			transaction.commit();
 			return true; 
@@ -64,5 +70,19 @@ public class AccountDaoImpl implements AccountDao {
 	}
 	
 	
-	
+	@Override
+	public boolean update(Account account) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			session.update(account);
+			transaction.commit();
+			return true; 
+		} catch (Exception e) {
+			transaction.rollback();
+			return false; 
+		} finally {
+			session.close();
+		}
+	}	
 }

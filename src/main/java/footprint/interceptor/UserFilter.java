@@ -11,10 +11,22 @@ public class UserFilter extends HandlerInterceptorAdapter {
 	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-	
-		HttpSession session = request.getSession(); 
-		System.out.println("interceptor user");
-		System.out.println(session.getAttribute("ROLE"));
+
+		
+		HttpSession session = request.getSession();
+		
+		// kiểm tra đã đăng nhập chưa 
+		if (session.getAttribute("ACCOUNT") == null) {
+			response.sendRedirect(request.getContextPath() + "/sign-in.htm");
+			return false;
+		}	
+		
+		if (session.getAttribute("ROLE") != "USER" ) {  //  kiểm tra có phải là người dùng không.SE
+			response.sendRedirect(request.getContextPath() + "/not-found.htm");
+		    return false;
+		}
+		
+		
 		return true;
 	}
 

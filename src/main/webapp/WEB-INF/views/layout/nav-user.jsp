@@ -19,7 +19,7 @@
 			<div class="container-fluid position-relative">
 				<a class="d-flex align-items-center position-absolute top-0 ms-0"
 					href="${home}" style="background-color: #87b106; left: 12px"> <img
-					src="resources/image/nav/logo.webp" class="w-100"
+					src='<c:url value="/resources/image/nav/logo.webp"/>' class="w-100"
 					style="padding: 24.5px 14px">
 				</a>
 				<button class="navbar-toggler" type="button"
@@ -81,7 +81,7 @@
 								</div>
 							</c:if>
 
-							<c:if test="${ not empty sessionScope.ACCOUNT }">
+							<c:if test="${sessionScope.ROLE == 'USER'}">
 								<div>
 									<a href="${ account }"> <span><i
 											class="bi bi-person-circle"></i></span> <span>My account</span>

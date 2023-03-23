@@ -4,17 +4,30 @@
 
 <h3 class="border-bottom fs-5 pb-3">Change password</h3>
 
-<div class="row">
-	<div class="col-12">
-	<label>Current Password</label> <input class="ct-input">
+<form method="POST"> 
+	<div class="row">
+		<div class="col-12 container-input">
+			<label>Current Password</label> 
+			<input type="password" class="ct-input">
+		</div>
+		
+		<div class="col-6 container-input">
+			<label>New Password</label> 
+			<input name="new-password" type="password" class="ct-input">
+		</div>
+		
+		<div class="col-6 container-input">
+			<label>Confirm Password</label> 
+			<input type="password" class="ct-input">
+		</div>
 	</div>
-	
-	<div class="col-6">
-		<label>New Password</label> <input class="ct-input">
+	<div class="d-flex justify-content-end mt-4">
+		<button type="submit"
+			class="btn btn-primary rounded-0 border-0 px-4 py-2"
+			style="background-color: #87b106 !important">Save changes
+		</button>
 	</div>
-	
-	<div class="col-6">
-		<label>Confirm Password</label> <input class="ct-input">
-	</div>
-</div>
+</form>
+
+
 

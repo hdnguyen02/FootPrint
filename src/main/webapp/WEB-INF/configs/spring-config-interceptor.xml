@@ -20,10 +20,8 @@
 	 
 	 	<!-- Người dùng  -->
 		<mvc:interceptor>
-			
 			<mvc:mapping path="/account.htm"/>
-			<mvc:mapping path="/login.htm"/>
-			
+			<mvc:mapping path="/account/**"/>
 			<bean class="footprint.interceptor.UserFilter" />
 		</mvc:interceptor>
 		
