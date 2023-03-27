@@ -1,7 +1,6 @@
 package footprint.controller.staff;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,10 +48,17 @@ public class ManageProductController {
 		
 		// tri vấn ra product -> render ra -> đồng thời render cả thằng ấy ra.
 		
+		// chưa bắc trường hợp có tồn tại product đó không.
+		
 		Product product = productService.getProductWithId(idProduct);
 		model.addAttribute("product", product);
 		
-		// đưa ra toàn bộ size có trong spring 
+		
+		
+		
+		
+		// Ngoài ra còn lấy thông tin về số lượng của product
+		
 		
 		model.addAttribute("sizes", sizeService.getAllSizes());
 		

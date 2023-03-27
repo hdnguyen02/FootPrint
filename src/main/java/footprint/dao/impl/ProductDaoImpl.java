@@ -2,6 +2,7 @@ package footprint.dao.impl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Repository;
 
 import footprint.dao.ProductDao;
 import footprint.entity.Product;
+import footprint.entity.ProductSize;
+import footprint.entity.Size;
 import footprint.entity.Thumbnail;
 
 @Repository
@@ -24,14 +27,7 @@ public class ProductDaoImpl implements ProductDao {
 	@Autowired
 	private SessionFactory sessionFactory; 
 	
-		
-	/*
-	 * @Override public boolean addProduct(Product product) { Session session =
-	 * sessionFactory.openSession(); Transaction transaction =
-	 * session.beginTransaction(); try { session.save(product);
-	 * transaction.commit(); return true; } catch (Exception e) {
-	 * transaction.rollback(); return false; } finally { session.close(); } }
-	 */
+	
 	
 	@Override
 	public List<Product> getAllProducts () {
@@ -44,8 +40,26 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	
+	/*
+	 * @Override public boolean addProductAndThumbnails(Product product,Thumbnail []
+	 * thumbnails) {
+	 * 
+	 * Session session = sessionFactory.openSession(); Transaction transaction =
+	 * session.beginTransaction();
+	 * 
+	 * try { session.save(product);
+	 * 
+	 * for (Thumbnail thumbnail: thumbnails) { session.save(thumbnail); }
+	 * 
+	 * 
+	 * 
+	 * transaction.commit(); return true; } catch (Exception e) { return false; }
+	 * 
+	 * }
+	 */
+	
 	@Override
-	public boolean addProductAndThumbnails(Product product,Thumbnail [] thumbnails) {
+	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,Map<Size,Integer> sizeQuantityMap) {
 		
 		Session session = sessionFactory.openSession(); 
 		Transaction transaction = session.beginTransaction(); 
@@ -56,6 +70,37 @@ public class ProductDaoImpl implements ProductDao {
 			for (Thumbnail thumbnail: thumbnails) {
 				session.save(thumbnail);
 			}
+			
+			// lặp qua từng size và lấy idSize kết hợp vào và lưu cả ProductSize 
+			/*
+			 * for (Size size : sizes) {
+			 * 
+			 * ProductSize productSize = new ProductSize(); // lần đầu tạo nên chưa nhập gì
+			 * 
+			 * 
+			 * productSize.setProduct(product); productSize.setSize(size);
+			 * 
+			 * productSize.setQuantity(0); // số lượng mặt định là 0 -> chưa nhập hàng gì
+			 * hết
+			 * 
+			 * // sau đó thì làm gì -> lưu lại product size này session.save(productSize);
+			 * 
+			 * }
+			 */
+			
+			for (Map.Entry<Size, Integer> sizeQuantity : sizeQuantityMap.entrySet()) {
+		
+			    Size size = sizeQuantity.getKey();
+			    int quantity = sizeQuantity.getValue();
+			    ProductSize productSize = new ProductSize(); 
+			    productSize.setProduct(product);
+			    productSize.setSize(size);
+			    productSize.setQuantity(quantity);
+			    
+			    session.save(productSize);
+			    
+			}
+			
 			transaction.commit(); 
 			return true;
 		}
@@ -64,6 +109,8 @@ public class ProductDaoImpl implements ProductDao {
 		}
 
 	}
+	
+	// nếu như thêm cả size vào ngay bây giờ rất rắc rối -> phải chác c
 	
 	@Override
 	public Product getProductWithId(Long idProduct) {

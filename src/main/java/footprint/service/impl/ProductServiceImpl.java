@@ -3,6 +3,7 @@ package footprint.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -12,11 +13,13 @@ import org.springframework.web.multipart.MultipartFile;
 import footprint.bean.UploadFile;
 import footprint.dao.ProductDao;
 import footprint.entity.Product;
+import footprint.entity.Size;
 import footprint.entity.Thumbnail;
 import footprint.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+	
 	
 	@Autowired 
 	private ProductDao productDao; 
@@ -53,26 +56,10 @@ public class ProductServiceImpl implements ProductService {
 		return productDao.getProductWithId(idProduct);
 	}
 	
-	
-	/*
-	 * @Override public Product addProductAndSaveImage(Product product,
-	 * MultipartFile imageProduct) { String nameImageProduct =
-	 * uploadImageProduct.handleUploadFile(imageProduct);
-	 * 
-	 * // sử lý hình ảnh tại đây if (nameImageProduct == null) { return null; }
-	 * product.setImageName(nameImageProduct); product.setCreateAt(new Date());
-	 * product.setDisable(false); // sử lý lại chỗ này.
-	 * 
-	 * boolean sucessAddProdut = productDao.addProduct(product);
-	 * 
-	 * if (!sucessAddProdut) { // thực hiện xóa file tại đây. return null; } return
-	 * product; }
-	 */
-	
-	
+
 	// hàm thêm sản phẩm + thumbnail vào đây
 	@Override
-	public boolean addProductAndThumbnails(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails) {
+	public boolean addProductThumbnailsProductSize(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails,Map<Size,Integer> sizeQuantityMap) {
 		
 		String nameImageProduct = uploadImageProduct.handleUploadFile(imageProduct);
 	
@@ -93,31 +80,19 @@ public class ProductServiceImpl implements ProductService {
 			System.out.println("Lỗi thêm file");
 			return false;
 		}
-		
-		/*
-		 * try {
-		 * 
-		 * } catch (Exception e) {
-		 * 
-		 * }
-		 */
-		
-		
-		
+	
+
 		product.setImageName(nameImageProduct);
 		product.setCreateAt(new Date());
-		product.setDisable(false);
-		
-		System.out.println(product.getIdProduct());
-		
-		
+
+
 		for (int i = 0; i < thumbnails.length;i++) {
 			thumbnails[i] = new Thumbnail(); 
 			thumbnails[i].setProduct(product);
 			thumbnails[i].setName(successImageThumbnails.get(i)); 
 		}
 		
-		boolean insertSuccess = productDao.addProductAndThumbnails(product,thumbnails);
+		boolean insertSuccess = productDao.addProductThumbnailAndProductSize(product,thumbnails,sizeQuantityMap);
 		if (!insertSuccess) {
 			System.out.println("Lỗi Thêm database");
 			// Thực hiện xóa file
