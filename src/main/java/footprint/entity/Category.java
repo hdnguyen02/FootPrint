@@ -9,24 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name="Category")
 public class Category {
 	@Id
 	@GeneratedValue
-	@Column(name="idCategory")
 	private Long idCategory; 
 	
 	
-	@Column(name="name")
 	private String name; 
-	
-	@Column(name="disable")
+
 	private Boolean disable; 
 	
 	@Column(name="createAt")
@@ -94,10 +89,6 @@ public class Category {
 		this.products = products;
 	}
 
-	
-
-	
-
 	public Category(Long idCategory, String name, Boolean disable, Date createAt, Date updateAt,
 			Collection<Product> products) {
 		this.idCategory = idCategory;
@@ -109,13 +100,6 @@ public class Category {
 	}
 
 	public Category() {
-		
+
 	}
-	
-	
-	
-	
-	
-	
-	
 }

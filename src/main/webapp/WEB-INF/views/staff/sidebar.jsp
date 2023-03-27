@@ -2,9 +2,8 @@
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
 <c:url var='addProduct' value='/staff/product/add.htm' />
-<c:url var='listProduct' value='/staff/product/list' />
 <c:url var='categoryProduct' value='/staff/category.htm' />
-
+<c:url var='manageProduct' value='/staff/product/manage.htm' />
 
 
      <ul class='navbar-nav'>
@@ -26,10 +25,9 @@
             <div class='collapse' id='product-collapse'>
                 <ul class='navbar-nav ps-3'>
                     <li>
-     
-                       <a href='${listProduct}' class='nav-link px-3'> 
+                       <a href='${manageProduct}' class='nav-link px-3'> 
                          <span class='me-2'><i class='bi bi-speedometer2'></i></span>
-                          <span class='text-white'>Danh sách sản phẩm</span>
+                          <span class='text-white'>Quản lý sản phẩm</span>
                        </a> 
                        <a href='${addProduct}' class='nav-link px-3'> 
                           <span class='me-2'><i class='bi bi-folder-plus'></i></span> 

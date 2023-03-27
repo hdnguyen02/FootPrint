@@ -3,10 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <div
 	class="table-responsive container-fluid px-5 pt-5 pb-4 bg-white shadow-lg">
-	<div class="d-flex justify-content-between mb-4">
+	<!-- <h3 class="border-bottom fs-5 pb-3">Category</h3> -->
+	 <div class="d-flex justify-content-between mb-4">
 		<div class="d-flex">
 			<span class="me-2"><i class="bi bi-bookmarks-fill fs-3"></i></span>
 			<h2 class="mb-0">Category</h2>
@@ -23,14 +23,14 @@
           		</form>
 			
 			
-			<!-- button add category -->
+		
 		
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#model-add-category" data-bs-whatever="@getbootstrap" style="background-color:#4e73df !important">add category</button>
 		
 		</div>
 		
 		
-	</div>
+	</div> 
 	
 	<c:if test="${ not empty resultAddCategory }">
 			<c:choose>

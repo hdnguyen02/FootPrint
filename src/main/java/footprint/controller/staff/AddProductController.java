@@ -13,41 +13,83 @@ import org.springframework.web.multipart.MultipartFile;
 
 import footprint.entity.Category;
 import footprint.entity.Product;
+import footprint.entity.Thumbnail;
 import footprint.service.CategoryService;
 import footprint.service.ProductService;
+
 
 @Controller
 @RequestMapping("staff/product")
 public class AddProductController {
 
 	@Autowired
-	CategoryService categoryService;
+	private CategoryService categoryService;
 
 	@Autowired
-	ProductService productService;
+	private ProductService productService;
+	
+	/*
+	 * @Autowired private ThumbnailService thumbnailService;
+	 */
+	
+	/*
+	 * @Autowired private SizeService sizeService;
+	 */
 
 	@RequestMapping(value = "add", method = RequestMethod.GET)
-	public String addProductGet(ModelMap model, @ModelAttribute("product") Product product) {
+	public String addProductGet(ModelMap model) {
 
-		// đẩy ra views
-		List<Category> categories = categoryService.getAllCategories();
-		model.addAttribute("categories", categories);
-
-		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
-		model.addAttribute("bodyDashboard", "staff/add-product.jsp");
-		return "layout/main-dashboard";
+		model.addAttribute("product", new Product());
+		return ControllerToView(model);
+		
 	}
 
 	@RequestMapping(value = "add", method = RequestMethod.POST)
 	public String addProductPost(ModelMap model, @ModelAttribute("product") Product product,
-			@RequestParam("imageProduct") MultipartFile imageProduct) {
+			@RequestParam("imageProduct") MultipartFile imageProduct,
+			@RequestParam("imageThumbnails") MultipartFile[] imageThumbnails ) {
+		
+		
+		/*
+		 * Product newProduct = productService.insert(product, imageProduct);
+		 * 
+		 * if (newProduct != null) { // Product đã thêm thành công -> tiếp tục thêm
+		 * thumbnail for (MultipartFile file : thumbnailProduct) { Thumbnail thumbnail =
+		 * new Thumbnail(); thumbnailService.insert(thumbnail, file, newProduct); }
+		 * model.addAttribute("result", true); } else { model.addAttribute("result",
+		 * false); }
+		 */
+		
+		
+		Thumbnail [] thumbnails = new Thumbnail[imageThumbnails.length];
+		
+	
+		boolean result = productService.addProductAndThumbnails(product, imageProduct, thumbnails, imageThumbnails);
+		
+		model.addAttribute("result", result);
+		
+		product.setName(null);
+		product.setDescription(null);
+		product.setCost(null);
+		
 
-		boolean result = productService.insert(product, imageProduct);
-		model.addAttribute("result", result);   
-
+		return ControllerToView(model);
+	}
+	
+	// trả ra giống nhau trong AddProduct 
+	private String ControllerToView(ModelMap model) {
+		List<Category> categories = categoryService.getAllCategories();
+		
+		model.addAttribute("categories", categories);
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/add-product.jsp");
-
 		return "layout/main-dashboard";
+		
 	}
+	
+	
+	// viết 1 hàm tại đây -> try catch 3 thằng -> nếu lỗi sảy ra không thêm thằng nào cả. 
+	/*
+	 * private boolean insertProductThumbnailProductSize() { return true; }
+	 */
 }

@@ -11,31 +11,23 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="Product")
 public class Product {
 	@Id
 	@GeneratedValue
-	@Column(name="idProduct")
 	private Long idProduct; 
 	
-	@Column(name="name")
 	private String name;
 	
-	@Column(name="description")
 	private String description;
 	
-	@Column(name="cost")
 	private Float cost; 
-	
-	@Column(name="imageName")
+
 	private String imageName; 
 	  
-	@Column(name="createAt")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date createAt;
 	
@@ -43,7 +35,6 @@ public class Product {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updateAt;
 	
-	@Column(name="disable")
 	private Boolean disable; 
 	
 	
@@ -56,6 +47,19 @@ public class Product {
 	// được chứa khóa ngoại
 	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 	private Collection<Thumbnail> thumbnails;
+	
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	private Collection<ProductSize> productSizes;
+	
+	
+	public Collection<ProductSize> getProductSizes() {
+		return productSizes;
+	}
+
+
+	public void setProductSizes(Collection<ProductSize> productSizes) {
+		this.productSizes = productSizes;
+	}
 
 
 	public Long getIdProduct() {
@@ -159,29 +163,22 @@ public class Product {
 
 
 	public Product(Long idProduct, String name, String description, Float cost, String imageName, Date createAt,
-			Date updateAt, Boolean disable, Category category, Collection<Thumbnail> thumbnails) {
+			Date updateAt, Boolean disable, Category category, Collection<Thumbnail> thumbnails,
+			Collection<ProductSize> productSizes) {
 		this.idProduct = idProduct;
 		this.name = name;
 		this.description = description;
 		this.cost = cost;
-		this.imageName =  imageName;
+		this.imageName = imageName;
 		this.createAt = createAt;
 		this.updateAt = updateAt;
 		this.disable = disable;
 		this.category = category;
 		this.thumbnails = thumbnails;
+		this.productSizes = productSizes;
 	}
-
 
 	public Product() {
 		
-	} 
-	
-	
-	
-	
-	
-	
-	
-	
+	}	
 }
