@@ -92,6 +92,8 @@ public class ProductServiceImpl implements ProductService {
 			thumbnails[i].setName(successImageThumbnails.get(i)); 
 		}
 		
+		
+		
 		boolean insertSuccess = productDao.addProductThumbnailAndProductSize(product,thumbnails,sizeQuantityMap);
 		if (!insertSuccess) {
 			System.out.println("Lỗi Thêm database");

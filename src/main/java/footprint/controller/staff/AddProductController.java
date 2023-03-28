@@ -48,7 +48,6 @@ public class AddProductController {
 		
 		// cần phải đẩy số lượng size qua 
 		List<Size> sizes = sizeService.getAllSizes(); 
-		
 		model.addAttribute("sizes", sizes);
 		
 		model.addAttribute("product", new Product());
@@ -62,13 +61,12 @@ public class AddProductController {
 			@RequestParam("imageThumbnails") MultipartFile[] imageThumbnails ) {
 		
 		
-		// lấy ra thông tin size hiện tại 
-		
-		// tạo ra 1 mảng size 
+	
 		List<Size> sizes = sizeService.getAllSizes(); 
+		model.addAttribute("sizes", sizes); 
+		
 		Map<Size,Integer> sizeQuantityMap = new HashMap<>(); 
 		
-		// lặp qua
 		for (Size size : sizes) {
 			int valueSize; 
 			try {
@@ -79,24 +77,21 @@ public class AddProductController {
 			}
 			
 			sizeQuantityMap.put(size, valueSize);
-		
 		}
 
 		
 		Thumbnail [] thumbnails = new Thumbnail[imageThumbnails.length];
-		
-		
-
-		
 		boolean result = productService.addProductThumbnailsProductSize(product,imageProduct, thumbnails, imageThumbnails,sizeQuantityMap);
 		model.addAttribute("result", result);
-	
+		
 		
 		product.setName(null);
 		product.setDescription(null);
-		product.setCost(null);
+		product.setCost(null);	
+		product.setColor(null);
+		product.setCategory(null);
 		
-
+	
 		return ControllerToView(model);
 	}
 	
@@ -111,6 +106,5 @@ public class AddProductController {
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/add-product.jsp");
 		return "layout/main-dashboard";
-		
 	}
 }

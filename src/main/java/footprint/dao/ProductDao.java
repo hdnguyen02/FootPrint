@@ -17,5 +17,8 @@ public interface ProductDao {
 	 */
 	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,Map<Size,Integer> sizeQuantityMap);
 	public Product getProductWithId(Long idProduct);
+	/* public List<Thumbnail> getThumbnails(Product product); */
+	
+	
 	
 }

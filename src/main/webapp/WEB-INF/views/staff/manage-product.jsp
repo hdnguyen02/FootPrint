@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
-<c:url var='productSize' value='/product-size.htm?id=${ product.idProduct }' />
 
 
 <div class="table-responsive container-fluid p-5 bg-white shadow-lg">
@@ -19,8 +16,6 @@
 				<th class="col">Create at</th>
 				<th class="col">Update at</th>
 				<th class="col">Status</th>
-				
-		
 			</tr>
 		</thead>
 		<tbody id="body-table">
@@ -50,9 +45,8 @@
 						
 					<td class="col py-2">
 						<div>
-							<a data-bs-toggle="modal" class="btn btn-dark btn-sm" 
-								style="border-radius: 0 !important;width: 80px !important"> <span
-								class="button breadcrumb-item active px-2">detail</span>
+							<a href='<c:url value='/staff/product/detail.htm?id=${product.idProduct}'/>' class="btn btn-dark btn-sm" style="border-radius: 0 !important;width: 80px !important"> 
+								<span class="button breadcrumb-item active px-2">detail</span>
 							</a>
 						</div>
 
@@ -65,15 +59,6 @@
 							</a>
 						</div>
 
-					</td>
-					
-					<td class="col py-2">
-						<div>
-							<a href="<c:url value='/staff/product-size.htm?id=${ product.idProduct }' />" class="btn btn-primary btn-sm" 
-								style="border-radius: 0 !important;width: 96px !important"> <span
-								class="button breadcrumb-item active">product size</span>
-							</a>
-						</div>
 					</td>
 			</c:forEach>
 
@@ -88,14 +73,15 @@
 				 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
 				<c:forEach var="page" begin="1" end="${totalPage }">
 					<li data-page="${page}" class="page-item"><a
-						href='<c:url value='/staff/category?page=${ page }'/>'
-						class="page-link">${ page }</a></li>
+						href='<c:url value='/staff/product/manage.htm?page=${ page }'/>'
+						class="page-link">${ page }</a></li>	
 				</c:forEach>
 				 <li class="page-item"><a class="page-link" href="#">Next</a></li>
 			</ul>
 		</nav>
 	</div>
 </div>
+
 
 
 

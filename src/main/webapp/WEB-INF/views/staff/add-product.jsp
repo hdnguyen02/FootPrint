@@ -16,7 +16,7 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="alert alert-danger alert-dismissible shadow mt-4" role="alert">
+				<div class="alert alert-danger alert-dismissible shadow mt-4" style="border-radius: none" role="alert">
 					 <div>Thêm thất bại</div>
 					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>

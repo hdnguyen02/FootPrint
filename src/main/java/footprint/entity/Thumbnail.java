@@ -15,7 +15,7 @@ public class Thumbnail {
 	
 	@ManyToOne
 	@JoinColumn(name="idProduct")
-	private Product product;
+	private Product product;	
 
 	public Long getIdThumbnail() {
 		return idThumbnail;

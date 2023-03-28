@@ -59,8 +59,7 @@
 				<th class="col">Create at</th>
 				<th class="col">Update at</th>
 				<th class="col">Status</th>
-				<th class="col"></th>
-				<th class="col"></th>
+		
 		
 			</tr>
 		</thead>
@@ -107,14 +106,6 @@
 
 					</td>
 
-					<td class="col py-2">
-						<div>
-							<a data-delete-category data-id-category="${ category.idCategory }" class="btn btn-dark btn-sm" 
-								style="border-radius: 0 !important;width: 80px !important"> <span
-								class="button breadcrumb-item active">delete</span>
-							</a>
-						</div>
-					</td>
 			</c:forEach>
 
 		</tbody>

@@ -47,10 +47,10 @@ public class Product {
 	private Color color;
 
 	// được chứa khóa ngoại
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-	private Collection<Thumbnail> thumbnails;
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Collection<Thumbnail> thumbnails;	
 
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private Collection<ProductSize> productSizes;
 
 	public Collection<ProductSize> getProductSizes() {
@@ -134,6 +134,7 @@ public class Product {
 	}
 
 	public Collection<Thumbnail> getThumbnails() {
+
 		return thumbnails;
 	}
 

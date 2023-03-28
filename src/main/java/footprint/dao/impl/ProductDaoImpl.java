@@ -40,24 +40,6 @@ public class ProductDaoImpl implements ProductDao {
 	}
 	
 	
-	/*
-	 * @Override public boolean addProductAndThumbnails(Product product,Thumbnail []
-	 * thumbnails) {
-	 * 
-	 * Session session = sessionFactory.openSession(); Transaction transaction =
-	 * session.beginTransaction();
-	 * 
-	 * try { session.save(product);
-	 * 
-	 * for (Thumbnail thumbnail: thumbnails) { session.save(thumbnail); }
-	 * 
-	 * 
-	 * 
-	 * transaction.commit(); return true; } catch (Exception e) { return false; }
-	 * 
-	 * }
-	 */
-	
 	@Override
 	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,Map<Size,Integer> sizeQuantityMap) {
 		
@@ -65,29 +47,13 @@ public class ProductDaoImpl implements ProductDao {
 		Transaction transaction = session.beginTransaction(); 
 		
 		try { 
-			session.save(product); 
-			
-			for (Thumbnail thumbnail: thumbnails) {
+			session.save(product);  
+	
+			for (Thumbnail thumbnail: thumbnails) { 
 				session.save(thumbnail);
 			}
 			
-			// lặp qua từng size và lấy idSize kết hợp vào và lưu cả ProductSize 
-			/*
-			 * for (Size size : sizes) {
-			 * 
-			 * ProductSize productSize = new ProductSize(); // lần đầu tạo nên chưa nhập gì
-			 * 
-			 * 
-			 * productSize.setProduct(product); productSize.setSize(size);
-			 * 
-			 * productSize.setQuantity(0); // số lượng mặt định là 0 -> chưa nhập hàng gì
-			 * hết
-			 * 
-			 * // sau đó thì làm gì -> lưu lại product size này session.save(productSize);
-			 * 
-			 * }
-			 */
-			
+	
 			for (Map.Entry<Size, Integer> sizeQuantity : sizeQuantityMap.entrySet()) {
 		
 			    Size size = sizeQuantity.getKey();
@@ -114,16 +80,15 @@ public class ProductDaoImpl implements ProductDao {
 	
 	@Override
 	public Product getProductWithId(Long idProduct) {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Product where idProduct = :idProduct";
+		Session session = sessionFactory.getCurrentSession(); 
+
+		String hql = "FROM Product WHERE idProduct = :idProduct";
 		Query query = session.createQuery(hql);
 		query.setParameter("idProduct", idProduct);
-		try {
-			return (Product) query.list().get(0);
-		}
-		catch(Exception e) {
-			return null;
-		}
+		Product product = (Product) query.uniqueResult();
+		return product; 
 	}
+
+
 	
 }
