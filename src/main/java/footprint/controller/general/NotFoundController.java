@@ -9,4 +9,8 @@ public class NotFoundController {
 	public String notFound() {
 		return "general/not-found";
 	}
+	@RequestMapping("/dont-permission")
+	public String dontPermission() {
+		return "general/dont-permission";
+	}
 }

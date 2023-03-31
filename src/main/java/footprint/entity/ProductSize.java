@@ -1,11 +1,15 @@
 package footprint.entity;
 
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class ProductSize {
@@ -21,6 +25,9 @@ public class ProductSize {
 	@ManyToOne
 	@JoinColumn(name="idSize")
 	private Size size;
+	
+	@OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
+	private Collection<Cart> carts;
 	
 	private int quantity;
 

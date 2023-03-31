@@ -2,7 +2,6 @@ package footprint.dao.impl;
 
 
 import java.util.List;
-import java.util.Map;
 
 import javax.transaction.Transactional;
 
@@ -41,7 +40,7 @@ public class ProductDaoImpl implements ProductDao {
 	
 	
 	@Override
-	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,Map<Size,Integer> sizeQuantityMap) {
+	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,List<Size> sizes,int [] sizesQuantity) {
 		
 		Session session = sessionFactory.openSession(); 
 		Transaction transaction = session.beginTransaction(); 
@@ -53,18 +52,17 @@ public class ProductDaoImpl implements ProductDao {
 				session.save(thumbnail);
 			}
 			
-	
-			for (Map.Entry<Size, Integer> sizeQuantity : sizeQuantityMap.entrySet()) {
-		
-			    Size size = sizeQuantity.getKey();
-			    int quantity = sizeQuantity.getValue();
-			    ProductSize productSize = new ProductSize(); 
-			    productSize.setProduct(product);
-			    productSize.setSize(size);
-			    productSize.setQuantity(quantity);
-			    
-			    session.save(productSize);
-			    
+			
+			int index = 0; 
+			for (Size size : sizes) { 
+				int quantity = sizesQuantity[index]; 
+				ProductSize productSize = new ProductSize(); 
+				productSize.setProduct(product);
+				productSize.setSize(size);
+				productSize.setQuantity(quantity);
+				session.save(productSize);
+				index++; 
+				
 			}
 			
 			transaction.commit(); 
@@ -75,8 +73,7 @@ public class ProductDaoImpl implements ProductDao {
 		}
 
 	}
-	
-	// nếu như thêm cả size vào ngay bây giờ rất rắc rối -> phải chác c
+
 	
 	@Override
 	public Product getProductWithId(Long idProduct) {
@@ -88,7 +85,16 @@ public class ProductDaoImpl implements ProductDao {
 		Product product = (Product) query.uniqueResult();
 		return product; 
 	}
-
-
+	
+	@Override
+	public List<Product> getProductsActive() {
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "from Product WHERE disable = :disable"; 
+		Query query = session.createQuery(hql);
+		query.setParameter("disable", false); 
+		@SuppressWarnings("unchecked")
+		List<Product> products = query.list();
+		return products;
+	}
 	
 }

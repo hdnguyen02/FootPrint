@@ -41,4 +41,16 @@ public class ProductSizeDaoImpl implements ProductSizeDao {
 		}
 	}
 	
+	// lấy ve productSize đó 
+	@Override
+	public ProductSize getProductSize(Long idProduct,String idSize) {
+			Session session = sessionFactory.getCurrentSession(); 
+			String hql = "FROM ProductSize WHERE idProduct = :idProduct AND idSize = :idSize";
+			Query query = session.createQuery(hql);
+			query.setParameter("idProduct", idProduct);
+			query.setParameter("idSize", idSize);
+			return  (ProductSize) query.uniqueResult();
+	}
+	
+	
 }

@@ -10,6 +10,7 @@
 <c:url var='register' value='/register.htm' /> 
 <c:url var='staff' value='/staff.htm' />
 <c:url var='admin' value='/admin.htm' />
+<c:url var='cart' value='/cart.htm' />
 
 
 <div class="fixed-top">
@@ -74,14 +75,14 @@
 						</div>
 						<div class="d-flex gap-3" style="font-size: 14px !important">
 							
-							<c:if test="${ sessionScope.ROLE == 'USER' }">
+							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER' }">
 								<div>
 									<span><i class="fa-sharp fa-regular fa-credit-card"></i></span>
 									<a>Checkout</a>
 								</div>
 							</c:if>
 
-							<c:if test="${sessionScope.ROLE == 'USER'}">
+							<c:if test="${not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER'}">
 								<div>
 									<a href="${ account }"> <span><i
 											class="bi bi-person-circle"></i></span> <span>My account</span>
@@ -120,11 +121,8 @@
 						</div>
 
 					</div>
-
-
 				</div>
 			</div>
-
 		</nav>
 	</div>
 
@@ -144,26 +142,24 @@
 					style="margin-left: 220px">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
 						<li class="nav-item"><a href="${home}"
-							class="nav-link active text-uppercase" aria-current="page">Home</a>
+							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">Home</a>
 						</li>
 						<li class="nav-item"><a href="${product}"
-							class="nav-link active text-uppercase" aria-current="page">product</a>
+							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">product</a>
 						</li>
 						<li class="nav-item"><a
-							class="nav-link active text-uppercase" aria-current="page"
-							href="#">blog</a></li>
+							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">blog</a></li>
 						<li class="nav-item"><a
-							class="nav-link active text-uppercase" aria-current="page"
-							href="#">contact us</a></li>
+							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">contact us</a></li>
 							
-							<c:if test="${ sessionScope.ROLE == 'STAFF' }">
+							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'STAFF' }">
 								<li class="nav-item"><a
-								class="nav-link active text-uppercase" aria-current="page"
+								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
 								href="${staff}">Dashboard</a></li>
 							</c:if>
-							<c:if test="${ sessionScope.ROLE == 'ADMIN' }">
+							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'ADMIN' }">
 								<li class="nav-item"><a
-								class="nav-link active text-uppercase" aria-current="page"
+								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
 								href="${admin}">Dashboard</a></li>
 							</c:if>
 
@@ -172,12 +168,9 @@
 					<div class="d-flex gap-5" style="color: #fff !important;">
 						<div class="d-flex gap-4">
 							<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
-
-							<c:if test="${ sessionScope.ROLE == 'USER'}">
-								<span> <i class="fa-solid fs-5 fa-cart-shopping"></i></span>
+							<c:if test="${not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER'}">
+								<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
 							</c:if>
-
-
 						</div>
 					</div>
 				</div>

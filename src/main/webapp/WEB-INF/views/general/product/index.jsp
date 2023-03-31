@@ -223,21 +223,25 @@
 
 					<!-- product item list wrapper start -->
 					<div class="shop-product-wrap grid-view row mbn-30">
-						<!-- product single item start -->
+				
+						
+						
+						<c:forEach items="${productsActive}" var="product">
 						
 						<div class="col-md-4 col-sm-6">
 							<!-- product grid start -->
 							<div class="product-item">
 								<div class="product-thumb">
-									<a> <img
-										src="https://ananas.vn/wp-content/uploads/Pro_AV00155_2-500x500.jpg"
-										style="height: 200px; object-fit: cover">
+									<a href='<c:url value='/product/detail.htm?id=${product.getIdProduct()}' />'> 
+										<img class="w-100" src="<c:url value="/resources/image/product/${product.getImageName()}"/>" style="height: 200px; object-fit: cover">
 									</a>
 									<div class="button-group">
 										<a data-bs-toggle="tooltip"
 											data-bs-original-title="Add to Wishlist"
 											aria-label="Add to Wishlist"><i
-											class="fa-regular fa-heart"></i></a> <a><span
+											class="fa-regular fa-heart"></i>
+										</a>
+										<a><span
 											data-bs-toggle="tooltip" title=""
 											data-bs-original-title="Quick View" aria-label="Quick View"><i
 												class="fa fa-eye"></i></span></a>
@@ -250,11 +254,11 @@
 								<div class="product-content">
 									<div class="product-caption">
 										<h6 class="product-name">
-											<a>Quickiin Mens shoes</a>
+											<a>${product.getName()}</a>
 										</h6>
 										<div class="price-box">
 											<!-- <span class="price-old"><del>$90.00</del></span> -->
-											<span class="price-regular">$70.00</span>
+											<span class="price-regular">$${product.getCost()}</span>
 										</div>
 										<a class="add-to-cart"><i
 											class="fa fa-shopping-cart text-white"></i></a>
@@ -268,6 +272,7 @@
 								</div>
 							</div>
 						</div>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

@@ -18,6 +18,18 @@
 	
 	 <mvc:interceptors>  
 	 
+	 <!-- Người dùng  -->
+		<mvc:interceptor>
+			<mvc:mapping path="/product/detail.htm"/>
+			<mvc:mapping path="/cart.htm"/>
+			<bean class="footprint.interceptor.DetailProduct" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/cart.htm"/>
+			<bean class="footprint.interceptor.Cart" />
+		</mvc:interceptor>
+	 
 	 	<!-- Người dùng  -->
 		<mvc:interceptor>
 			<mvc:mapping path="/account.htm"/>

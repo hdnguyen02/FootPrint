@@ -19,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody id="body-table">
-			<c:forEach items="${productsPerPage}" var="product">
+			<c:forEach items="${productsWithPage}" var="product">
 				<tr>
 					<td class="col py-2">${product.idProduct}</td>
 					<td class="col py-2">${product.name}</td>

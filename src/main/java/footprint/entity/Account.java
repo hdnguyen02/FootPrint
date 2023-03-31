@@ -1,13 +1,16 @@
 package footprint.entity;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,6 +40,10 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name = "idRole")
 	private Role role;
+	
+	// chứa thông tin cart của account.  
+	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+	private Collection<Cart> carts;
 
 	public Account() {}
 
@@ -136,8 +143,17 @@ public class Account {
 		this.role = role;
 	}
 
+	public Collection<Cart> getCarts() {
+		return carts;
+	}
+
+	public void setCarts(Collection<Cart> carts) {
+		this.carts = carts;
+	}
+
 	public Account(Long idAccount, String username, String password, String firstName, String lastName, String address,
-			String imageUrl, String email, String phone, Date createAt, Boolean disable, Role role) {
+			String imageUrl, String email, String phone, Date createAt, Boolean disable, Role role,
+			Collection<Cart> carts) {
 		this.idAccount = idAccount;
 		this.username = username;
 		this.password = password;
@@ -150,6 +166,8 @@ public class Account {
 		this.createAt = createAt;
 		this.disable = disable;
 		this.role = role;
+		this.carts = carts;
 	}
+	
 
 }

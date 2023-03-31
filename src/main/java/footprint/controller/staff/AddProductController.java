@@ -1,8 +1,7 @@
 package footprint.controller.staff;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -64,24 +63,25 @@ public class AddProductController {
 	
 		List<Size> sizes = sizeService.getAllSizes(); 
 		model.addAttribute("sizes", sizes); 
+	
+		int [] sizesQuantity = new int[sizes.size()]; 
 		
-		Map<Size,Integer> sizeQuantityMap = new HashMap<>(); 
+		int index = 0; 
 		
 		for (Size size : sizes) {
-			int valueSize; 
 			try {
-				valueSize = Integer.parseInt(request.getParameter(size.getIdSize()));   
+				sizesQuantity[index] = Integer.parseInt(request.getParameter(size.getIdSize()));   
 			}
 			catch (Exception e) {
-				valueSize = 0;
+				sizesQuantity[index] = 0;
 			}
-			
-			sizeQuantityMap.put(size, valueSize);
+			index++;
+	
 		}
 
 		
 		Thumbnail [] thumbnails = new Thumbnail[imageThumbnails.length];
-		boolean result = productService.addProductThumbnailsProductSize(product,imageProduct, thumbnails, imageThumbnails,sizeQuantityMap);
+		boolean result = productService.addProductThumbnailsProductSize(product,imageProduct, thumbnails, imageThumbnails, sizes,sizesQuantity);
 		model.addAttribute("result", result);
 		
 		

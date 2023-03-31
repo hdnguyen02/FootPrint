@@ -3,7 +3,6 @@ package footprint.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,35 +30,15 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	@Qualifier("imageThumbnail")
 	private UploadFile uploadImageThumbnail; 
-	
-	// số lượng trên mỗi page
-	private int productPerPage = 6; 
-	
-	@Override 
-	public int totalPage() {
-		int sizeCategies = this.productDao.getAllProducts().size(); 
-		int totalPages = (int) Math.ceil((double) sizeCategies / productPerPage);
-		return totalPages;
-	}
-	
-	@Override
-	public List<Product> getProductsPerPage(int curentPage) {  
-		List<Product> categories = this.productDao.getAllProducts(); 
-		int sizeCategies = categories.size(); 
-		int startIndex = (curentPage - 1) * this.productPerPage;
-		int endIndex = Math.min(startIndex + this.productPerPage, sizeCategies);
-		return categories.subList(startIndex, endIndex);	
-	}
+
 
 	@Override
 	public Product getProductWithId(Long idProduct) {
 		return productDao.getProductWithId(idProduct);
 	}
-	
 
-	// hàm thêm sản phẩm + thumbnail vào đây
 	@Override
-	public boolean addProductThumbnailsProductSize(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails,Map<Size,Integer> sizeQuantityMap) {
+	public boolean addProductThumbnailsProductSize(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails,List<Size> sizes,int [] sizesQuantity) {
 		
 		String nameImageProduct = uploadImageProduct.handleUploadFile(imageProduct);
 	
@@ -73,8 +52,6 @@ public class ProductServiceImpl implements ProductService {
 			}
 		}
 		
-		
-		// Kiểm tra tất cả các file đã được lưu thành công hay chưa
 		if (nameImageProduct == null || imageThumbnails.length != successImageThumbnails.size()) {
 			// nếu không đây đủ file -> xóa hết file và không thêm gì vào database cả.
 			System.out.println("Lỗi thêm file");
@@ -94,7 +71,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		
 		
-		boolean insertSuccess = productDao.addProductThumbnailAndProductSize(product,thumbnails,sizeQuantityMap);
+		boolean insertSuccess = productDao.addProductThumbnailAndProductSize(product,thumbnails,sizes,sizesQuantity);
 		if (!insertSuccess) {
 			System.out.println("Lỗi Thêm database");
 			// Thực hiện xóa file
@@ -104,6 +81,28 @@ public class ProductServiceImpl implements ProductService {
 		return true;
 	}
 	
+	public List<Product> getAllProduct() {
+		return productDao.getAllProducts(); 
+	}
+
+	
+	@Override
+	public List<Product> getProductsActive() { 
+		return productDao.getProductsActive();
+	}
 	
 	
+	@Override
+	public int computedTotalPage(List<Product> products,int productPerPage) { 
+		int sizeProducts = products.size(); 
+		return (int) Math.ceil((double) sizeProducts / productPerPage);
+	}
+	
+	@Override
+	public List<Product> getProductPerPage(List<Product> products,int productPerPage,int curentPage) { 
+		int sizeProducts = products.size(); 
+		int startIndex = (curentPage - 1) * productPerPage;
+		int endIndex = Math.min(startIndex + productPerPage, sizeProducts);
+		return products.subList(startIndex, endIndex);	
+	}
 }

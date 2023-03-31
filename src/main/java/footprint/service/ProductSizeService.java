@@ -6,4 +6,5 @@ import footprint.entity.ProductSize;
 
 public interface ProductSizeService {
 	public List<ProductSize> getProductSizeWithIdProduct(Long idProduct);
+	public ProductSize getProductSize(Long idProduct,String idSize); 
 }

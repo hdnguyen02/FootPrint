@@ -52,6 +52,8 @@ public class Product {
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
 	private Collection<ProductSize> productSizes;
+	
+	
 
 	public Collection<ProductSize> getProductSizes() {
 		return productSizes;

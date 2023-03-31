@@ -27,10 +27,18 @@ public class ManageProductController {
 	public String index(ModelMap model,
 			@RequestParam(value="page", required = false, defaultValue = "1") int page,
 			@ModelAttribute("category") Category category) { 
+		
+		// lấy toàn bộ danh sách ra
+		List<Product> products = productService.getAllProduct(); 
+		
+		// quy định ra số lượng page 
+		int productPerPage = 8;  
+		// tính toán số lượng perpage
+		int totalPage = productService.computedTotalPage(products, productPerPage);
 
-		List<Product> productsPerPage = productService.getProductsPerPage(page); 
-		model.addAttribute("totalPage", productService.totalPage());
-		model.addAttribute("productsPerPage",productsPerPage);
+		List<Product> productsWithPage = productService.getProductPerPage(products, productPerPage, page);
+		model.addAttribute("totalPage", totalPage);
+		model.addAttribute("productsWithPage",productsWithPage);
 		
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/manage-product.jsp");
