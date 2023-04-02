@@ -12,12 +12,18 @@ public class DetailProduct extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession(); 
 		if (request.getMethod().equalsIgnoreCase("GET")) { return true; }
-
 		
-		if (session.getAttribute("ROLE") != "USER") {
-		    response.sendRedirect(request.getContextPath() + "/sign-in.htm");
-		    return false;
+		String role = (String)session.getAttribute("role");
+		Long idAccount = (Long) session.getAttribute("idAccount"); 
+
+		if (idAccount == null) { 	
+			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
+			return false; 
 		}
+		if (!role.equals("user")) {
+			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); 
+		    return false;
+		} 
 		return true;
 	}
 

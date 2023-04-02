@@ -12,14 +12,18 @@ public class StaffFilter extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
 		
-		System.out.println("interceptor staff");
-		
-		System.out.println(session.getAttribute("ROLE"));
-		
-		if (session.getAttribute("ROLE") != "STAFF") {
-		    response.sendRedirect(request.getContextPath() + "/not-found.htm");
-		    return false;
+		String role = (String)session.getAttribute("role");
+		Long idAccount = (Long) session.getAttribute("idAccount"); 
+		// truoc tien can kiem tra xem co dang nhap chua
+		if (idAccount == null) { 
+			
+			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
+			return false; 
 		}
+		if (!role.equals("staff")) {
+			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); // trả về không có quyền truy cập tại đây -> không phải not-found 
+		    return false;
+		} 
 		return true;
 	}
 

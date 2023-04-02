@@ -15,18 +15,20 @@ public class UserFilter extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		
-		// kiểm tra đã đăng nhập chưa 
-		if (session.getAttribute("ACCOUNT") == null) {
+		String role = (String)session.getAttribute("role");
+		Long idAccount = (Long) session.getAttribute("idAccount"); 
+		
+ 
+		if (idAccount == null) {
 			response.sendRedirect(request.getContextPath() + "/sign-in.htm");
 			return false;
 		}	
 		
-		if (session.getAttribute("ROLE") != "USER" ) {  //  kiểm tra có phải là người dùng không.SE
-			response.sendRedirect(request.getContextPath() + "/not-found.htm");
+		if (!role.equals("user") ) {  
+			response.sendRedirect(request.getContextPath() + "/dont-permission.htm");
 		    return false;
 		}
-		
-		
+	
 		return true;
 	}
 

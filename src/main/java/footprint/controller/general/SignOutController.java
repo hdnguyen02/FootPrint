@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SignOutController {
 	@RequestMapping("sign-out")
 	public String signOut(HttpSession session) {
-		
-		session.removeAttribute("ROLE"); 
-		session.removeAttribute("ACCOUNT"); 
+		session.removeAttribute("role"); 
+		session.removeAttribute("idAccount"); 
 
 		return "redirect:/";
 	}

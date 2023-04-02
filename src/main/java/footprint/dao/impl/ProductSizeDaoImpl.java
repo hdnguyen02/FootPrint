@@ -52,5 +52,12 @@ public class ProductSizeDaoImpl implements ProductSizeDao {
 			return  (ProductSize) query.uniqueResult();
 	}
 	
+	@Override
+	public ProductSize getProductSizeWithId(Long idProductSize) {
+		Session session = sessionFactory.openSession();
+		ProductSize productSize = (ProductSize) session.get(ProductSize.class,idProductSize); 
+		return productSize; 
+	}
+	
 	
 }

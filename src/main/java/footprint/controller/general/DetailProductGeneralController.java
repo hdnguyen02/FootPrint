@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import footprint.entity.Account;
+import footprint.entity.Cart;
 import footprint.entity.Product;
 import footprint.entity.ProductSize;
+import footprint.service.AccountService;
 import footprint.service.CartService;
 import footprint.service.ProductService;
 import footprint.service.ProductSizeService;
@@ -20,7 +22,7 @@ import javax.transaction.Transactional;
 
 @Controller
 @Transactional
-public class DetailProductxxxController {
+public class DetailProductGeneralController {
 
 	@Autowired
 	private ProductService productSerive;
@@ -30,6 +32,9 @@ public class DetailProductxxxController {
 	
 	@Autowired 
 	private CartService cartService; 
+	
+	@Autowired
+	private AccountService accountService; 
 
 	@RequestMapping("product/detail")
 	public String index(@RequestParam(value = "id", required = true) Long idProduct, ModelMap model) {
@@ -55,12 +60,20 @@ public class DetailProductxxxController {
 		
 		Product product = productSerive.getProductWithId(idProduct); 
 		ProductSize productSize = productSizeService.getProductSize(idProduct, idSize);
-		Account account = (Account) session.getAttribute("ACCOUNT"); 
-	
-		boolean resultAddCart = cartService.addCart(quantity, account, productSize); 
+		Long idAccount= (Long)session.getAttribute("idAccount"); 
+		Account account = accountService.getAccountWithId(idAccount); 
 		
-		System.out.println(resultAddCart);
+	
+		Cart cartIsExist = accountService.getCart(idAccount, productSize.getIdProductSize()); 
+		if (cartIsExist != null) { 
+			cartIsExist.setQuantity(cartIsExist.getQuantity() + quantity); 
+			cartService.updateCart(cartIsExist);
+		}
+		else {
+			cartService.addCart(quantity, account, productSize); 
+		}
 
+	
 		Hibernate.initialize(product.getThumbnails());
 		Hibernate.initialize(product.getProductSizes());
 

@@ -25,4 +25,8 @@ public class ProductSizeServiceImpl implements ProductSizeService {
    public ProductSize getProductSize(Long idProduct,String idSize) {
 	   return productSizeDao.getProductSize(idProduct, idSize);
    }
+   @Override
+   public ProductSize getProductSizeWithId(Long idProductSize) {
+	   return productSizeDao.getProductSizeWithId(idProductSize);
+   }
 }

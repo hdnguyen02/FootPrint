@@ -44,6 +44,8 @@ public class Account {
 	// chứa thông tin cart của account.  
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private Collection<Cart> carts;
+	
+	
 
 	public Account() {}
 

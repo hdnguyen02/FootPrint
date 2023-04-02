@@ -100,17 +100,18 @@
 			<div class="d-flex gap-3 align-items-center">
 				<span>quantity: </span>
 
-				<div class="border border-1 p-2 rounded-5 d-flex align-items-center py-2 px-3 gap-2">
-					<button type="button" data-plus class="border-0 bg-white">
-						+
-					</button>
-					<input name="quantity" class="border-0" style="width: 36px;text-align: center" type="text" value="0">
-					<button type="button" data-subtraction class="border-0 bg-white">
-						-
-					</button>
-				</div>
+				<div class="rounded-5 d-flex align-items-center justify-content-center py-1 gap-1 mx-3" style="background-color: #efefef;width: 90px">
+								<button type="button" style="font-weight: 500" data-subtraction class="border-0 px-0">
+									<i class="fa-solid fa-minus"></i>
+								</button>
+								<input name="quantity" class="border-0" style="width: 36px;text-align: center;background-color: #efefef;font-weight: 500" type="text" value="0">
+								
+								<button type="button" style="font-weight: 500" data-plus class="border-0 px-0">
+									<i class="fa-solid fa-plus"></i>
+								</button>
+					</div>
 				
-				<button type="submit" class="text-white border-0 px-4 py-2 rounded-5" style="background-color: #87b106; font-size: 18px">
+				<button type="submit" class="text-white border-0 px-4 rounded-5" style="background-color: #87b106;height: 34px; font-size: 16px">
 					Add To Cart
 				</button>
 			

@@ -11,15 +11,20 @@ public class Cart extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-	
-		if (session.getAttribute("ACCOUNT") != null && session.getAttribute("ROLE") != "USER") {
-		    response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); // trả về không có quyền truy cập tại đây -> không phải not-found 
+		String role = (String)session.getAttribute("role");
+		Long idAccount = (Long) session.getAttribute("idAccount"); 
+
+		// truoc tien can kiem tra xem co dang nhap chua
+		if (idAccount == null) { 
+			
+			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
+			return false; 
+		}
+		if (!role.equals("user")) {
+			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); // trả về không có quyền truy cập tại đây -> không phải not-found 
 		    return false;
 		} 
-		if (session.getAttribute("ACCOUNT") == null) { 
-			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
-		}
-		return true;
+		return true; 
 	}
 
 	@Override

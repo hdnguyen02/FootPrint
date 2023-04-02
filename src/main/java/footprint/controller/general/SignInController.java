@@ -48,16 +48,15 @@ public class SignInController {
 			return "layout/main-login-register"; 
 		}
 		
-		// kiểm tra role
-		session.setAttribute("ACCOUNT", account);
+		session.setAttribute("idAccount", account.getIdAccount());
 		if (account.getRole().getIdRole().equals("USER")  ) { 
-			session.setAttribute("ROLE", "USER");
+			session.setAttribute("role", "user");
 		}
 		else if (account.getRole().getIdRole().equals("STAFF") ) {
-			session.setAttribute("ROLE", "STAFF");
+			session.setAttribute("role", "staff");
 		}
 		else if (account.getRole().getIdRole().equals("ADMIN") ) {
-			session.setAttribute("ROLE", "ADMIN");
+			session.setAttribute("role", "admin");
 		}
 	
 		

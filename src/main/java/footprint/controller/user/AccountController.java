@@ -25,7 +25,8 @@ public class AccountController {
 	public String dashboard(ModelMap model,HttpSession session) {
 		
 	
-		Account user = (Account) session.getAttribute("ACCOUNT");
+		Long idAccount = (Long)session.getAttribute("idAccount");
+		Account user = userService.getAccountWithId(idAccount);
 		
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("content", "layout/main-account.jsp");
@@ -36,7 +37,8 @@ public class AccountController {
 
 	@RequestMapping("account/detail") 
 	public String getDetailAccount(ModelMap model,HttpSession session) {
-		Account user = (Account) session.getAttribute("ACCOUNT");
+		Long idAccount = (Long)session.getAttribute("idAccount");
+		Account user = userService.getAccountWithId(idAccount); 
 		model.addAttribute("user", user);
 		
 		model.addAttribute("content", "layout/main-account.jsp"); 
@@ -47,12 +49,8 @@ public class AccountController {
 	@RequestMapping(value="account/detail",method=RequestMethod.POST) 
 	public String postDetailAccount(ModelMap model,@ModelAttribute("user") Account user,HttpSession session) {
 		
-		boolean resultUpdate = userService.update(user); 
-		if (resultUpdate == true) { 
-			session.setAttribute("ACCOUNT", user); 
-		}
-		
-		// sử lý chỉnh sữa thất bại tại đây. 
+		userService.update(user); 
+	
 		model.addAttribute("content", "layout/main-account.jsp"); 
 		model.addAttribute("bodyAccount", "user/account-detail.jsp"); 
 		return "layout/main-user"; 
@@ -71,15 +69,11 @@ public class AccountController {
 			@RequestParam("new-password") String newPassword
 			) { 
 	
-		Account user = (Account) session.getAttribute("ACCOUNT");
+		Long idAccount = (Long)session.getAttribute("idAccount");
+		Account user = userService.getAccountWithId(idAccount);
 		
-		boolean resultChangePassword = userService.changePassword(user, newPassword);
+		userService.changePassword(user, newPassword);
 		
-		if (resultChangePassword == true) {
-			session.setAttribute("ACCOUNT", user);
-		}
-		
-			
 		model.addAttribute("content", "layout/main-account.jsp"); 
 		model.addAttribute("bodyAccount", "user/change-password.jsp"); 
 		return "layout/main-user"; 

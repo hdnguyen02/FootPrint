@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import footprint.dao.AccountDao;
 import footprint.entity.Account;
+import footprint.entity.Cart;
 import footprint.entity.Role;
 import footprint.service.AccountService;
 
@@ -46,5 +47,16 @@ public class AccountServiceImpl implements AccountService {
 	public boolean changePassword(Account account,String newPassword) {
 		account.setPassword(BCrypt.hashpw(newPassword, BCrypt.gensalt(12)));
 		return accountDao.update(account);
+	}
+	
+	@Override
+	public Account getAccountWithId(Long idAccount) {
+		return accountDao.getAccountWithId(idAccount); 
+		
+	}
+	
+	@Override
+	public Cart getCart(Long idAccount, Long idProductSize) {
+		return accountDao.getCart(idAccount, idProductSize); 
 	}
 }

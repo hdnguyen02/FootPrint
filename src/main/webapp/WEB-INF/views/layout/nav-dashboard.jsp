@@ -21,7 +21,7 @@
 				<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle d-flex gap-2 align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 				
-					<span style="color: black">${ sessionScope.ACCOUNT.getUsername() }</span>
+					<span style="color: black">Đây là tên</span>
 					<span style="color: black" class=""><i class="fa-solid fa-user fs-4"></i></span>
 				</a>
 					<ul class="dropdown-menu dropdown-menu-end">

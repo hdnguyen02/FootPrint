@@ -19,9 +19,8 @@
 			data-bs-theme="dark">
 			<div class="container-fluid position-relative">
 				<a class="d-flex align-items-center position-absolute top-0 ms-0"
-					href="${home}" style="background-color: #87b106; left: 12px"> <img
-					src='<c:url value="/resources/image/nav/logo.webp"/>' class="w-100"
-					style="padding: 24.5px 14px">
+					href="${home}" style="background-color: #87b106; left: 12px"> 
+					<img src='<c:url value="/resources/image/nav/logo.webp"/>' class="w-100" style="padding: 24.5px 14px">
 				</a>
 				<button class="navbar-toggler" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -75,14 +74,14 @@
 						</div>
 						<div class="d-flex gap-3" style="font-size: 14px !important">
 							
-							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER' }">
+							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'user' }">
 								<div>
 									<span><i class="fa-sharp fa-regular fa-credit-card"></i></span>
 									<a>Checkout</a>
 								</div>
 							</c:if>
 
-							<c:if test="${not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER'}">
+							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
 								<div>
 									<a href="${ account }"> <span><i
 											class="bi bi-person-circle"></i></span> <span>My account</span>
@@ -92,16 +91,15 @@
 							<!-- Chỉ hiển thị khi đã đăng nhập -->
 							
 
-							<c:if test="${not empty sessionScope.ACCOUNT }">
+							<c:if test="${not empty sessionScope.idAccount }">
 								<div>
 									<a href="${SignOut}" style="color: #999999"> <span><i
-											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign
-											out</span>
+											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign out</span>
 									</a>
 								</div>
 							</c:if>
 
-							<c:if test="${empty sessionScope.ACCOUNT }">
+							<c:if test="${empty sessionScope.idAccount }">
 								<div>
 									<a href="${register}" style="color: #999999"> <span><i
 											class="fa-solid fa-address-card"></i></span> <span>Register</span>
@@ -110,11 +108,10 @@
 							</c:if>
 
 
-							<c:if test="${empty sessionScope.ACCOUNT }">
+							<c:if test="${empty sessionScope.idAccount }">
 								<div>
 									<a href="${signIn}" style="color: #999999"> <span><i
-											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign
-											in</span>
+											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign in</span>
 									</a>
 								</div>
 							</c:if>
@@ -152,12 +149,12 @@
 						<li class="nav-item"><a
 							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">contact us</a></li>
 							
-							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'STAFF' }">
+							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'staff' }">
 								<li class="nav-item"><a
 								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
 								href="${staff}">Dashboard</a></li>
 							</c:if>
-							<c:if test="${ not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'ADMIN' }">
+							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'admin' }">
 								<li class="nav-item"><a
 								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
 								href="${admin}">Dashboard</a></li>
@@ -168,7 +165,7 @@
 					<div class="d-flex gap-5" style="color: #fff !important;">
 						<div class="d-flex gap-4">
 							<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
-							<c:if test="${not empty sessionScope.ACCOUNT && sessionScope.ROLE == 'USER'}">
+							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
 								<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
 							</c:if>
 						</div>

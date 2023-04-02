@@ -11,14 +11,19 @@ public class AdminFilter extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		HttpSession session = request.getSession();
-		System.out.println("interceptor admin");
 		
-		System.out.println(session.getAttribute("ROLE"));
-		if (session.getAttribute("ROLE") != "ADMIN" ) {
-		    response.sendRedirect(request.getContextPath() + "/not-found.htm");
-		    return false;
+		String role = (String)session.getAttribute("role");
+		Long idAccount = (Long) session.getAttribute("idAccount"); 
+		if (idAccount == null) { 
+			
+			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
+			return false; 
 		}
-		return true;
+		if (!role.equals("admin")) {
+			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); // trả về không có quyền truy cập tại đây -> không phải not-found 
+		    return false;
+		} 
+		return true; 
 	}
 
 	@Override

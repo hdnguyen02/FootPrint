@@ -13,12 +13,23 @@ import org.hibernate.Transaction;
 
 import footprint.dao.AccountDao;
 import footprint.entity.Account;
+import footprint.entity.Cart;
+
 
 @Repository
 @Transactional
 public class AccountDaoImpl implements AccountDao {
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	
+	@Override
+	public Account getAccountWithId(Long idAccount) { 
+		Session session = sessionFactory.getCurrentSession(); 
+		Account account = (Account) session.get(Account.class,idAccount); 
+		return account; 
+	}
+	
 	
 	@Override
 	public boolean insert(Account account) {
@@ -85,4 +96,17 @@ public class AccountDaoImpl implements AccountDao {
 			session.close();
 		}
 	}	
+	
+	// kiểm tra xem 1 productSize có tồn tại chưua
+	@Override
+	public Cart getCart(Long idAccount,Long idProductSize) {
+		Session session = sessionFactory.getCurrentSession(); 
+		String hql = "FROM Cart WHERE idAccount = :idAccount AND idProductSize = :idProductSize";
+		Query query = session.createQuery(hql);
+		query.setParameter("idAccount", idAccount);
+		query.setParameter("idProductSize", idProductSize);
+		return (Cart) query.uniqueResult();
+	}
+	
+	
 }
