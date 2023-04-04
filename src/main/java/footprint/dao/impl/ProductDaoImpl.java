@@ -51,8 +51,6 @@ public class ProductDaoImpl implements ProductDao {
 			for (Thumbnail thumbnail: thumbnails) { 
 				session.save(thumbnail);
 			}
-			
-			
 			int index = 0; 
 			for (Size size : sizes) { 
 				int quantity = sizesQuantity[index]; 
@@ -62,16 +60,18 @@ public class ProductDaoImpl implements ProductDao {
 				productSize.setQuantity(quantity);
 				session.save(productSize);
 				index++; 
-				
 			}
 			
 			transaction.commit(); 
 			return true;
 		}
 		catch (Exception e) {
+			transaction.rollback(); 
 			return false;
 		}
-
+		finally {
+			session.close(); 
+		}
 	}
 
 	

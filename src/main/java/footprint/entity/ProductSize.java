@@ -29,6 +29,9 @@ public class ProductSize {
 	@OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
 	private Collection<Cart> carts;
 	
+	@OneToMany(mappedBy = "productSize", fetch = FetchType.LAZY)
+	private Collection<OrderDetail> orderDetails;
+	
 	private int quantity;
 
 	public Long getIdProductSize() {

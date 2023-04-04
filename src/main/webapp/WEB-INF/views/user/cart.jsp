@@ -5,7 +5,7 @@
 
 <div class="container py-5" style="min-height: 80vh"> 
 	<h3 class="text-center fs-1" style="font-weight: 400">Your Cart</h3>
-	<form class="row mt-5 gx-4">
+	<form method="POST" action="checkout.htm" class="row mt-5 gx-4">
 		
 		<div class="col-9">
 			<div class="row text-uppercase" style="font-size: 13px">
@@ -58,7 +58,7 @@
 								<button type="button" style="font-weight: 500" data-subtraction='${cart.getIdCart()}' class="border-0 px-0">
 									<i class="fa-solid fa-minus"></i>
 								</button>
-								<input name="quantity" data-cart-quantity='${cart.getIdCart()}' class="border-0" style="width: 36px;text-align: center;background-color: #efefef;font-weight: 500" type="text" value="${cart.getQuantity()}">
+								<input value="${cart.getQuantity()}" data-cart-quantity='${cart.getIdCart()}' class="border-0" style="width: 36px;text-align: center;background-color: #efefef;font-weight: 500" type="text" >
 								
 								<button type="button" style="font-weight: 500" data-plus='${cart.getIdCart()}' class="border-0 px-0">
 									<i class="fa-solid fa-plus"></i>
@@ -72,10 +72,10 @@
 							</div>
 						</div>
 					
-						<div class="col-1">
+						<div class="col-1 p-0">
 							<div class="d-flex justify-content-between align-items-center">
-								<button data-cart-delete='${cart.getIdCart()}' class="border-0 bg-white"><i class="fa-sharp fa-solid fa-trash-can" style="color: rgba(0,0,0,0.6)"></i></button>
-								<input class="form-check-input mt-0 rounded-0" type="checkbox" value="">	
+								<input name="items-order" value="${cart.getIdCart()}" type="checkbox" class="form-check-input mt-0 rounded-0" style="border :1px solid rgba(0,0,0,0.2) !important; width: 22px !important; height: 22px !important">	
+								<button data-cart-delete='${cart.getIdCart()}' class="border-0 bg-white"><i class="fa-sharp fa-solid fa-trash-can fs-5" style="color: rgba(0,0,0,0.6)"></i></button>
 							</div>
 							
 						</div>
@@ -117,7 +117,7 @@
 			
 			<div class="mt-2">
 				<button type="submit" data-cart-checkout class="btn btn-primary w-100 rounded-0 border-0 py-2" style="background-color: #87b106">
-				Checkout
+				Order
 			</button>
 			</div>
 			

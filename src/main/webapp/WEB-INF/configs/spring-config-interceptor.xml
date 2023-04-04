@@ -22,6 +22,7 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/product/detail.htm"/>
 			<mvc:mapping path="/cart.htm"/>
+			<mvc:mapping path="/checkout.htm"/>
 			<bean class="footprint.interceptor.DetailProduct" />
 		</mvc:interceptor>
 		
