@@ -60,6 +60,7 @@ public class DetailProductGeneralController {
 		
 		Product product = productSerive.getProductWithId(idProduct); 
 		ProductSize productSize = productSizeService.getProductSize(idProduct, idSize);
+		
 		Long idAccount= (Long)session.getAttribute("idAccount"); 
 		Account account = accountService.getAccountWithId(idAccount); 
 		

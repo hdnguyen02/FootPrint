@@ -11,6 +11,7 @@
 <c:url var='staff' value='/staff.htm' />
 <c:url var='admin' value='/admin.htm' />
 <c:url var='cart' value='/cart.htm' />
+<%-- <c:url var='order' value='/order.htm' /> --%>
 
 
 <div class="fixed-top">
@@ -74,12 +75,12 @@
 						</div>
 						<div class="d-flex gap-3" style="font-size: 14px !important">
 							
-							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'user' }">
-								<div>
+							<%-- <c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'user' }">
+								<a href="${order}">
 									<span><i class="fa-sharp fa-regular fa-credit-card"></i></span>
-									<a>Checkout</a>
-								</div>
-							</c:if>
+									<span>Order</span>
+								</a>
+							</c:if> --%>
 
 							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
 								<div>
@@ -137,26 +138,26 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent"
 					style="margin-left: 220px">
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4">
-						<li class="nav-item"><a href="${home}"
-							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">Home</a>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4" >
+						<li class="nav-item"><a href="${home}" 
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">Home</a>
 						</li>
 						<li class="nav-item"><a href="${product}"
-							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">product</a>
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">product</a>
 						</li>
 						<li class="nav-item"><a
-							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">blog</a></li>
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">blog</a></li>
 						<li class="nav-item"><a
-							class="nav-link active text-uppercase text-white fw-bolder" aria-current="page">contact us</a></li>
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">contact us</a></li>
 							
 							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'staff' }">
 								<li class="nav-item"><a
-								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
+								class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"
 								href="${staff}">Dashboard</a></li>
 							</c:if>
 							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'admin' }">
 								<li class="nav-item"><a
-								class="nav-link active text-uppercase text-white fw-bolder" aria-current="page"
+								class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"
 								href="${admin}">Dashboard</a></li>
 							</c:if>
 

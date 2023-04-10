@@ -2,10 +2,10 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container py-5">
-	<form action="order/detail.htm" method="POST" class="row">
+	<form action="order.htm" method="POST" class="row">
 		<div class="col-7">
 			<p style="font-weight: 500;font-size:18px">Billing Details</p>
-			<hr>s
+			<hr>
 			<div class="row" >
 				<div class="col-6 container-input">
 					<label class="form-label">First Name <span style="color: #ff5a66">*</span></label>
@@ -45,7 +45,6 @@
 			<c:forEach items="${carts}" var="cart">
 				<input type="hidden" name="items-checkout" value="${cart.getIdCart()}" type="checkbox" checked="checked">
 			</c:forEach> 
-			
 			<input type="hidden" name="total-monney" value="${totalMonney}" type="number">
 			
 			</div>
@@ -77,10 +76,7 @@
 						<span>Shipping</span>
 						<span>Free</span>
 					</div>
-		
-					
-					<!-- <hr style="border: 0.2px solid rgba(0,0,0,0.5) !important"> -->
-					
+	
 					<div>
 						<p class="d-flex align-items-center gap-2" style="color:#87b106">
 							<Span>Add coupon code</Span>
@@ -90,9 +86,9 @@
 					</div>
 			</div>
 			<div class="px-4 py-3 border-top border-top-1" style="font-weight: 500">
-				<p class="d-flex justify-content-between">
-					<Span>Total</Span><span>${totalMonney}</span>
-				</p>
+				<div class="d-flex justify-content-between">
+					<p>Total</p><p>$${totalMonney}</p>
+				</div>
 			</div>
 			</div>
 			<div class="mt-2">

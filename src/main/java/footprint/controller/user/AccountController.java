@@ -78,9 +78,4 @@ public class AccountController {
 		model.addAttribute("bodyAccount", "user/change-password.jsp"); 
 		return "layout/main-user"; 
 	}
-	
-	
-	
-	
-	
 }

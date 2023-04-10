@@ -1,5 +1,8 @@
 package footprint.dao.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -64,6 +67,7 @@ public class CartDaoImpl implements CartDao {
 		query.setParameter("idProductSize", idProductSize);
 		return (Cart) query.uniqueResult();
 	}
+	
 	@Override
 	public Cart getCartWithId(Long idCart) {
 		Session session = sessionFactory.getCurrentSession(); 
@@ -92,6 +96,17 @@ public class CartDaoImpl implements CartDao {
 		}
 	}
 	
+	@Override
+	public List<Cart> getCartsWithIds(Long [] idCarts) { 
+		List<Cart> carts = new ArrayList<>(); 
+		Session session = sessionFactory.getCurrentSession(); 
+		
+		for (Long idCart :idCarts) { 
+			Cart cart = (Cart)session.get(Cart.class, idCart);
+			carts.add(cart);
+		}
+		return carts; 
+	}
 	
 	
 }

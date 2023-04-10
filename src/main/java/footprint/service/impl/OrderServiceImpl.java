@@ -1,5 +1,6 @@
 package footprint.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,7 +27,19 @@ public class OrderServiceImpl implements OrderService{
 	@Autowired
 	private CartService cartService; 
 	
-	// viết 1 hàm thêm đơn hàng. 
+	// nguoi dung huy don hang 
+	@Override
+	public boolean orderCancel(OrderCT order) {
+		String idOrderStatus = order.getOrderStatus().getIdOrderStatus(); 	 
+		if (!idOrderStatus.equals("PENDING")) { 
+			return false; 
+		} 
+		OrderStatus newOrderStatus = new OrderStatus(); 
+		newOrderStatus.setIdOrderStatus("CANCEL");
+		order.setOrderStatus(newOrderStatus);
+
+		return orderDao.update(order); 
+	}
 	
 	
 	@Override
@@ -41,13 +54,13 @@ public class OrderServiceImpl implements OrderService{
 		order.setAddress(address);
 		order.setMessage(message);
 		order.setTotalMonney(totalMonney);
+		
 		order.setDate(new Date());
 		order.setAccount(account); 
 		
-		
-		// set trạng thái đơn hàng. 
+
 		OrderStatus orderStatus = new OrderStatus(); 
-		orderStatus.setIdOrderStatus("WAIT");
+		orderStatus.setIdOrderStatus("PENDING"); 
 		order.setOrderStatus(orderStatus);
  
 		
@@ -66,5 +79,28 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.createOrderAndOrderDetail(order, ordersDetail); 
 	}
 	
+	@Override
+	public OrderCT getOrderWidhId(Long idOrder) {
+		return orderDao.getOrderWidhId(idOrder); 
+	}
+	
+	@Override
+	public OrderCT getOrderWithIdOpenSS(Long idOrder) {
+		return orderDao.getOrderWithIdOpenSS(idOrder); 
+	}
+	
+	// viết 1 hàm truy vấn Các đơn hàng hôm nay. 
+	
+	@Override
+	public List<OrderCT> getOrderWithCurentDateAndStatus(String idOrderStatus) throws ParseException { 
+		 return orderDao.getOrderWithDateAndStatusOrder(new Date(), idOrderStatus); 
+	}
+	
+	@Override
+	public boolean update(OrderCT order) {
+		return orderDao.update(order); 
+	}
+
+
 	
 }

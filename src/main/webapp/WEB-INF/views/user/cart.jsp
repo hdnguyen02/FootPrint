@@ -74,7 +74,7 @@
 					
 						<div class="col-1 p-0">
 							<div class="d-flex justify-content-between align-items-center">
-								<input name="items-order" value="${cart.getIdCart()}" type="checkbox" class="form-check-input mt-0 rounded-0" style="border :1px solid rgba(0,0,0,0.2) !important; width: 22px !important; height: 22px !important">	
+								<input name="items-checkout" value="${cart.getIdCart()}" type="checkbox" class="form-check-input mt-0 rounded-0" style="border :1px solid rgba(0,0,0,0.2) !important; width: 22px !important; height: 22px !important">	
 								<button data-cart-delete='${cart.getIdCart()}' class="border-0 bg-white"><i class="fa-sharp fa-solid fa-trash-can fs-5" style="color: rgba(0,0,0,0.6)"></i></button>
 							</div>
 							

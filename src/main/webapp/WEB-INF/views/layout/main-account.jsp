@@ -14,8 +14,6 @@
 	</div>
 </div>
 </div>
-
-
 <style>
 
 
@@ -48,9 +46,9 @@
 		font-size: 14px;
    	    background-color: #f7f7f7;
 	}
-	.ct-input:focus {
+	/* .ct-input:focus {
 		outline: 1px solid #87b106;
-	}
+	} */
 	
 	.ct-select { 
 		border: 1px solid #ccc;
@@ -59,7 +57,7 @@
 		padding: 12px;
 	}
 	
-	.container-input {
+	/* .container-input {
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
@@ -68,7 +66,8 @@
 	}
 	.container-input > label {
 		 font-size: 14px;
-	}
+		 
+	} */
 	
 	
 	

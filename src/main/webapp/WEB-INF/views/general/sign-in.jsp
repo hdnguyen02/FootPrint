@@ -4,13 +4,12 @@
 
 <c:url var='register' value='/register.htm' />
 
-<form method="POST"  id="form-login" style="padding: 40px 0px">
+<form method="POST" id="form-login" style="padding: 40px 0px">
 	<h3 class="fw-bolder"> 
 		<s:message code="login.title"/>
 	</h3>
 	<div class="mt-5"> 
-		
-		
+	
 		<div class="position-relative" style="margin-top: 36px">
 			<input required="required" name="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username">
 			<span class="position-absolute start-0" style="top: 1px">

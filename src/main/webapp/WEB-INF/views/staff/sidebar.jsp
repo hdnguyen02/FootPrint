@@ -4,7 +4,7 @@
 <c:url var='addProduct' value='/staff/product/add.htm' />
 <c:url var='categoryProduct' value='/staff/category.htm' />
 <c:url var='manageProduct' value='/staff/product/manage.htm' />
-
+<c:url var='order' value='/staff/order.htm' />
 
      <ul class='navbar-nav'>
         <li>
@@ -50,7 +50,7 @@
       <!-- <li><hr style='margin-top:16px; margin-bottom:22px;color: white !important'/></li> -->
 
         <li class='py-2'>
-        	<a href='#' class='nav-link px-3'> 
+        	<a href='${order}' class='nav-link px-3'> 
         		<span class='me-2'><i class='bi bi-cart'></i></span> 
         		<span class='text-white'>Đơn hàng</span>
             </a>

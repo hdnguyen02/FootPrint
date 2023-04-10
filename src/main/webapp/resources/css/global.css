@@ -10,9 +10,9 @@ a {
 		text-decoration:none !important;
 }
 
-a:hover {
+/* a:hover {
 		color: #87b106 !important;
-}
+} */
 
 ul li {
 	list-style: none;

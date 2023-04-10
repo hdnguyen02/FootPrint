@@ -1,5 +1,7 @@
 package footprint.dao;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import footprint.entity.OrderCT;
@@ -8,4 +10,8 @@ import footprint.entity.OrderDetail;
 public interface OrderDao {
 	// tạo đơn hàng và chi tiết đơn hàng cùng 1 lúc. 
 	public boolean createOrderAndOrderDetail(OrderCT order,List<OrderDetail> orderDetail); 
+	public OrderCT getOrderWidhId(Long idOrder); 
+	public boolean update(OrderCT order); 
+	public OrderCT getOrderWithIdOpenSS(Long idOrder);
+	public List<OrderCT> getOrderWithDateAndStatusOrder(Date date,String idOrderStatus) throws ParseException;
 }

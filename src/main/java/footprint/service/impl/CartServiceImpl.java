@@ -1,5 +1,7 @@
 package footprint.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,6 +42,21 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public boolean deleteCart(Long idCart) {
 		return cartDao.deleteCart(idCart);
+	}
+	
+	@Override
+	public List<Cart> getCartsWithIds(Long [] idCarts) {
+		return cartDao.getCartsWithIds(idCarts);
+	}
+	
+	@Override
+	public float computedTotalMonney(List<Cart> carts) { 
+		float totalMonney = 0f; 
+		
+		for (Cart cart : carts) {
+			totalMonney+= cart.getQuantity() * cart.getProductSize().getProduct().getCost(); 
+		}
+		return totalMonney; 
 	}
 	
 	
