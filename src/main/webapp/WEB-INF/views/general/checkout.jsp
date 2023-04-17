@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<c:url var='order' value='/handle-order/not-account.htm' />
 
 <div class="container py-5">
-	<form action="order.htm" method="POST" class="row">
+	<form  method="POST" action="${order}" class="row">
 		<div class="col-7">
 			<p style="font-weight: 500;font-size:18px">Billing Details</p>
 			<hr>

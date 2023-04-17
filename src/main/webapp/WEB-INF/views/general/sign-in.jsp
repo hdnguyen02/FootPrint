@@ -6,7 +6,8 @@
 
 <form method="POST" id="form-login" style="padding: 40px 0px">
 	<h3 class="fw-bolder"> 
-		<s:message code="login.title"/>
+		Đăng nhập
+		<%-- <s:message code="login.title"/> --%>
 	</h3>
 	<div class="mt-5"> 
 	

@@ -14,10 +14,8 @@ public class Cart extends HandlerInterceptorAdapter {
 		String role = (String)session.getAttribute("role");
 		Long idAccount = (Long) session.getAttribute("idAccount"); 
 
-		// truoc tien can kiem tra xem co dang nhap chua
 		if (idAccount == null) { 
-			
-			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
+			response.sendRedirect(request.getContextPath() + "/cart/not-account.htm"); // trả về không có quyền truy cập tại đây -> không phải not-found 
 			return false; 
 		}
 		if (!role.equals("user")) {

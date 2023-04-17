@@ -1,6 +1,5 @@
 package footprint.controller.staff;
 
-
 import javax.transaction.Transactional;
 
 import org.hibernate.Hibernate;
@@ -18,27 +17,22 @@ import footprint.service.ProductService;
 @Controller
 @Transactional
 public class DetailProductController {
-	
+
 	@Autowired
 	@Qualifier("imageProduct")
 	private UploadFile uploadFile;
-	
-	
-	
-	
+
 	@Autowired
 	private ProductService productService;
-	
+
 	@RequestMapping("staff/product/detail")
-	public String index(ModelMap model,@RequestParam(value="id", required = true) Long idProduct) {
-		
-		
+	public String index(ModelMap model, @RequestParam(value = "id", required = true) Long idProduct) {
+
 		Product product = productService.getProductWithId(idProduct);
 		Hibernate.initialize(product.getThumbnails());
 		Hibernate.initialize(product.getProductSizes());
-		model.addAttribute("product", product); 
+		model.addAttribute("product", product);
 
-	
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/detail-product.jsp");
 		return "layout/main-dashboard";
