@@ -105,4 +105,14 @@ public class ProductServiceImpl implements ProductService {
 		int endIndex = Math.min(startIndex + productPerPage, sizeProducts);
 		return products.subList(startIndex, endIndex);	
 	}
+	
+	@Override
+	public List<Product> searchProducts(String name) {
+		return productDao.searchProducts(name);
+	}
+	
+	@Override
+	public List<Product> filterByCategory(long idCategory) {
+		return productDao.filterByCategory(idCategory);
+	}
 }

@@ -11,4 +11,6 @@ public interface ProductDao {
 	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,List<Size> sizes,int [] sizesQuantity);
 	public Product getProductWithId(Long idProduct);
 	public List<Product> getProductsActive();
+	public List<Product> searchProducts(String name);
+	public List<Product> filterByCategory(long idCategory);
 }

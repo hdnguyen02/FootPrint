@@ -14,7 +14,8 @@ public interface ProductService {
 	public boolean addProductThumbnailsProductSize(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails,List<Size> sizes,int [] sizesQuantity);
 	public List<Product> getAllProduct(); 
 	public List<Product> getProductsActive();
-
+	public List<Product> searchProducts(String name);
+	public List<Product> filterByCategory(long idCategory);
 	
 	// Phân trang
 	public int computedTotalPage(List<Product> products,int productPerPage);

@@ -97,4 +97,26 @@ public class ProductDaoImpl implements ProductDao {
 		return products;
 	}
 	
+	@Override
+	public List<Product> searchProducts(String name) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where name like :name";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", "%" + name + "%");
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<Product> filterByCategory(long idCategory) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where idCategory like :cid";
+		Query query = session.createQuery(hql);
+		query.setParameter("cid", idCategory);
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
 }
