@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<script defer="defer"
-	src='<c:url value="/resources/javascript/list-order.js"/>'></script>
+<script defer="defer" src='<c:url value="/resources/javascript/list-order.js"/>'></script>
 
+<c:url var='timeDate' value='/staff/order.htm?time=date' />
+<c:url var='timeMonth' value='/staff/order.htm?time=month' />
 
 <div class="container-fluid p-5 bg-white shadow-lg"
 	style="min-height: 100vh">
@@ -27,11 +28,22 @@
 
 			<li class="tag"><a data-order-type='cancel'>Đã hủy</a></li>
 
-			<li><select>
-					<option>Hôm nay</option>
-					<option>Tuần này</option>
-					<option>Tháng này</option>
-			</select></li>
+			<li>
+				<!-- Example single danger button -->
+				<div class="btn-group">
+				  <p class="dropdown-toggle" style="cursor: pointer"  data-bs-toggle="dropdown" aria-expanded="false">
+				   <span class="me-2">Thời gian</span>
+				   <span>
+				   	 <i class="fas fa-caret-down"></i>
+				   </span>
+				  </p>
+				  <ul class="dropdown-menu dropdown-menu-end">
+				    <li><a class="dropdown-item" href="${timeDate}">curent date</a></li>
+				    <li><hr class="dropdown-divider"></li>
+				    <li><a class="dropdown-item" href="${timeMonth}">curent month</a></li>
+				  </ul>
+				</div>
+			</li>
 		</ul>
 	</nav>
 
@@ -49,7 +61,6 @@
 			<tbody>
 				<c:forEach items="${ordersPending}" var="orderPending"
 					varStatus="index">
-
 					<tr data-order data-order-pending>
 						<th scope="row">${index.count}</th>
 						<td>${orderPending.getDate()}</td>
@@ -57,8 +68,6 @@
 						<td><a
 							href='<c:url value='/staff/order/detail.htm?id=${orderPending.getIdOrder()}'/>'>Detail</a></td>
 					</tr>
-
-
 				</c:forEach>
 
 				<c:forEach items="${ordersDeliver}" var="orderDeliver"
@@ -71,8 +80,6 @@
 						<td><a
 							href='<c:url value='/staff/order/detail.htm?id=${orderDeliver.getIdOrder()}'/>'>Detail</a></td>
 					</tr>
-
-
 				</c:forEach>
 
 				<c:forEach items="${ordersSuccess}" var="orderSuccess"
@@ -105,42 +112,6 @@
 			</tbody>
 
 		</table>
-
-		<%-- <table class="table table-striped">
-			<thead>
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">Date</th>
-					<th scope="col">Total monney</th>
-					<th scope="col">Handle</th>
-				</tr>
-			</thead>
-			<tbody>
-			
-				<c:forEach items="${ordersPending}" var="orderPending" varStatus="index">
-					<tr data-order data-order-pending>
-						<th scope="row">${index.count}</th>
-						<td>${orderPending.getDate()}</td>
-						<td>${orderPending.getTotalMonney()}</td>
-						<td><a
-							href='<c:url value='/staff/order/detail.htm?id=${orderPending.getIdOrder()}'/>'>Detail</a></td>
-					</tr>
-				
-				</c:forEach>
-				<c:forEach items="${ordersDeliver}" var="orderDeliver" varStatus="index">
-					<tr data-order data-order-pending>
-						<th scope="row">${index.count}</th>
-						<td>${orderDeliver.getDate()}</td>
-						<td>${orderDeliver.getTotalMonney()}</td>
-						<td><a
-							href='<c:url value='/staff/order/detail.htm?id=${orderDeliver.getIdOrder()}'/>'>Detail</a></td>
-					</tr>
-				
-				</c:forEach>
-		
-		
-			</tbody>
-		</table> --%>
 	</div>
 </div>
 

@@ -15,6 +15,7 @@ public class UserFilter extends HandlerInterceptorAdapter {
 		
 		HttpSession session = request.getSession();
 		
+		
 		String role = (String)session.getAttribute("role");
 		Long idAccount = (Long) session.getAttribute("idAccount"); 
 		

@@ -35,7 +35,7 @@ btnsPlus.forEach(btnPlus => {
 		
 		computedTotal(idCart)
 		
-		
+		computedTotalMonney()
 		
 		callController(`/FootPrint/cart.htm`,{ idCart , quantityUpdate})	
 	})
@@ -51,6 +51,7 @@ btnsSubtract.forEach(btnSubtract => {
 		if (quantityUpdate != 0) {
 			quantityUpdate = --document.querySelector(`[data-cart-quantity='${idCart}']`).value
 			computedTotal(idCart)
+			computedTotalMonney()
 			callController(`/FootPrint/cart.htm`,{ idCart , quantityUpdate})
 		}
 	})
@@ -73,3 +74,16 @@ function computedTotal(idCart){
 	totalCart.textContent = costCart * quantityCart
 }
 
+function computedTotalMonney() {
+	let total = 0;
+	document.querySelectorAll("input[name='items-checkout']").forEach(
+		checkoutCart => { 
+		if(checkoutCart.checked) {
+			const idProductSize = checkoutCart.value
+			let subMonney = +document.querySelector(`[data-cart-total='${idProductSize}']`).textContent
+			total += subMonney
+		}
+	})
+	
+	document.querySelector("[data-subtotal]").textContent = total
+}

@@ -9,6 +9,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -86,7 +87,7 @@ public class OrderDaoImpl implements OrderDao {
 	}
 	
 	@Override
-	public List<OrderCT> getOrderWithDateAndStatusOrder(Date date,String idOrderStatus) throws ParseException{ // lấy ra các đơn hàng hôm nay.
+	public List<OrderCT> getOrderWithDateAndStatus(Date date,String idOrderStatus) throws ParseException{ // lấy ra các đơn hàng hôm nay.
 	 	Session session = sessionFactory.getCurrentSession();
 	 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	 	String dateString = dateFormat.format(date);
@@ -101,7 +102,28 @@ public class OrderDaoImpl implements OrderDao {
 	 	@SuppressWarnings("unchecked")
 		List<OrderCT> orders = query.list();
 	 	return orders; 
- }
+	}
+	
+	// truy vấn với month: 
+	@Override
+	public List<OrderCT> getOrderWithMonthAndStatus(Date date,String idOrderStatus) { 
+		Session session = sessionFactory.getCurrentSession();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int year = calendar.get(Calendar.YEAR);
+		String sql = "SELECT * FROM OrderCT WHERE MONTH(date) = :month AND YEAR(date) = :year AND idOrderStatus = :idOrderStatus";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setParameter("month", month);
+		query.setParameter("year", year);
+		query.setParameter("idOrderStatus", idOrderStatus);
+		query.addEntity(OrderCT.class);
+		@SuppressWarnings("unchecked")
+		List<OrderCT> orders = query.list();
+		return orders;
+		
+	}
+	
 	
 
 }

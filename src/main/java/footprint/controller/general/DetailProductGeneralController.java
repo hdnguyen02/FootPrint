@@ -17,6 +17,9 @@ import footprint.service.CartService;
 import footprint.service.ProductService;
 import footprint.service.ProductSizeService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -51,28 +54,60 @@ public class DetailProductGeneralController {
 	}
 	
 	@RequestMapping(value="product/detail",method=RequestMethod.POST)
-	public String postIndex(HttpSession session,ModelMap model,
+	public String postIndex(HttpSession session,ModelMap model,HttpServletResponse response,HttpServletRequest request, 
 			@RequestParam(value = "id", required = true) Long idProduct, 
-			@RequestParam(value = "quantity", required = true) int quantity, 
+			@RequestParam(value = "quantity", required = true) Integer quantity, 
 			@RequestParam(value="radio-size",required = true) String idSize
 			) {
 		
-		
+
 		Product product = productSerive.getProductWithId(idProduct); 
 		ProductSize productSize = productSizeService.getProductSize(idProduct, idSize);
 		
-		Long idAccount= (Long)session.getAttribute("idAccount"); 
-		Account account = accountService.getAccountWithId(idAccount); 
+		Long idAccount= (Long)session.getAttribute("idAccount");   
+		// kiem tra xem no da ton tai chua 
 		
-	
-		Cart cartIsExist = accountService.getCart(idAccount, productSize.getIdProductSize()); 
-		if (cartIsExist != null) { 
-			cartIsExist.setQuantity(cartIsExist.getQuantity() + quantity); 
-			cartService.updateCart(cartIsExist);
+		
+		if (idAccount == null) { 
+			Boolean tonTai = false; 
+			
+			
+			Cookie[] cookies = request.getCookies();
+			if (cookies != null) {
+			    for (Cookie cookie : cookies) {
+			    	// 
+			    	String idCart = "cart" + productSize.getIdProductSize().toString(); 
+			        if (idCart.equals(cookie.getName())) { // Kiểm tra tên cookie
+			         
+			        	System.out.println("tìm được");
+			            tonTai = true; 
+			            break;
+			        }
+			    }
+			}
+			if (tonTai == false) {  
+				Cookie cart = new Cookie("cart" + productSize.getIdProductSize().toString(),quantity.toString()); //bake cookies
+				cart.setMaxAge(365 * 24 * 60 * 60);
+			    String contextPath = request.getContextPath(); 
+			    cart.setPath(contextPath); 
+				response.addCookie(cart);
+			}
 		}
-		else {
-			cartService.addCart(quantity, account, productSize); 
+		else { 
+			Account account = accountService.getAccountWithId(idAccount); 
+			
+			
+			Cart cartIsExist = accountService.getCart(idAccount, productSize.getIdProductSize()); 
+			if (cartIsExist != null) { 
+				cartIsExist.setQuantity(cartIsExist.getQuantity() + quantity); 
+				cartService.updateCart(cartIsExist);
+			}
+			else {
+				cartService.addCart(quantity, account, productSize); 
+			}
 		}
+		
+		
 
 	
 		Hibernate.initialize(product.getThumbnails());

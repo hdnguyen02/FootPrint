@@ -75,12 +75,7 @@
 						</div>
 						<div class="d-flex gap-3" style="font-size: 14px !important">
 							
-							<%-- <c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'user' }">
-								<a href="${order}">
-									<span><i class="fa-sharp fa-regular fa-credit-card"></i></span>
-									<span>Order</span>
-								</a>
-							</c:if> --%>
+				
 
 							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
 								<div>
@@ -174,13 +169,12 @@
 					<div class="d-flex gap-5" style="color: #fff !important;">
 						<div class="d-flex gap-4">
 							<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
-							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
 								<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
-							</c:if>
 						</div>
 					</div>
 				</div>
 			</div>
+			
 		</nav>
 	</div>
 </div>

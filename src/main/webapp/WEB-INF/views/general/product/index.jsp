@@ -252,8 +252,7 @@
 									<div class="ratings">
 										<span><i class="fa fa-star"></i></span> <span><i
 											class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span>
-										<span><i class="fa fa-star"></i></span> <span><i
-											class="fa fa-star"></i></span>
+										<span><i class="fa fa-star"></i></span> <span><i class="fa fa-star"></i></span>
 									</div>
 								</div>
 							</div>

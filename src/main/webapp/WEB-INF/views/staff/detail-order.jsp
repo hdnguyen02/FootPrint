@@ -3,7 +3,7 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<!-- <script defer="defer" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
 <script defer="defer" src='<c:url value="/resources/javascript/staff-detail-order.js"/>'></script>
 <div class="container-fluid p-5 bg-white shadow-lg">
 	
@@ -55,6 +55,7 @@
 				<div class="px-4 py-4 d-flex flex-column gap-2">
 				
 					<!-- Danh sách cart -->
+
 					<c:forEach items="${order.getOrderDetails()}" var="orderDetail">
 						<div class="d-flex justify-content-between">
 							<div>
@@ -74,8 +75,6 @@
 						<span>Shipping</span>
 						<span>Free</span>
 					</div>
-		
-		
 			</div>
 			<div class="px-4 py-3 border-top border-top-1" style="font-weight: 500">
 				<p class="d-flex justify-content-between">
@@ -84,7 +83,8 @@
 			</div>
 			</div>
 		
-			<form:select name="id-order-status" path="orderStatus.idOrderStatus" items="${orderStatus}" itemLabel="name" itemValue="idOrderStatus" class="ct-input mt-3"></form:select>
+			<form:select name="id-order-status" path="orderStatus.idOrderStatus" items="${orderStatus}" itemLabel="name" itemValue="idOrderStatus" class="ct-input mt-3">
+			</form:select>
 			<button class="mt-3" type="submit">Cập nhập</button>
 			
 		</div>
@@ -92,4 +92,10 @@
 	
 </div>
 
+<script>
+	// vô hiệu hóa thẻ option có value="SUCCESS" 
+	window.addEventListener('load', function() {
+ 		document.querySelector("option[value='SUCCESS']").disabled = true
+	});
+</script>
 

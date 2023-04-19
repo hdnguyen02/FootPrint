@@ -17,8 +17,7 @@ public class DetailProduct extends HandlerInterceptorAdapter {
 		Long idAccount = (Long) session.getAttribute("idAccount"); 
 
 		if (idAccount == null) { 	
-			response.sendRedirect(request.getContextPath() + "/sign-in.htm"); 
-			return false; 
+			return true; 
 		}
 		if (!role.equals("user")) {
 			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); 

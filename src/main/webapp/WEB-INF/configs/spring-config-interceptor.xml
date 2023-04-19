@@ -18,14 +18,22 @@
 	
 	 <mvc:interceptors>  
 	 
+		 <mvc:interceptor>
+				<mvc:mapping path="/staff/order/detail.htm"/> 
+				<bean class="footprint.interceptor.StaffOrder" />
+		</mvc:interceptor>
+	 
 	 <!-- Người dùng  -->
 		<mvc:interceptor>
-			<mvc:mapping path="/product/detail.htm"/>
-			<mvc:mapping path="/cart.htm"/>
 			<mvc:mapping path="/checkout.htm"/> 
 			<mvc:mapping path="/order.htm"/>
 			<mvc:mapping path="/order/**"/>
 			<bean class="footprint.interceptor.UserFilter" />
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/product/detail.htm"/>
+			<bean class="footprint.interceptor.DetailProduct" />
 		</mvc:interceptor>
 		
 		<mvc:interceptor>
@@ -44,7 +52,6 @@
 		<mvc:interceptor>
 			<mvc:mapping path="/staff.htm"/>
 			<mvc:mapping path="/staff/**"/>
-
 			<bean class="footprint.interceptor.StaffFilter" />
 		</mvc:interceptor>
 		
