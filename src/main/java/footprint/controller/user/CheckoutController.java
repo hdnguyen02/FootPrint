@@ -42,11 +42,8 @@ public class CheckoutController {
 			@RequestParam(value="items-checkout",required = true) Long [] idCartsCheckout) { 
 		
 		Long idAccount = (Long) session.getAttribute("idAccount"); 
-		
 		Account account = accountSerive.getAccountWithId(idAccount);
-	
 		List<Cart> carts = cartService.getCartsWithIds(idCartsCheckout); 
-		
 		float totalMonney = cartService.computedTotalMonney(carts); 
 		
 		model.addAttribute("account", account);
@@ -69,6 +66,10 @@ public class CheckoutController {
 		if (cookies != null) { 
 			
 			for (Long idProductSize : idProductSizes) {
+				
+				// lấy ra số lượng tương với prductSize 
+				
+				
 				for (Cookie cookie : cookies) { 
 					String cookieName = cookie.getName(); 
 					
@@ -87,19 +88,16 @@ public class CheckoutController {
 		}
 		
 		model.addAttribute("totalMonney", cartService.computedTotalMonney(carts)); 
-		
 		model.addAttribute("carts", carts); 
-		
-		
-		
 		model.addAttribute("content", "general/checkout.jsp");
 		return "layout/main-user";
 	}
 	
 	
+	
 	@RequestMapping(value="handle-order/not-account",method = RequestMethod.POST)
 	public String postOrder(ModelMap model,
-			@RequestParam(value="items-checkout",required = true) Long [] idCartsCheckout, 
+			@RequestParam(value="items-checkout",required = true) String [] idPSAndQuantitys, 
 			@RequestParam(value="first-name",required = true) String firstName,
 			@RequestParam(value="last-name",required = true) String lastName,
 			@RequestParam(value="email",required = true) String email, 
@@ -108,9 +106,11 @@ public class CheckoutController {
 			@RequestParam(value="message",required = true) String message, 
 			@RequestParam(value="total-monney",required = true) Float totalMoney
 			) { 
-		 
+	
 		
-		boolean resultCreateOrder = orderService.createOrderAndOrderDetail(firstName, lastName, email, phone, address, message, totalMoney,null, idCartsCheckout);
+		
+		
+		boolean resultCreateOrder = orderService.createOrderAndOrderDetailNotAccount(firstName, lastName, email, phone, address, message, totalMoney,idPSAndQuantitys);
 		
 		if (resultCreateOrder == false) {
 			System.out.println("Sảy ra lỗi khi thêm đặt hàng");

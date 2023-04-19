@@ -9,11 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import footprint.dao.OrderDao;
+import footprint.dao.ProductSizeDao;
 import footprint.entity.Account;
 import footprint.entity.Cart;
 import footprint.entity.OrderCT;
 import footprint.entity.OrderDetail;
 import footprint.entity.OrderStatus;
+import footprint.entity.Product;
+import footprint.entity.ProductSize;
 import footprint.service.CartService;
 import footprint.service.OrderService;
 
@@ -25,6 +28,9 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Autowired
 	private CartService cartService; 
+	
+	@Autowired
+	private ProductSizeDao productsizeDao; 
 	
 	// nguoi dung huy don hang 
 	@Override
@@ -43,8 +49,6 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public boolean createOrderAndOrderDetail(String firstName,String lastName,String email, String phone, String address,String message,Float totalMonney,Account account,Long [] idCarts) {
-		
-		
 		OrderCT order = new OrderCT(); 
 		order.setFirstName(firstName);
 		order.setLasttName(lastName); 
@@ -78,6 +82,48 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.createOrderAndOrderDetail(order, ordersDetail); 
 	}
 	
+	
+	
+	
+@Override
+public boolean createOrderAndOrderDetailNotAccount(String firstName,String lastName,String email, String phone, String address,String message,Float totalMonney,String [] idPSAndQuantitys) {
+
+		OrderCT order = new OrderCT(); 
+		order.setFirstName(firstName);
+		order.setLasttName(lastName); 
+		order.setEmail(email);
+		order.setPhone(phone);
+		order.setAddress(address);
+		order.setMessage(message);
+		order.setTotalMonney(totalMonney);
+		
+		order.setDate(new Date()); 
+		OrderStatus orderStatus = new OrderStatus(); 
+		orderStatus.setIdOrderStatus("PENDING"); 
+		order.setOrderStatus(orderStatus);
+ 
+		
+		List<OrderDetail> ordersDetail = new ArrayList<>(); 
+		
+
+		for (String idPSAndQuantity : idPSAndQuantitys) {
+			String [] parts = idPSAndQuantity.split("-"); 
+			ProductSize productSize = productsizeDao.getProductSizeWithId(Long.valueOf(parts[0])); 
+			Product product = productSize.getProduct(); 
+			OrderDetail orderDetail = new OrderDetail(); 
+			orderDetail.setQuantity(Integer.valueOf(parts[1]));
+			orderDetail.setCost(product.getCost());
+			orderDetail.setTotalMonney(orderDetail.getCost() * orderDetail.getQuantity()); 
+			orderDetail.setProductSize(productSize);
+			orderDetail.setOrder(order);
+			ordersDetail.add(orderDetail); 
+			
+		}
+
+		return orderDao.createOrderAndOrderDetail(order, ordersDetail); 
+	}
+	
+	
 	@Override
 	public OrderCT getOrderWidhId(Long idOrder) {
 		return orderDao.getOrderWidhId(idOrder); 
@@ -88,16 +134,22 @@ public class OrderServiceImpl implements OrderService{
 		return orderDao.getOrderWithIdOpenSS(idOrder); 
 	}
 	
-	// viết 1 hàm truy vấn Các đơn hàng hôm nay. 
+	// Viết thêm 1 fucntion -> lấy đơn hàng theo tháng. 
+	// Ngoài ra khi người dùng click vào duyệt đơn hàng -> gửi mail. 
 	
 	@Override
 	public List<OrderCT> getOrderWithCurentDateAndStatus(String idOrderStatus) throws ParseException { 
-		 return orderDao.getOrderWithDateAndStatusOrder(new Date(), idOrderStatus); 
+		 return orderDao.getOrderWithDateAndStatus(new Date(), idOrderStatus); 
 	}
 	
 	@Override
 	public boolean update(OrderCT order) {
 		return orderDao.update(order); 
+	}
+	
+	@Override
+	public List<OrderCT> getOrderWithCurentMonthAndStatus(String idOrderStatus) { 
+		 return orderDao.getOrderWithMonthAndStatus(new Date(), idOrderStatus); 
 	}
 
 

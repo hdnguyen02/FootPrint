@@ -74,7 +74,7 @@
 					
 						<div class="col-1 p-0">
 							<div class="d-flex justify-content-between align-items-center">
-								<input name="items-checkout" value="${cart.getIdCart()}" type="checkbox" class="form-check-input mt-0 rounded-0" style="border :1px solid rgba(0,0,0,0.2) !important; width: 22px !important; height: 22px !important">	
+								<input onchange="computedTotalMonney()" name="items-checkout" value="${cart.getIdCart()}" type="checkbox" class="form-check-input mt-0 rounded-0" style="border :1px solid rgba(0,0,0,0.2) !important; width: 22px !important; height: 22px !important">	
 								<button data-cart-delete='${cart.getIdCart()}' class="border-0 bg-white"><i class="fa-sharp fa-solid fa-trash-can fs-5" style="color: rgba(0,0,0,0.6)"></i></button>
 							</div>
 							
@@ -94,7 +94,10 @@
 				<div class="px-4 py-4 d-flex flex-column gap-2" style="font-size: 14px">
 					<div class="d-flex justify-content-between">
 						<span>Subtotal</span>
-						<span style="font-weight: 500">$418</span>
+						<div>
+							<span style="font-weight: 500">$</span>
+							<span data-subtotal style="font-weight: 500">0</span>
+						</div>
 					</div>
 					<div class="d-flex justify-content-between">
 						<span>Shipping</span>

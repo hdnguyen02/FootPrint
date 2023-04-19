@@ -33,12 +33,10 @@ public class RegisterController {
 	
 	@RequestMapping(value="register",method=RequestMethod.GET)
 	public String getRegister(ModelMap model,@ModelAttribute("account") Account account,HttpSession session) { 
-		
-		// trường hợp đăng ký bị lỗi 
+ 
 		if (session.getAttribute("errorRegister") != null) {
 			model.addAttribute("errorRegister", session.getAttribute("errorRegister"));
 			session.removeAttribute("errorRegister");
-			
 		}
 
 		model.addAttribute("nameBreadcrumb", "register");
@@ -52,10 +50,7 @@ public class RegisterController {
 		
 		 Account userByUsername = userService.getAccountByUsername(account.getUsername()); 
 		 Account userByEmail = userService.getAccountByEmail(account.getEmail()); 
-
-		 
 		 boolean successRegister = true; 
-		 
 		 if (userByUsername != null) { // có tồn tại
 			 model.addAttribute("resultUsername", "Username đã được sử dụng");
 			 successRegister = false; 
@@ -69,14 +64,9 @@ public class RegisterController {
 		 if (successRegister) { 
 			 String otp = mailService.createOTP();
 			 mailService.sendOTP(account.getEmail(), otp);
-			 
-			 
 			 session.setAttribute("email", account.getEmail());
 			 session.setAttribute("username", account.getUsername());
 			 session.setAttribute("password", account.getPassword());
-			 
-			 
-			 
 			 session.setAttribute("otp",otp);
 			 model.addAttribute("content", "user/confirm.jsp"); 
 		 }

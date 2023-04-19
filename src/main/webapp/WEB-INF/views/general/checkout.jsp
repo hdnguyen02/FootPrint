@@ -42,9 +42,9 @@
 			  		
 				</div>
 			
-			<!-- tạo ra các thẻ input truyền dữ liệu tới post  -->
+
 			<c:forEach items="${carts}" var="cart">
-				<input type="hidden" name="items-checkout" value="${cart.getIdCart()}" type="checkbox" checked="checked">
+				<input type="hidden" name="items-checkout" value='${cart.getProductSize().getIdProductSize()}-${cart.getQuantity()}' type="checkbox" checked="checked">
 			</c:forEach> 
 			<input type="hidden" name="total-monney" value="${totalMonney}" type="number">
 			

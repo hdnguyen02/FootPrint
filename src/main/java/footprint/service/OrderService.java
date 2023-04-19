@@ -2,6 +2,7 @@ package footprint.service;
 
 
 import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
 import footprint.entity.Account;
@@ -13,6 +14,9 @@ public interface OrderService {
 	public OrderCT getOrderWithIdOpenSS(Long idOrder);
 	public boolean orderCancel(OrderCT order);
 	public List<OrderCT> getOrderWithCurentDateAndStatus(String idOrderStatus) throws ParseException;
+	
 	public boolean update(OrderCT order);
 
+	public boolean createOrderAndOrderDetailNotAccount(String firstName,String lastName,String email, String phone, String address,String message,Float totalMonney,String [] idPSAndQuantitys);
+	public List<OrderCT> getOrderWithCurentMonthAndStatus(String idOrderStatus); 
 }

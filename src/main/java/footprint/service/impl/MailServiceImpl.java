@@ -4,6 +4,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.mail.internet.MimeMessage;
 
@@ -29,13 +32,13 @@ public class MailServiceImpl implements MailService {
 	}
 	
 	@Override
-	public boolean sendOTP(String mailUser,String otp) {
+	public void sendOTP(String mailUser,String otp) {
 		String subject = "OTP"; 
-		return this.sendMail("hdnguyen7702@gmail.com",mailUser,"hdnguyen7702@gmail.com",subject,otp);
+		this.sendMailAsync("hdnguyen7702@gmail.com",mailUser,"hdnguyen7702@gmail.com",subject,otp);
 	}
 	
 	
-	// helper 
+	@Override
 	public boolean sendMail (String from,String to,String reppy,String subject,String text) { 
 		try {
 			MimeMessage message  = javaMailSender.createMimeMessage(); 
@@ -52,7 +55,15 @@ public class MailServiceImpl implements MailService {
 			return false;
 		}
 	}
-
 	
-	
+	public void sendMailAsync(String from,String to,String reppy,String subject,String text) { 
+		ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.submit(() -> { // cơ chế aysnc 
+        	sendMail(from,to,reppy,subject,text); 
+        });	
+        
+    
+       
+        executorService.shutdown();
+	}
 }
