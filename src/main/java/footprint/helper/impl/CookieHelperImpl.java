@@ -3,8 +3,12 @@ package footprint.helper.impl;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.stereotype.Component;
+
 import footprint.helper.CookieHelper;
 
+
+@Component
 public class CookieHelperImpl implements CookieHelper{
 	@Override
 	public String getValue(HttpServletRequest request, String cookieName) {

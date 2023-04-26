@@ -29,4 +29,9 @@ public class ProductSizeServiceImpl implements ProductSizeService {
    public ProductSize getProductSizeWithId(Long idProductSize) {
 	   return productSizeDao.getProductSizeWithId(idProductSize);
    }
+   
+   @Override
+   public boolean updatesQuantity(Long [] idProductSizes,Integer [] quantityBuys)  {
+		return productSizeDao.updatesQuantity(idProductSizes, quantityBuys); 
+	}
 }

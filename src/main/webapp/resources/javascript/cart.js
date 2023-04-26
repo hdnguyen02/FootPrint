@@ -5,8 +5,7 @@ function callController(pageUrl,data) {
 		history.pushState(null, '', pageUrl);
 	});
 }
-
-
+	
 
 
 const btnsSubtract = document.querySelectorAll("[data-subtraction]")
@@ -86,4 +85,12 @@ function computedTotalMonney() {
 	})
 	
 	document.querySelector("[data-subtotal]").textContent = total
+}
+
+
+function checkSubmit(event){ 
+	const isSelect = document.querySelectorAll("input[name='items-checkout']:checked").length
+	if (isSelect == 0) { 
+		event.preventDefault()
+	}
 }

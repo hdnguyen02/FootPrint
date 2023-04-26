@@ -103,7 +103,13 @@ function computedTotalMonney() {
 
 	
 
-			
+		
+function checkSubmit(event){ 
+	const isSelect = document.querySelectorAll("input[name='items-checkout']:checked").length
+	if (isSelect == 0) { 
+		event.preventDefault()
+	}
+}	
 
 
 

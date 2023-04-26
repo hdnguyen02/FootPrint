@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -56,8 +57,41 @@ public class ProductSizeDaoImpl implements ProductSizeDao {
 	public ProductSize getProductSizeWithId(Long idProductSize) {
 		Session session = sessionFactory.openSession();
 		ProductSize productSize = (ProductSize) session.get(ProductSize.class,idProductSize); 
+		session.close(); 
 		return productSize; 
 	}
 	
+	@Override
+	public boolean updatesQuantity(Long [] idProductSizes,Integer [] quantityBuys) { 
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+
+		try { 
+			int index =0; 
+			for (Long idProductSize: idProductSizes) {
+				ProductSize productSize = this.getProductSizeWithId(idProductSize); 
+				Integer quantityCurent = productSize.getQuantity(); 
+				if (quantityBuys[index] > quantityCurent) { 
+					throw new Exception("Số lượng không đủ"); 
+				}
+				productSize.setQuantity(quantityCurent - quantityBuys[index]); 
+				session.update(productSize);
+				index++; 
+			}
+			transaction.commit(); 
+			return true; 
+		}
+		catch(Exception e) { 
+			System.out.println(e.getMessage());
+		    System.out.println("vào lỗi");
+			transaction.rollback();
+			return false; 
+		}
+		finally {
+			session.close();
+		}
+		
+		
+	}
 	
 }

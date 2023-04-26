@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import footprint.entity.OrderCT;
+import footprint.entity.OrderDetail;
 import footprint.entity.OrderStatus;
-import footprint.entity.ProductSize;
 import footprint.service.OrderService;
 import footprint.service.OrderStatusService;
 import footprint.service.ProductSizeService;
 
 @Controller
-@Transactional
+@Transactional 
 public class StaffOrderController {
 	
 	
@@ -35,8 +35,7 @@ public class StaffOrderController {
 	
 	
 	@Autowired 
-	private ProductSizeService productSizeService; 
-	
+	private ProductSizeService productSizeService;  // cập nhập đơn hàng. 
 	
 	
 	@RequestMapping("staff/order")
@@ -76,13 +75,12 @@ public class StaffOrderController {
 	@RequestMapping(value="staff/order/detail",method = RequestMethod.GET)
 	public String getDetail(ModelMap model,@RequestParam(value="id",required = true) Long idOrder) {
 		
-		OrderCT order = orderService.getOrderWidhId(idOrder);  
-		Hibernate.initialize(order.getOrderDetails()); 
-		
 		List<OrderStatus> orderStatus = orderStatusService.getAllOrderStatus();
-		
-		
-		
+		OrderCT order = orderService.getOrderWidhId(idOrder); 
+		Hibernate.initialize(order.getOrderDetails());
+		String curentStatusOrder = order.getOrderStatus().getIdOrderStatus(); 
+		// đẩy qua phía client -> kiểm tra trạng thái trước đó. 
+		model.addAttribute("curentStatusOrder", curentStatusOrder); 
 		model.addAttribute("order",order); 
 		model.addAttribute("orderStatus",orderStatus);
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
@@ -94,17 +92,54 @@ public class StaffOrderController {
 	@RequestMapping(value="staff/order/detail", method = RequestMethod.POST)
 	public ModelAndView editStatusOrder(HttpSession session,
 			@RequestParam(value = "id", required = true) Long idOrder, 
-			@RequestParam(value = "orderStatus.idOrderStatus", required = true) String idOrderStatus) {
-		OrderCT order = orderService.getOrderWithIdOpenSS(idOrder);   
-		OrderStatus orderStatus = new OrderStatus(); 
-		orderStatus.setIdOrderStatus(idOrderStatus);
-		order.setOrderStatus(orderStatus); 
-		// kiem tra xem co du hang khong. neu du thi cap nhap them hang vao. 
+			@RequestParam(value="curentStatusOrder",required=true) String idOSPrevious,
+			@RequestParam(value = "orderStatus.idOrderStatus", required = true) String idOSUpdate) {
 		
-		orderService.update(order); 
-		ModelAndView modelAndView = new ModelAndView("redirect:/staff/order/detail.htm?id=" + idOrder); 
-		modelAndView.addObject("order-status", orderStatus.getIdOrderStatus());
-		modelAndView.addObject("mail-user",order.getEmail()); 
+
+		ModelAndView modelAndView = new ModelAndView("redirect:/staff/order.htm"); 
+		OrderCT order = orderService.getOrderWidhId(idOrder); 
+		Hibernate.initialize(order.getOrderDetails());
+		boolean isValid = false;
+		if (idOSPrevious.equals("PENDING")  && idOSUpdate.equals("DELIVER")) { 
+		
+				int sizeOrderDetail = order.getOrderDetails().size(); 
+				Long [] idProductSizes = new Long[sizeOrderDetail];
+				Integer [] quantityBuys = new Integer[sizeOrderDetail]; 
+				int index = 0; 
+				for (OrderDetail orderDetail : order.getOrderDetails()) { 
+					idProductSizes[index] = orderDetail.getProductSize().getIdProductSize(); 
+					quantityBuys[index] = orderDetail.getQuantity(); // lấy ra số lượng mua.. 
+					index++; 
+				}
+				
+				isValid = productSizeService.updatesQuantity(idProductSizes, quantityBuys);  
+				if (!isValid) { 
+					System.out.println("số lượng hàng mua không đủ");
+				}
+			
+			
+			
+			
+		}
+		else if (idOSPrevious.equals("DELIVER")  && idOSUpdate.equals("SUCCESS") ) { 
+			isValid = true;
+		} 
+		else if (idOSPrevious.equals("PENDING")  && idOSUpdate.equals("CANCEL") ) { 
+			isValid = true; 
+		}
+		if (isValid) {
+			OrderStatus orderStatus = new OrderStatus(); 
+			orderStatus.setIdOrderStatus(idOSUpdate);
+			order.setOrderStatus(orderStatus); 
+			orderService.update(order); 
+			modelAndView.addObject("order-status", orderStatus.getIdOrderStatus());
+			modelAndView.addObject("mail-user",order.getEmail());
+			
+		} else {  
+			System.out.println("sai quy trình"); 
+		}
+	
+		
 		return modelAndView; 
 	}
 	

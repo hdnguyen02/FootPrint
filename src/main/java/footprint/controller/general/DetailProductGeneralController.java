@@ -12,6 +12,7 @@ import footprint.entity.Account;
 import footprint.entity.Cart;
 import footprint.entity.Product;
 import footprint.entity.ProductSize;
+import footprint.helper.CookieHelper;
 import footprint.service.AccountService;
 import footprint.service.CartService;
 import footprint.service.ProductService;
@@ -38,6 +39,10 @@ public class DetailProductGeneralController {
 	
 	@Autowired
 	private AccountService accountService; 
+	
+	@Autowired 
+	private CookieHelper cookieHelper; 
+	
 
 	@RequestMapping("product/detail")
 	public String index(@RequestParam(value = "id", required = true) Long idProduct, ModelMap model) {
@@ -78,8 +83,13 @@ public class DetailProductGeneralController {
 			    	// 
 			    	String idCart = "cart" + productSize.getIdProductSize().toString(); 
 			        if (idCart.equals(cookie.getName())) { // Kiểm tra tên cookie
-			         
-			        	System.out.println("tìm được");
+			        	System.out.println(quantity);
+			        	int quantityCurent = Integer.valueOf(cookieHelper.getValue(request, cookie.getName())) + quantity; 
+			        	cookie.setValue(String.valueOf(quantityCurent)); 
+			        	cookie.setMaxAge(365 * 24 * 60 * 60);
+					    String contextPath = request.getContextPath(); 
+					    cookie.setPath(contextPath); 
+						response.addCookie(cookie);
 			            tonTai = true; 
 			            break;
 			        }

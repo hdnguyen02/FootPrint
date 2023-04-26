@@ -145,12 +145,6 @@
 						<li class="nav-item"><a
 							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">contact us</a></li>
 						<li>
-							<form action="product.htm" method="post">
-								<div class="form-group form-inline">
-									<input value="${param.searchProductName}" placeholder="Nhập từ khóa" type="text" name="searchProductName" class="form-control form-inline"/>
-									<input type="submit" name="submit" value="Tìm kiếm" class="form-control"/>
-								</div>
-							</form>
 						</li>
 						
 							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'staff' }">
@@ -167,10 +161,18 @@
 					</ul>
 					<!-- icon  -->
 					<div class="d-flex gap-5" style="color: #fff !important;">
-						<div class="d-flex gap-4">
+						<div class="d-flex gap-4 align-items-center">
+							
 							<span><i class="fa-solid fs-5 fa-magnifying-glass"></i></span>
-								<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
+							<form action="product.htm" method="post">
+								<div class="form-group form-inline">
+									<input value="${param.searchProductName}" placeholder="Nhập từ khóa" type="text" name="searchProductName" class="form-control form-inline"/>
+								</div>
+							</form>
+							
+							<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
 						</div>
+						
 					</div>
 				</div>
 			</div>

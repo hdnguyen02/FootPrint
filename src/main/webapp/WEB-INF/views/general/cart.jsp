@@ -7,7 +7,7 @@
 
 <div class="container py-5" style="min-height: 80vh"> 
 	<h3 class="text-center fs-1" style="font-weight: 400">Your Cart</h3>
-	<form method="POST" action="${checkout}" class="row mt-5 gx-4">
+	<form onsubmit="checkSubmit(event)" method="POST" action="${checkout}" class="row mt-5 gx-4">
 		
 		<div class="col-9">
 			<div class="row text-uppercase" style="font-size: 13px">

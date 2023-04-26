@@ -5,6 +5,8 @@
 <c:url var='categoryProduct' value='/staff/category.htm' />
 <c:url var='manageProduct' value='/staff/product/manage.htm' />
 <c:url var='order' value='/staff/order.htm' />
+<c:url var='home' value='/' />
+<c:url var='staff' value='/staff.htm' />
 
      <ul class='navbar-nav'>
         <li>
@@ -13,8 +15,21 @@
                 <span class='fs-4'>Dashboard</span>
               </div>
             </li>
-            <li><hr style='margin-top:16px; margin-bottom:22px;color: white !important'/></li>
+            <li><hr style='margin-top:16px; margin-bottom:22px;color: white !important'/>
+         </li>
 
+		<li class='py-2'>
+        	<a href='${home}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
+        		<span class='text-white'>Trang chủ</span>
+            </a>
+       </li>
+       <li class='py-2'>
+        	<a href='${staff}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa-solid fa-industry"></i></span> 
+        		<span class='text-white'>Tổng quan</span>
+            </a>
+       </li>
         <li class='py-2'>
             <a class='nav-link px-3 sidebar-link' data-bs-toggle='collapse' href='#product-collapse'> <span class='me-2'><i
                         class='bi bi-box2-fill'></i></span> <span class='text-white' >Sản phẩm</span> <span class='ms-auto'> <span

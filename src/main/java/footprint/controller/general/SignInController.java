@@ -57,15 +57,12 @@ public class SignInController {
 		}
 		else if (account.getRole().getIdRole().equals("ADMIN") ) {
 			session.setAttribute("role", "admin");
-		}
-	
+		} 
+
 		
+		session.setAttribute("nameAccount", account.getFirstName() + " " + account.getLastName());
 		return "redirect:/";
-		
-		
-		
-		 
-		 
+	
 		
 	}
 }
