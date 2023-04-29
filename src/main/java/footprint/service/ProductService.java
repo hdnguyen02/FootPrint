@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 import footprint.entity.Product;
-import footprint.entity.ProductSize;
 import footprint.entity.Size;
 import footprint.entity.Thumbnail;
 

@@ -32,11 +32,8 @@ public class StaffController {
 		model.addAttribute("sizeCategorys",categoryService.getAllCategories().size()); 
 		model.addAttribute("sizeOrderDate", orderService.getOrderWithCurentDate().size()); 
 		model.addAttribute("sizeOrderMonth", orderService.getOrderWithCurentMonth().size()); 
-		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
+		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp"	);
 		model.addAttribute("bodyDashboard", "staff/index.jsp");
-		
-		
-		
 		return "layout/main-dashboard"; 
 	}
 

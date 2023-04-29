@@ -7,10 +7,27 @@
 <div class="container-fluid p-5 bg-white shadow-lg"
 	style="min-height: 100vh">
 	<h3 class="fs-5 pb-3">Cập nhập sản phẩm</h3>
+	<c:if test="${ not empty result }">
+			<c:choose>
+			<c:when test="${result == true }">
+				<div class="alert alert-success alert-dismissible shadow mt-4" role="alert">
+					 <div>Cập nhập thành công</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-danger alert-dismissible shadow mt-4" style="border-radius: none" role="alert">
+					 <div>Cập nhập thất bại</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	
+	</c:if>
 	<form:form method="POST" modelAttribute="product"> 
-				<input name="id-product" hidden="true" value="${product.getIdProduct()}"/> 
+				<%-- <input name="id-product" hidden="true" value="${product.getIdProduct()}"/> 
 				<input name="url-product" hidden="true" value="${product.getImageName()}"/>
-				<input name="create-product" hidden="true" value="${product.getCreateAt()}"/> 
+				<input name="create-product" hidden="true" value="${product.getCreateAt()}"/>  --%>
 				<input hidden="true" name="status-product" value="${product.getDisable()}">
 				<div class="d-flex flex-column gap-2 justify-content-center h-100">
 					<label style="font-size: 14px">Tên sản phẩm</label>

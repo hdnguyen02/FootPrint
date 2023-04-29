@@ -1,4 +1,4 @@
-
+/*
 
 const editsButton = document.querySelectorAll("[data-edit-category]")
 const deletesButton = document.querySelectorAll("[data-delete-category]")
@@ -35,6 +35,6 @@ editsButton.forEach(editButton => {
 		idCategoryInputShow.value = idCategory 
 		idCategoryInputHidden.value = idCategory
 	})
-})
+})*/
 
 

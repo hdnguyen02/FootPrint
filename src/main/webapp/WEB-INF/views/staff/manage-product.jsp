@@ -26,17 +26,20 @@
 					<td class="col py-2">${product.category.name}</td>
 					<td class="col py-2">${product.cost}</td>
 					<td class="col py-2"> 
-					<fmt:formatDate value="${product.createAt}" pattern="dd/MM/yyyy" />
-					 
+						<fmt:formatDate value="${product.createAt}" pattern="dd/MM/yyyy" />
 					</td>
-					<td class="col py-2"><c:choose>
+					<td class="col py-2"> 
+						<fmt:formatDate value="${product.updateAt}" pattern="dd/MM/yyyy" />
+					</td>
+					<%-- <td class="col py-2"><c:choose>
 							<c:when test="${product.updateAt}">
-								<span><fmt:formatDate value="${product.updateAt}" pattern="dd/MM/yyyy HH:mm:ss" /></span>
-							</c:when>
+								<span>${product.updateAt}</span>
+							</c:when>	
 							<c:otherwise>
 								<span>not update</span>
 							</c:otherwise>
-						</c:choose></td>
+						</c:choose>
+					</td> --%>
 					<td class="col py-2">
 					<c:choose>
 							<c:when test="${product.disable == false}">active</c:when>

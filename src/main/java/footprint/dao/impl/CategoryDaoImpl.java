@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import footprint.dao.CategoryDao;
 import footprint.entity.Category;
+import footprint.entity.Product;
 
 
 @Repository
@@ -32,6 +33,15 @@ public class CategoryDaoImpl implements CategoryDao {
 		List<Category> categorys = query.list();
 		return categorys;
 	}
+	@Override
+	public Category getCategoryWithId(Long idCategory) { 
+		Session session = sessionFactory.openSession();
+		Category category = (Category) session.get(Category.class, idCategory);
+		session.close();
+		return category;
+	}
+	
+	
 	
 	
 	
@@ -74,6 +84,7 @@ public class CategoryDaoImpl implements CategoryDao {
 			transaction.commit();
 			return true; 
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			transaction.rollback();
 			return false; 
 		} finally {

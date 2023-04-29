@@ -3,7 +3,6 @@ package footprint.dao.impl;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -131,13 +130,9 @@ public class ProductDaoImpl implements ProductDao {
 	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		System.out.println(pSMap.size());
 		try {
 			session.update(product);
-			
 			for (Map.Entry<Long, Integer> entryPS : pSMap.entrySet()) {
-			    // lấy ra productSize 
-				System.out.println(entryPS.getKey() + " nè");
 				ProductSize productSize = productSizeService.getProductSizeWithId(entryPS.getKey()); 
 				productSize.setQuantity(entryPS.getValue());
 				session.update(productSize);
@@ -152,25 +147,6 @@ public class ProductDaoImpl implements ProductDao {
 		} finally {
 			session.close();
 		}
-
-		/*
-		 * try { int index = 0; for (String idSize : idSizes) {
-		 * 
-		 * 
-		 * ProductSize productSize =
-		 * productSizeService.getProductSizeWithOpenSS(product.getIdProduct(), idSize);
-		 * productSize.setQuantity(quantitys[index]); session.update(productSize);
-		 * index++;
-		 * 
-		 * // láy theo id cua productSize luon.
-		 * 
-		 * } transaction.commit();
-		 * 
-		 * } catch (Exception e) { System.out.println(e.getMessage());
-		 * System.out.println("vẫn là lỗi đó"); transaction.rollback(); } finally {
-		 * session.close(); } return true;
-		 */
-
 	} 
 	
 
