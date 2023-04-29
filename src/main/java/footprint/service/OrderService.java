@@ -13,9 +13,11 @@ public interface OrderService {
 	public OrderCT getOrderWithIdOpenSS(Long idOrder);
 	public boolean orderCancel(OrderCT order);
 	public List<OrderCT> getOrderWithCurentDateAndStatus(String idOrderStatus) throws ParseException;
+	public List<OrderCT> getOrderWithCurentDate() throws ParseException;
 	
 	public boolean update(OrderCT order);
 
 	public boolean createOrderAndOrderDetailNotAccount(String firstName,String lastName,String email, String phone, String address,String message,Float totalMonney,String [] idPSAndQuantitys);
 	public List<OrderCT> getOrderWithCurentMonthAndStatus(String idOrderStatus); 
+	public List<OrderCT> getOrderWithCurentMonth(); 
 }

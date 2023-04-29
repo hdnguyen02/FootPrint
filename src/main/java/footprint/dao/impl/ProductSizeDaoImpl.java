@@ -54,6 +54,20 @@ public class ProductSizeDaoImpl implements ProductSizeDao {
 	}
 	
 	@Override
+	public ProductSize getProductSizeWithOpenSS(Long idProduct,String idSize) {
+			Session session = sessionFactory.openSession(); 
+			String hql = "FROM ProductSize WHERE idProduct = :idProduct AND idSize = :idSize";
+			Query query = session.createQuery(hql);
+			query.setParameter("idProduct", idProduct);
+			query.setParameter("idSize", idSize);
+			session.close(); 
+			return  (ProductSize) query.uniqueResult();
+			
+	}
+	
+	
+	
+	@Override
 	public ProductSize getProductSizeWithId(Long idProductSize) {
 		Session session = sessionFactory.openSession();
 		ProductSize productSize = (ProductSize) session.get(ProductSize.class,idProductSize); 
@@ -93,5 +107,7 @@ public class ProductSizeDaoImpl implements ProductSizeDao {
 		
 		
 	}
+	
+
 	
 }

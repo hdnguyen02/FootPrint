@@ -1,9 +1,11 @@
 package footprint.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 import footprint.entity.Product;
+import footprint.entity.ProductSize;
 import footprint.entity.Size;
 import footprint.entity.Thumbnail;
 
@@ -20,6 +22,6 @@ public interface ProductService {
 	// Phân trang
 	public int computedTotalPage(List<Product> products,int productPerPage);
 	public List<Product> getProductPerPage(List<Product> products,int productPerPage,int curentPage);
-	
-	
+	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap);
+	public Product getProductWithOpenSS(Long idProduct); 
 }

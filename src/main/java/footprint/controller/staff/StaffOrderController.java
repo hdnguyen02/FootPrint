@@ -75,7 +75,7 @@ public class StaffOrderController {
 	@RequestMapping(value="staff/order/detail",method = RequestMethod.GET)
 	public String getDetail(ModelMap model,@RequestParam(value="id",required = true) Long idOrder) {
 		
-		List<OrderStatus> orderStatus = orderStatusService.getAllOrderStatus();
+		List<OrderStatus> orderStatus = orderStatusService.getAllOrderStatus();  // lấy ra toàn bộ dơn hàng. 
 		OrderCT order = orderService.getOrderWidhId(idOrder); 
 		Hibernate.initialize(order.getOrderDetails());
 		String curentStatusOrder = order.getOrderStatus().getIdOrderStatus(); 

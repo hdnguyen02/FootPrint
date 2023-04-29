@@ -53,7 +53,7 @@
 					</td>	
 					<td class="col py-2">
 						<div>
-							<a data-bs-toggle="modal" class="btn btn-secondary btn-sm" 
+							<a href='<c:url value='/staff/product/edit.htm?id=${product.idProduct}'/>' class="btn btn-secondary btn-sm" 
 								style="border-radius: 0 !important;width: 80px !important"> <span
 								class="button breadcrumb-item active px-2">edit</span>
 							</a>

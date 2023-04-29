@@ -141,6 +141,10 @@ public boolean createOrderAndOrderDetailNotAccount(String firstName,String lastN
 	public List<OrderCT> getOrderWithCurentDateAndStatus(String idOrderStatus) throws ParseException { 
 		 return orderDao.getOrderWithDateAndStatus(new Date(), idOrderStatus); 
 	}
+	@Override
+	public List<OrderCT> getOrderWithCurentDate() throws ParseException { 
+		 return orderDao.getOrderWithDate(new Date()); 
+	}
 	
 	@Override
 	public boolean update(OrderCT order) {
@@ -150,6 +154,11 @@ public boolean createOrderAndOrderDetailNotAccount(String firstName,String lastN
 	@Override
 	public List<OrderCT> getOrderWithCurentMonthAndStatus(String idOrderStatus) { 
 		 return orderDao.getOrderWithMonthAndStatus(new Date(), idOrderStatus); 
+	}
+	
+	@Override
+	public List<OrderCT> getOrderWithCurentMonth() { 
+		 return orderDao.getOrderWithMonth(new Date()); 
 	}
 
 

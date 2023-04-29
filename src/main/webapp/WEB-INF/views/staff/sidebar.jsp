@@ -17,13 +17,6 @@
             </li>
             <li><hr style='margin-top:16px; margin-bottom:22px;color: white !important'/>
          </li>
-
-		<li class='py-2'>
-        	<a href='${home}' class='nav-link px-3'> 
-        		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
-        		<span class='text-white'>Trang chủ</span>
-            </a>
-       </li>
        <li class='py-2'>
         	<a href='${staff}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-industry"></i></span> 
@@ -68,6 +61,12 @@
         	<a href='${order}' class='nav-link px-3'> 
         		<span class='me-2'><i class='bi bi-cart'></i></span> 
         		<span class='text-white'>Đơn hàng</span>
+            </a>
+       </li>
+       <li class='py-2'>
+        	<a href='${home}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
+        		<span class='text-white'>Trang chủ</span>
             </a>
        </li>
     </ul> 

@@ -82,7 +82,6 @@
 		         <div class="col-3 col-md-2 mt-2">
 					 <label style="font-size: 14px;margin-bottom:19px">${size.getNameSize()}</label>
 					<input name="${size.getIdSize()}" type="number" class="ct-input" min="0">
-				
 				</div>
 	      	</c:forEach>
 			</div>

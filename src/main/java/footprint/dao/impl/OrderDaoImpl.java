@@ -86,6 +86,24 @@ public class OrderDaoImpl implements OrderDao {
 		return order;
 	}
 	
+	// truy vấn ra số lượng đơn hàng thuộc ngày -> không quan trọng trạng thái 
+	@Override
+	public List<OrderCT> getOrderWithDate(Date date) throws ParseException{ // lấy ra các đơn hàng hôm nay.
+	 	Session session = sessionFactory.getCurrentSession();
+	 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	 	String dateString = dateFormat.format(date);
+	 	String hql = "FROM OrderCT order WHERE order.date >= :startDate AND order.date < :endDate";
+	 	Query query = session.createQuery(hql);
+		query.setParameter("startDate", dateFormat.parse(dateString));
+	 	Calendar calendar = Calendar.getInstance();
+	 	calendar.setTime(dateFormat.parse(dateString));
+	 	calendar.add(Calendar.DATE, 1);
+	 	query.setParameter("endDate", calendar.getTime());
+	 	@SuppressWarnings("unchecked")
+		List<OrderCT> orders = query.list();
+	 	return orders; 
+	}
+	
 	@Override
 	public List<OrderCT> getOrderWithDateAndStatus(Date date,String idOrderStatus) throws ParseException{ // lấy ra các đơn hàng hôm nay.
 	 	Session session = sessionFactory.getCurrentSession();
@@ -121,7 +139,23 @@ public class OrderDaoImpl implements OrderDao {
 		@SuppressWarnings("unchecked")
 		List<OrderCT> orders = query.list();
 		return orders;
-		
+	}
+	
+	@Override
+	public List<OrderCT> getOrderWithMonth(Date date) { 
+		Session session = sessionFactory.getCurrentSession();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int year = calendar.get(Calendar.YEAR);
+		String sql = "SELECT * FROM OrderCT WHERE MONTH(date) = :month AND YEAR(date) = :year";
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setParameter("month", month);
+		query.setParameter("year", year);
+		query.addEntity(OrderCT.class);
+		@SuppressWarnings("unchecked")
+		List<OrderCT> orders = query.list();
+		return orders;
 	}
 	
 	

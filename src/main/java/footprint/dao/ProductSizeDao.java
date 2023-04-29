@@ -10,4 +10,5 @@ public interface ProductSizeDao {
 	public ProductSize getProductSize(Long idProduct,String idSize); 
 	public ProductSize getProductSizeWithId(Long idProductSize); 
 	public boolean updatesQuantity(Long [] idProductSizes,Integer [] quantityBuys); 
+	public ProductSize getProductSizeWithOpenSS(Long idProduct,String idSize); 
 }

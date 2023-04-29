@@ -14,5 +14,7 @@ public interface OrderDao {
 	public boolean update(OrderCT order); 
 	public OrderCT getOrderWithIdOpenSS(Long idOrder);
 	public List<OrderCT> getOrderWithDateAndStatus(Date date,String idOrderStatus) throws ParseException;
+	public List<OrderCT> getOrderWithDate(Date date) throws ParseException;
 	public List<OrderCT> getOrderWithMonthAndStatus(Date date,String idOrderStatus); 
+	public List<OrderCT> getOrderWithMonth(Date date); 
 }

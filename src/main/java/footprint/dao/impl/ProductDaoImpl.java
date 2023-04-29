@@ -1,8 +1,9 @@
 package footprint.dao.impl;
 
-
 import java.util.List;
+import java.util.Map;
 
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -17,86 +18,91 @@ import footprint.entity.Product;
 import footprint.entity.ProductSize;
 import footprint.entity.Size;
 import footprint.entity.Thumbnail;
+import footprint.service.ProductSizeService;
 
 @Repository
 @Transactional
 public class ProductDaoImpl implements ProductDao {
-	
-	
+
 	@Autowired
-	private SessionFactory sessionFactory; 
-	
-	
-	
+	private SessionFactory sessionFactory;
+
+	@Autowired
+	private ProductSizeService productSizeService;
+
 	@Override
-	public List<Product> getAllProducts () {
-		Session session = sessionFactory.getCurrentSession(); 
+	public List<Product> getAllProducts() {
+		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Product";
 		Query query = session.createQuery(hql);
 		@SuppressWarnings("unchecked")
 		List<Product> products = query.list();
 		return products;
 	}
-	
-	
+
 	@Override
-	public boolean addProductThumbnailAndProductSize(Product product,Thumbnail [] thumbnails,List<Size> sizes,int [] sizesQuantity) {
-		
-		Session session = sessionFactory.openSession(); 
-		Transaction transaction = session.beginTransaction(); 
-		
-		try { 
-			session.save(product);  
-	
-			for (Thumbnail thumbnail: thumbnails) { 
+	public boolean addProductThumbnailAndProductSize(Product product, Thumbnail[] thumbnails, List<Size> sizes,
+			int[] sizesQuantity) {
+
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+
+		try {
+			session.save(product);
+
+			for (Thumbnail thumbnail : thumbnails) {
 				session.save(thumbnail);
 			}
-			int index = 0; 
-			for (Size size : sizes) { 
-				int quantity = sizesQuantity[index]; 
-				ProductSize productSize = new ProductSize(); 
+			int index = 0;
+			for (Size size : sizes) {
+				int quantity = sizesQuantity[index];
+				ProductSize productSize = new ProductSize();
 				productSize.setProduct(product);
 				productSize.setSize(size);
 				productSize.setQuantity(quantity);
 				session.save(productSize);
-				index++; 
+				index++;
 			}
-			
-			transaction.commit(); 
+
+			transaction.commit();
 			return true;
-		}
-		catch (Exception e) {
-			transaction.rollback(); 
+		} catch (Exception e) {
+			transaction.rollback();
 			return false;
-		}
-		finally {
-			session.close(); 
+		} finally {
+			session.close();
 		}
 	}
 
-	
 	@Override
 	public Product getProductWithId(Long idProduct) {
-		Session session = sessionFactory.getCurrentSession(); 
-
+		Session session = sessionFactory.getCurrentSession();
 		String hql = "FROM Product WHERE idProduct = :idProduct";
 		Query query = session.createQuery(hql);
 		query.setParameter("idProduct", idProduct);
 		Product product = (Product) query.uniqueResult();
-		return product; 
+		return product;
 	}
-	
+
+	@Override
+	public Product getProductWithOpenSS(Long idProduct) {
+		Session session = sessionFactory.openSession();
+		Product product = (Product) session.get(Product.class, idProduct);
+		session.close();
+		return product;
+	}
+
 	@Override
 	public List<Product> getProductsActive() {
-		Session session = sessionFactory.getCurrentSession(); 
-		String hql = "from Product WHERE disable = :disable"; 
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product WHERE disable = :disable";
 		Query query = session.createQuery(hql);
-		query.setParameter("disable", false); 
+		query.setParameter("disable", false);
 		@SuppressWarnings("unchecked")
 		List<Product> products = query.list();
 		return products;
 	}
-	
+
 	@Override
 	public List<Product> searchProducts(String name) {
 		Session session = sessionFactory.getCurrentSession();
@@ -107,7 +113,7 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> list = query.list();
 		return list;
 	}
-	
+
 	@Override
 	public List<Product> filterByCategory(long idCategory) {
 		Session session = sessionFactory.getCurrentSession();
@@ -118,5 +124,54 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> list = query.list();
 		return list;
 	}
+
+	// viet ham truy van
+
+	@Override
+	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		System.out.println(pSMap.size());
+		try {
+			session.update(product);
+			
+			for (Map.Entry<Long, Integer> entryPS : pSMap.entrySet()) {
+			    // lấy ra productSize 
+				System.out.println(entryPS.getKey() + " nè");
+				ProductSize productSize = productSizeService.getProductSizeWithId(entryPS.getKey()); 
+				productSize.setQuantity(entryPS.getValue());
+				session.update(productSize);
+			}
+			transaction.commit(); 
+			return true; 
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			transaction.rollback();
+			return false; 
+		} finally {
+			session.close();
+		}
+
+		/*
+		 * try { int index = 0; for (String idSize : idSizes) {
+		 * 
+		 * 
+		 * ProductSize productSize =
+		 * productSizeService.getProductSizeWithOpenSS(product.getIdProduct(), idSize);
+		 * productSize.setQuantity(quantitys[index]); session.update(productSize);
+		 * index++;
+		 * 
+		 * // láy theo id cua productSize luon.
+		 * 
+		 * } transaction.commit();
+		 * 
+		 * } catch (Exception e) { System.out.println(e.getMessage());
+		 * System.out.println("vẫn là lỗi đó"); transaction.rollback(); } finally {
+		 * session.close(); } return true;
+		 */
+
+	} 
 	
+
 }

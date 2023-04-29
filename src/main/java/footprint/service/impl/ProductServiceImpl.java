@@ -3,6 +3,7 @@ package footprint.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -114,5 +115,14 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> filterByCategory(long idCategory) {
 		return productDao.filterByCategory(idCategory);
+	}
+	
+	@Override
+	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap) { 
+		return productDao.updateQuantityProducts(product,pSMap); 
+	}
+	@Override
+	public Product getProductWithOpenSS(Long idProduct) { 
+		return productDao.getProductWithOpenSS(idProduct); 
 	}
 }

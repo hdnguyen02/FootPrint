@@ -69,7 +69,7 @@
 							href='<c:url value='/staff/order/detail.htm?id=${orderPending.getIdOrder()}'/>'>Detail</a></td>
 					</tr>
 				</c:forEach>
-
+			
 				<c:forEach items="${ordersDeliver}" var="orderDeliver"
 					varStatus="index">
 
@@ -95,6 +95,8 @@
 
 
 				</c:forEach>
+				
+				<!--  -->
 
 				<c:forEach items="${ordersCancel}" var="orderCancel"
 					varStatus="index">

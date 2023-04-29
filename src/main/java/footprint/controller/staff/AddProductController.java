@@ -67,7 +67,6 @@ public class AddProductController {
 		int [] sizesQuantity = new int[sizes.size()]; 
 		
 		int index = 0; 
-		
 		for (Size size : sizes) {
 			try {
 				sizesQuantity[index] = Integer.parseInt(request.getParameter(size.getIdSize()));   
