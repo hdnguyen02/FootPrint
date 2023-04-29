@@ -118,6 +118,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public List<Product> filterByPrice(float min, float max) {
+		return productDao.filterByPrice(min, max);
+	}
+	
+	@Override
+	public List<Product> filterByColor(String idColor) {
+		return productDao.filterByColor(idColor);
+	}
+	
+	@Override 
+	public List<Product> filterBySize(int idSize) {
+		return productDao.filterBySize(idSize);
+	}
+	
+	@Override
 	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap) { 
 		return productDao.updateQuantityProducts(product,pSMap); 
 	}

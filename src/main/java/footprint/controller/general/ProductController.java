@@ -12,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import footprint.entity.Category;
+import footprint.entity.Color;
 import footprint.entity.Product;
+import footprint.entity.Size;
 import footprint.service.CategoryService;
+import footprint.service.ColorService;
 import footprint.service.ProductService;
+import footprint.service.SizeService;
 
 @Controller
 public class ProductController {
@@ -23,6 +27,10 @@ public class ProductController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+	private ColorService colorService;
+	@Autowired
+	private SizeService sizeService;
 
 	@RequestMapping("product")
 	public String index(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
@@ -34,6 +42,12 @@ public class ProductController {
 
 		List<Category> lstCategory = categoryService.getAllCategories();
 		model.addAttribute("cate", lstCategory);
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
 
 		return "general/product/index";
 	}
@@ -46,6 +60,12 @@ public class ProductController {
 
 		List<Category> lstCategory = categoryService.getAllCategories();
 		model.addAttribute("cate", lstCategory);
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
 
 		return "general/product/index";
 	}
@@ -56,9 +76,65 @@ public class ProductController {
 		model.addAttribute("productsActive", list);
 		 
 		List<Category> lstCategory = categoryService.getAllCategories();
-		model.addAttribute("cate", lstCategory);		 
+		model.addAttribute("cate", lstCategory);	
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
 
 		return "general/product/index";
 	}
 
+	@RequestMapping("product/list-by-price/{min}/{max}")
+	public String filterByPrice(ModelMap model, @PathVariable("min") int min, @PathVariable("max") int max) {		
+		List<Product> list = productService.filterByPrice(min, max);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-color/{idColor}")
+	public String filterByColor(ModelMap model, @PathVariable("idColor") String idColor) {		
+		List<Product> list = productService.filterByColor(idColor);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-size/{idSize}")
+	public String filterBySize(ModelMap model, @PathVariable("idSize") int idSize) {		
+		List<Product> list = productService.filterBySize(idSize);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
 }

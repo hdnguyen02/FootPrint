@@ -123,6 +123,38 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> list = query.list();
 		return list;
 	}
+	
+	@Override
+	public List<Product> filterByPrice(float min, float max) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where cost between :min and :max";
+		Query query = session.createQuery(hql);
+		query.setParameter("min", min);
+		query.setParameter("max", max);
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<Product> filterByColor(String idColor) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where idColor like :id";
+		Query query = session.createQuery(hql);
+		query.setParameter("id", "%" + idColor + "%");
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	@Override
+	public List<Product> filterBySize(int idSize) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createSQLQuery("{CALL FilterBySize(:id)}").addEntity(Product.class).setParameter("id", idSize);
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;		
+	}
 
 	// viet ham truy van
 
@@ -148,6 +180,5 @@ public class ProductDaoImpl implements ProductDao {
 			session.close();
 		}
 	} 
-	
 
 }

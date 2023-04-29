@@ -18,8 +18,8 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		p:url="jdbc:sqlserver://DESKTOP-JNU1A1J:1433;DatabaseName=FootPrint;encrypt=false"
-		p:username="sa" p:password="sa">
+		p:url="jdbc:sqlserver://DESKTOP-EQ3HK6B:1433;DatabaseName=FootPrint;encrypt=false"
+		p:username="sa" p:password="123">
 	</bean>
 
 

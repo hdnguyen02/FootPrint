@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 
 import footprint.dao.CategoryDao;
 import footprint.entity.Category;
-import footprint.entity.Product;
+
 
 
 @Repository

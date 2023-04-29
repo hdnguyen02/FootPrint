@@ -17,4 +17,7 @@ public interface ProductDao {
 	public List<Product> filterByCategory(long idCategory); 
 	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap); 
 	public Product getProductWithOpenSS(Long idProduct); 
+	public List<Product> filterByPrice(float min, float max);
+	public List<Product> filterByColor(String idColor);
+	public List<Product> filterBySize(int idSize);
 }

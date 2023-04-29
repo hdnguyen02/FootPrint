@@ -17,6 +17,9 @@ public interface ProductService {
 	public List<Product> getProductsActive();
 	public List<Product> searchProducts(String name);
 	public List<Product> filterByCategory(long idCategory);
+	public List<Product> filterByPrice(float min, float max);
+	public List<Product> filterByColor(String idColor);
+	public List<Product> filterBySize(int idSize);
 	
 	// Phân trang
 	public int computedTotalPage(List<Product> products,int productPerPage);
