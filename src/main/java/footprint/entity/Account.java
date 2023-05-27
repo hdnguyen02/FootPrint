@@ -47,9 +47,6 @@ public class Account {
 	
 	@OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
 	private Collection<OrderCT> orders;
-	
-	
-	public Account() {}
 
 	public Long getIdAccount() {
 		return idAccount;
@@ -163,6 +160,7 @@ public class Account {
 		this.orders = orders;
 	}
 
+	public Account() {};
 	public Account(Long idAccount, String username, String password, String firstName, String lastName, String address,
 			String imageUrl, String email, String phone, Date createAt, Boolean disable, Role role,
 			Collection<Cart> carts, Collection<OrderCT> orders) {
@@ -182,8 +180,15 @@ public class Account {
 		this.orders = orders;
 	}
 
-	
-	
-
-
+	public Account(Role role, String lastName, String firstName, String email, String phone, String imageUrl, String password, String username) {
+		this.role = role;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.phone = phone;
+		this.imageUrl = imageUrl;
+		this.disable = null;
+		this.password = password;
+		this.username = username;
+	}
 }

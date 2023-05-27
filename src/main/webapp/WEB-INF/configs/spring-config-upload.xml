@@ -19,7 +19,7 @@
 	 	<!-- maxUploadSize=20MB -->
 	 	<property name="maxUploadSize" value="20971520"/>
 	</bean>
-	
+	<bean class="footprint.helper.impl.ConvertUploadHandlerBehaviour" id="ConvertHandler"/>
 </beans>
 
 

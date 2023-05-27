@@ -107,7 +107,7 @@ public class ProductDaoImpl implements ProductDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Product where name like :name";
 		Query query = session.createQuery(hql);
-		query.setParameter("name", "%" + name + "%");
+		query.setParameter("name", "%" + name + "%"); 
 		@SuppressWarnings("unchecked")
 		List<Product> list = query.list();
 		return list;

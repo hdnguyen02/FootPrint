@@ -22,8 +22,6 @@
 		p:username="sa" p:password="123">
 	</bean>
 
-
-
 	<!-- Cấu hình Hibernate -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

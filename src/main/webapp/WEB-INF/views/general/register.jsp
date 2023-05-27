@@ -2,10 +2,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-
-
 <c:url var='signIn' value='/sign-in.htm' />
-
 
 <form:form method="POST" modelAttribute="account" id="form-register">
 	<h3 class="fw-bolder">Register</h3>

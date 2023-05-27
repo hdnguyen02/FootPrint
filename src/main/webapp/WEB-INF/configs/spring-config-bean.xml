@@ -25,6 +25,8 @@
 		<property name="basePath" value="C:\Users\hello\GitHub\FootPrint\src\main\webapp\resources\image\thumbnail"></property>
 	</bean>
 	
-
+	<bean id="accountImgDir" class="footprint.bean.UploadFile">
+		<property name="basePath" value="C:\Users\hello\GitHub\FootPrint\src\main\webapp\resources\image\avatar"/>
+	</bean>
 
 </beans>

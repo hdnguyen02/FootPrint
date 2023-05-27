@@ -9,7 +9,6 @@ import footprint.dao.CategoryDao;
 import footprint.entity.Category;
 import footprint.service.CategoryService;
 
-
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	@Autowired
@@ -52,7 +51,4 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category getCategoryWithId(Long idCategory) { 
 		return categoryDao.getCategoryWithId(idCategory); 
 	}
-
-	
-	
 }

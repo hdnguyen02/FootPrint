@@ -6,7 +6,7 @@
 
 <form method="POST" id="form-login" style="padding: 40px 0px">
 	<h3 class="fw-bolder"> 
-		Đăng nhập
+		Sign in
 		<%-- <s:message code="login.title"/> --%>
 	</h3>
 	<div class="mt-5"> 
@@ -44,8 +44,8 @@
 	  		</label>
 		</div>
 		<div class="d-flex justify-content-between align-items-center mt-5">
-			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Register</button>
-			<a href="${register}" style="cursor: pointer;text-decoration:underline !important">Đăng ký</a>
+			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Sign in</button>
+			<a href="${register}" style="cursor: pointer;text-decoration:underline !important">Register</a>
 		</div>
 		
 		

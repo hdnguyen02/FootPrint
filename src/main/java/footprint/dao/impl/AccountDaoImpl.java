@@ -1,6 +1,7 @@
 package footprint.dao.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -14,22 +15,13 @@ import org.hibernate.Transaction;
 import footprint.dao.AccountDao;
 import footprint.entity.Account;
 import footprint.entity.Cart;
-
+import footprint.entity.Role;
 
 @Repository
 @Transactional
 public class AccountDaoImpl implements AccountDao {
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
-	@Override
-	public Account getAccountWithId(Long idAccount) { 
-		Session session = sessionFactory.getCurrentSession(); 
-		Account account = (Account) session.get(Account.class,idAccount); 
-		return account; 
-	}
-	
 	
 	@Override
 	public boolean insert(Account account) {
@@ -53,7 +45,7 @@ public class AccountDaoImpl implements AccountDao {
 	}
 	
 	@Override
-	public Account getAccountByUsername (String username) {
+	public Account getAccountByUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Account where username = :username";
 		Query query = session.createQuery(hql);
@@ -71,7 +63,7 @@ public class AccountDaoImpl implements AccountDao {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Account where email = :email";
 		Query query = session.createQuery(hql);
-		query.setParameter("email", email);
+		query.setParameter("email", email); 
 		try {
 			return (Account) query.list().get(0);
 		}
@@ -79,7 +71,6 @@ public class AccountDaoImpl implements AccountDao {
 			return null;
 		}
 	}
-	
 	
 	@Override
 	public boolean update(Account account) {
@@ -97,7 +88,25 @@ public class AccountDaoImpl implements AccountDao {
 		}
 	}	
 	
-	// kiểm tra xem 1 productSize có tồn tại chưua
+	@Override
+	public Account getAccountWithId(Long idAccount) { 
+		Session session = sessionFactory.getCurrentSession(); 
+		Account account = (Account) session.get(Account.class,idAccount); 
+		return account; 
+	}
+	
+	@Override
+	public List<Account> listAccountWithRole(EnumRoleID idRole) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "From Account Where idRole = :role";
+		Query query = session.createQuery(hql);
+		query.setString("role", idRole.name()); 
+		@SuppressWarnings("unchecked")
+		List<Account> acc = query.list();
+		return acc;
+	}
+	
+	// kiểm tra xem 1 productSize có tồn tại chưa
 	@Override
 	public Cart getCart(Long idAccount,Long idProductSize) {
 		Session session = sessionFactory.getCurrentSession(); 
@@ -108,5 +117,37 @@ public class AccountDaoImpl implements AccountDao {
 		return (Cart) query.uniqueResult();
 	}
 	
+	@Override
+	public boolean deleteAccount(Account account) {
+		Session session = sessionFactory.openSession();
+		Transaction t = session.beginTransaction();
+		try {
+			session.delete(account);
+			t.commit();
+			return true;
+
+		} catch (Exception e) {
+			t.rollback();
+			System.out.println(e);
+		} finally {
+			session.close();
+		}
+		return false;
+	}
 	
+	@Override
+	public Role getRoleViaEnum(EnumRoleID role) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "From Role Where idRole = :roleGetterID";
+		Query query = session.createQuery(hql);
+		query.setString("roleGetterID", role.toString());
+		Role roleDB = null;
+
+		try {
+			roleDB = (Role) query.uniqueResult();
+		} catch (Exception ex) {
+			System.out.println(ex);
+		}
+		return roleDB;
+	}
 }
