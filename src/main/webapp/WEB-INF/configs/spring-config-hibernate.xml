@@ -18,7 +18,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		p:url="jdbc:sqlserver://DESKTOP-JNU1A1J:1433;DatabaseName=FootPrint;encrypt=false"
+		p:url="jdbc:sqlserver://DESKTOP-JNU1A1J:1433;DatabaseName=WEB_SHOSE;encrypt=false"
 		p:username="sa" p:password="sa">
 	</bean>
 
@@ -34,6 +34,7 @@
 				<prop key="hibernate.show_sql">false</prop>
 			</props>
 		</property>
+		
 		<property name="packagesToScan" value="footprint.entity" />
 	</bean>
 

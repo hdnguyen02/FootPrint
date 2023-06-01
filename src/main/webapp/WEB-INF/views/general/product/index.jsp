@@ -30,9 +30,6 @@
 			<div class="col-lg-3 order-2 order-lg-1">
 				<aside class="sidebar-wrapper">
                         <!-- single sidebar start -->
-						
-						
-						
                         <div class="sidebar-single">
                             <h6 class="sidebar-title">Price</h6>
                             <div class="sidebar-body">
@@ -219,7 +216,7 @@
 							<div class="product-item">
 								<div class="product-thumb">
 									<a href='<c:url value='/product/detail.htm?id=${product.getIdProduct()}' />'> 
-										<img class="w-100" src="<c:url value="/resources/image/product/${product.getImageName()}"/>" style="height: 200px; object-fit: cover">
+										<img class="w-100" src="<c:url value="/resources/image/product/${product.getImage()}"/>" style="height: 200px; object-fit: cover">
 									</a>
 									<div class="button-group">
 										<a data-bs-toggle="tooltip"
@@ -239,9 +236,10 @@
 								</div>
 								<div class="product-content">
 									<div class="product-caption">
-										<h6 class="product-name">
-											<a>${product.getName()}</a>
-										</h6>
+										<span class="product-name">
+											<a>${product.getName()} </a>
+										</span>
+										<span>- ${product.getSize()}</span>
 										<div class="price-box">
 											<!-- <span class="price-old"><del>$90.00</del></span> -->
 											<span class="price-regular">$${product.getCost()}</span>

@@ -10,19 +10,20 @@ import javax.persistence.ManyToOne;
 public class Thumbnail {
 	@Id
 	@GeneratedValue
-	private Long idThumbnail; 
+	private Integer idThumbnail; 
+	
 	private String name; 
 	
 	@ManyToOne
 	@JoinColumn(name="idProduct")
 	private Product product;	
 
-	public Long getIdThumbnail() {
+	public Integer getIdThumbnail() {
 		return idThumbnail;
 	}
 
-	public void setIdThumbnail(Long idThumbnail) {
-		this.idThumbnail = idThumbnail;
+	public void setIdThumbnail(Integer id) {
+		this.idThumbnail = id;
 	}
 
 	public String getName() {
@@ -41,8 +42,8 @@ public class Thumbnail {
 		this.product = product;
 	}
 
-	public Thumbnail(Long idThumbnail, String name, Product product) {
-		this.idThumbnail = idThumbnail;
+	public Thumbnail(Integer id, String name, Product product) {
+		this.idThumbnail = id;
 		this.name = name;
 		this.product = product;
 	}

@@ -1,26 +1,98 @@
 package footprint.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import footprint.bean.UploadFile;
+import footprint.dao.ProductDao;
 import footprint.entity.Product;
-import footprint.entity.Size;
 import footprint.entity.Thumbnail;
 
-public interface ProductService {
+@Service
+public class ProductService {
 	
 	
-	public Product getProductWithId(Long idProduct);
-	public boolean addProductThumbnailsProductSize(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails,List<Size> sizes,int [] sizesQuantity);
-	public List<Product> getAllProduct(); 
-	public List<Product> getProductsActive();
-	public List<Product> searchProducts(String name);
-	public List<Product> filterByCategory(long idCategory);
+	@Autowired 
+	private ProductDao productDao; 
 	
-	// Phân trang
-	public int computedTotalPage(List<Product> products,int productPerPage);
-	public List<Product> getProductPerPage(List<Product> products,int productPerPage,int curentPage);
-	public boolean updateQuantityProducts(Product product, Map<Long,Integer> pSMap);
-	public Product getProductWithOpenSS(Long idProduct); 
-}
+	@Autowired
+	@Qualifier("imageProduct")
+	private UploadFile uploadImageProduct; 
+	
+	@Autowired
+	@Qualifier("imageThumbnail")
+	private UploadFile uploadImageThumbnail; 
+	
+	public List<Product> getAllProducts(){
+		return productDao.getAllProducts(); 
+		
+	}
+	
+	public Product getProductWithId(String id) { 
+		return productDao.getProductWithId(id); 
+	}
+	
+	
+	public Product getProductCurentSS(String id) { 
+		return productDao.getProductCurentSS(id); 
+	}
+	
+	
+	
+	public boolean addProductAndThumbnail(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails) {
+			
+			String nameImageProduct = uploadImageProduct.handleUploadFile(imageProduct);
+		
+			List<String> successImageThumbnails = new ArrayList<>(); 
+			
+			for (MultipartFile imageThumbnail : imageThumbnails) {
+				String nameImageThumbnail = uploadImageThumbnail.handleUploadFile(imageThumbnail);
+				
+				if (nameImageThumbnail != null) { 
+					successImageThumbnails.add(nameImageThumbnail);
+				}
+			}
+			
+			if (nameImageProduct == null || imageThumbnails.length != successImageThumbnails.size()) {
+				return false;
+			}
+			
+			
+		
+			product.setImage(nameImageProduct);
+		
+			for (int i = 0; i < thumbnails.length;i++) {
+				thumbnails[i] = new Thumbnail(); 
+				thumbnails[i].setProduct(product);
+				thumbnails[i].setName(successImageThumbnails.get(i)); 
+			}
+			
+			return productDao.addProductAndThumbnail(product,thumbnails);
+		
+		}
+	
+	
+
+		public List<Product> getProductsActive() {
+			return productDao.getProductsActive(); 
+		}
+		
+		// hàm phân trang
+		
+		
+		public int computedTotalPage(List<Product> products,int productPerPage) { 
+			int sizeProducts = products.size(); 
+			return (int) Math.ceil((double) sizeProducts / productPerPage);
+		} 
+		public List<Product> getProductPerPage(List<Product> products,int productPerPage,int curentPage) { 
+			int sizeProducts = products.size(); 
+			int startIndex = (curentPage - 1) * productPerPage;
+			int endIndex = Math.min(startIndex + productPerPage, sizeProducts);
+			return products.subList(startIndex, endIndex);	
+		}
+} 

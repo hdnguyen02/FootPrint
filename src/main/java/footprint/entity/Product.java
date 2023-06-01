@@ -1,73 +1,59 @@
 package footprint.entity;
 
 import java.util.Collection;
-import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Product {
 	@Id
-	@GeneratedValue
-	private Long idProduct;
+	private String idProduct;
 
 	private String name;
 
-	private String description;
-
 	private Float cost;
 
-	private String imageName;
+	private String size;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createAt;
+	private Integer quantity;
 
-	@Column(name = "updateAt")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date updateAt;
+	private String description;
+
+	private String color;
+
+	private String image;
 
 	private Boolean disable;
 
-	// chứa khóa ngoại
 	@ManyToOne
 	@JoinColumn(name = "idCategory")
 	private Category category;
 
-	@ManyToOne
-	@JoinColumn(name = "idColor")
-	private Color color;
-
-	// được chứa khóa ngoại
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	private Collection<Thumbnail> thumbnails;	
+	private Collection<Thumbnail> thumbnails;
 
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
-	private Collection<ProductSize> productSizes;
-	
-	
+	private Collection<ImportDetail> importDetails;
 
-	public Collection<ProductSize> getProductSizes() {
-		return productSizes;
-	}
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Collection<ExportDetail> exportDetails;
 
-	public void setProductSizes(Collection<ProductSize> productSizes) {
-		this.productSizes = productSizes;
-	}
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Collection<Cart> carts;
 
-	public Long getIdProduct() {
+	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+	private Collection<OrderDetail> orderDetails;
+
+	public String getIdProduct() {
 		return idProduct;
 	}
 
-	public void setIdProduct(Long idProduct) {
+	public void setIdProduct(String idProduct) {
 		this.idProduct = idProduct;
 	}
 
@@ -79,14 +65,6 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Float getCost() {
 		return cost;
 	}
@@ -95,28 +73,44 @@ public class Product {
 		this.cost = cost;
 	}
 
-	public String getImageName() {
-		return imageName;
+	public String getSize() {
+		return size;
 	}
 
-	public void setImageName(String imageName) {
-		this.imageName = imageName;
+	public void setSize(String size) {
+		this.size = size;
 	}
 
-	public Date getCreateAt() {
-		return createAt;
+	public Integer getQuantity() {
+		return quantity;
 	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
 	}
 
-	public Date getUpdateAt() {
-		return updateAt;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setUpdateAt(Date updateAt) {
-		this.updateAt = updateAt;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Boolean getDisable() {
@@ -136,7 +130,6 @@ public class Product {
 	}
 
 	public Collection<Thumbnail> getThumbnails() {
-
 		return thumbnails;
 	}
 
@@ -144,32 +137,61 @@ public class Product {
 		this.thumbnails = thumbnails;
 	}
 
-	public Color getColor() {
-		return color;
+	public Collection<Cart> getCarts() {
+		return carts;
 	}
 
-	public void setColor(Color color) {
-		this.color = color;
+	public void setCarts(Collection<Cart> carts) {
+		this.carts = carts;
 	}
 
-	public Product(Long idProduct, String name, String description, Float cost, String imageName, Date createAt,
-			Date updateAt, Boolean disable, Category category, Color color, Collection<Thumbnail> thumbnails,
-			Collection<ProductSize> productSizes) {
-		this.idProduct = idProduct;
-		this.name = name;
-		this.description = description;
-		this.cost = cost;
-		this.imageName = imageName;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-		this.disable = disable;
-		this.category = category;
-		this.color = color;
-		this.thumbnails = thumbnails;
-		this.productSizes = productSizes;
+	public Collection<OrderDetail> getOrderDetails() {
+		return orderDetails;
+	}
+
+	public void setOrderDetails(Collection<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
+	}
+
+	public Collection<ImportDetail> getImportDetails() {
+		return importDetails;
+	}
+
+	public void setImportDetails(Collection<ImportDetail> importDetail) {
+		this.importDetails = importDetail;
+	}
+
+	public Collection<ExportDetail> getExportDetails() {
+		return exportDetails;
+	}
+
+	public void setExportDetails(Collection<ExportDetail> exportDetails) {
+		this.exportDetails = exportDetails;
 	}
 
 	public Product() {
 
 	}
+
+	public Product(String idProduct, String name, Float cost, String size, Integer quantity, String description,
+			String color, String image, Boolean disable, Category category, Collection<Thumbnail> thumbnails,
+			Collection<ImportDetail> importDetails, Collection<ExportDetail> exportDetails, Collection<Cart> carts,
+			Collection<OrderDetail> orderDetails) {
+		this.idProduct = idProduct;
+		this.name = name;
+		this.cost = cost;
+		this.size = size;
+		this.quantity = quantity;
+		this.description = description;
+		this.color = color;
+		this.image = image;
+		this.disable = disable;
+		this.category = category;
+		this.thumbnails = thumbnails;
+		this.importDetails = importDetails;
+		this.exportDetails = exportDetails;
+		this.carts = carts;
+		this.orderDetails = orderDetails;
+	}
+
 }

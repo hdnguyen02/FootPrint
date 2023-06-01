@@ -10,28 +10,28 @@
 				<div class="col-6 container-input">
 					<label class="form-label">First Name <span style="color: #ff5a66">*</span></label>
 			
-			  		<input required="required" name="first-name" value="${account.getFirstName()}" class="ct-input" placeholder="First Name" type="text"/>
+			  		<input required="required" name="first-name" class="ct-input" placeholder="First Name" type="text"/>
 				</div>
 				<div class="col-6 container-input">
 					<label class="form-label">Last Name <span style="color: #ff5a66">*</span></label>
 			
-			  		<input required="required" name="last-name" value="${account.getLastName()}" class="ct-input" placeholder="Last Name" type="text"/>
+			  		<input required="required" name="last-name" class="ct-input" placeholder="Last Name" type="text"/>
 				</div>
 				<div class="col-12 mt-2 container-input">
 					<label class="form-label">Email Address  <span style="color: #ff5a66">*</span></label>
 				
-			  		<input required="required" name="email" value="${account.getEmail()}" class="ct-input" placeholder="Email Address" type="text"/>
+			  		<input required="required" name="email" class="ct-input" placeholder="Email Address" type="text"/>
 				</div>
 				<div class="col-12 mt-2 container-input">
 					<label class="form-label">Phone  <span style="color: #ff5a66">*</span></label>
 			
-			  		<input required="required" name="phone" value="${account.getPhone()}" class="ct-input" placeholder="Phone" type="text"/>
+			  		<input required="required" name="phone" class="ct-input" placeholder="Phone" type="text"/>
 				</div>
 				
 				<div class="col-12 mt-2 container-input">
 					<label class="form-label">Address  <span style="color: #ff5a66">*</span></label>
 			
-			  		<input required="required" name="address" value="${account.getAddress()}" class="ct-input" placeholder="Adress" type="text"/>
+			  		<input required="required" name="address" class="ct-input" placeholder="Adress" type="text"/>
 			  		
 				</div>
 				<div class="col-12 mt-2 container-input">
@@ -60,14 +60,15 @@
 					<c:forEach items="${carts}" var="cart">
 						<div class="d-flex justify-content-between">
 							<div>
-								<p><span>${cart.getProductSize().getProduct().getName()} x <span>${cart.getQuantity()}</span></span></p>
-								<p style="font-size: 14px;color:#868487"><span>${cart.getProductSize().getSize().getNameSize()}</span>, 
-									<span>${cart.getProductSize().getProduct().getColor().getNameColor()}</span>
+								<p><span>${cart.getProduct().getName()} x <span>${cart.getQuantity()}</span></span></p>
+								<p style="font-size: 14px;color:#868487"><span>${cart.getProduct().getSize()}</span>, 
+									<span>${cart.getProduct().getColor()}</span>
+									<span>, $${cart.getProduct().getCost()}</span>
 								</p>
 								
 							</div>
 							
-						<span style="font-weight: 500;font-size:14px">$${cart.getProductSize().getProduct().getCost() * cart.getQuantity()}</span>
+						<span style="font-weight: 500;font-size:14px">$${cart.getProduct().getCost() * cart.getQuantity()}</span>
 					</div>	
 					</c:forEach>
 					

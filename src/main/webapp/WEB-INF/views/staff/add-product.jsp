@@ -27,6 +27,11 @@
 	<form:form class="row mt-4 gy-4" style="margin-top:0 !important" method="POST" modelAttribute="product" enctype="multipart/form-data">
 	
 		<div class="col-12 col-md-6 container-input"> 
+				<label for="id-product" class="form-label">mã sản phẩm</label>
+				<form:input path="idProduct" required="required" class="ct-input" id="id-product"/> 
+		</div>	
+	
+		<div class="col-12 col-md-6 container-input"> 
 			<label for="name-product" class="form-label">tên</label>
 			<form:input path="name" required="required" class="ct-input" id="name-product"/> 
 		</div>	
@@ -38,9 +43,18 @@
 		</div>
 	
 		
+		
 		<div class="col-12 col-md-6 container-input">
-			<label for="exampleFormControlTextarea1" class="form-label">Màu</label>
-			<form:select path="color.idColor" items="${colors}" itemLabel="nameColor" itemValue="idColor" class="ct-input"></form:select>
+			<label class="form-label">màu</label>
+			<form:select path="color" class= "ct-input">
+				<option value="GREEN">Green</option>
+				<option value="RED">Red</option>
+				<option value="ORANGE">Orange</option>
+				<option value="PINK">Pink</option>
+				<option value="WHITE">White</option>
+				<option value="Black">Black</option>
+				
+			</form:select>
 		</div>
 			
 		<div class="mt-4 col-12 col-md-6 container-input"> 
@@ -56,7 +70,7 @@
 					<input required type="file" class="" accept="image/*" name="imageProduct" id="image-product">
 				</div>
 				<div class="col-6 container-input">
-					<label for="exampleFormControlInput1" class="form-label">thumbnail images</label>
+					<label for="exampleFormControlInput1" class="form-label">thumbnail</label>
 					<input required type="file" class="" accept="image/*" name="imageThumbnails" multiple id="exampleFormControlInput1">
 				</div> 
 			</div>
@@ -65,8 +79,19 @@
 		<div class="col-12 col-md-6 container-input">
 			<label class="form-label">status</label>
 			<form:select path="disable" class= "ct-input">
-				<option value="true">Disable</option>
 				<option value="false">Active</option>
+				<option value="true">Disable</option>
+				
+			</form:select>
+		</div>
+		
+		<div class="col-12 col-md-6 container-input">
+			<label class="form-label">Size</label>
+			<form:select path="size" class= "ct-input">
+				<option value="size37">Size 37</option>
+				<option value="size38">Size 38</option>
+				<option value="size39">Size 39</option>
+				<option value="size40">Size 40</option>
 			</form:select>
 		</div>
  	
@@ -75,17 +100,7 @@
 	  		<form:textarea path="description" required="required" class="ct-input" id="description-product" rows="3"/>
 		</div>
 		
-		<div class="col-12 mt-4 container-input">
-			<span style="font-size: 14px" class="form-label">Số lượng</span>
-			<div class="row">
-				<c:forEach items="${sizes}" var="size">
-		         <div class="col-3 col-md-2 mt-2">
-					 <label style="font-size: 14px;margin-bottom:19px">${size.getNameSize()}</label>
-					<input name="${size.getIdSize()}" type="number" class="ct-input" min="0">
-				</div>
-	      	</c:forEach>
-			</div>
-		</div>
+	
 		<div class="w-100 mt-4">
 			<button type="submit"
 				class="btn btn-primary rounded-0 border-0 w-100"

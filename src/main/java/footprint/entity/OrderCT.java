@@ -3,7 +3,6 @@ package footprint.entity;
 import java.util.Collection;
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,50 +10,41 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
+import javax.persistence.OneToOne;
 
 @Entity
 public class OrderCT {
+
 	@Id
-	@GeneratedValue 
-	private Long idOrder; 
+	@GeneratedValue
+	private Integer idOrder;
+
 	
-	private String firstName; 
-	private String lastName; 
-	private String email; 
-	private String phone; 
-	
-	@Column(name = "date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
-	
+	private String firstName;
+	private String lastName;
 	private String address;
+	private String phone;
+	private String email;
+	private Date date;
+	private String message;
+	private Float totalMonney;
 	
-	private String message; 
-	
-	// tính tiền trên đơn hàng tại đây. 
-	private Float totalMonney; 
-	
-	// ngoài ra còn có cả idAccount và id Trạng thái đơn hàng. 
-	
+
 	@ManyToOne
-	@JoinColumn(name = "idAccount")
-	private Account account; 
-	
-	@ManyToOne
-	@JoinColumn(name = "idOrderStatus")
-	private OrderStatus orderStatus; 
-	
-	@OneToMany(mappedBy = "order", fetch = FetchType.LAZY)
+	@JoinColumn(name = "idCustomer")
+	private Customer customer;
+
+	@OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
 	private Collection<OrderDetail> orderDetails;
 
-	public Long getIdOrder() {
+	@OneToOne(mappedBy = "order")
+	private Export export;
+
+	public Integer getIdOrder() {
 		return idOrder;
 	}
 
-	public void setIdOrder(Long idOrder) {
+	public void setIdOrder(Integer idOrder) {
 		this.idOrder = idOrder;
 	}
 
@@ -70,16 +60,18 @@ public class OrderCT {
 		return lastName;
 	}
 
-	public void setLasttName(String lasttName) {
-		this.lastName = lasttName;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
+
+	public String getAddress() {
+		return address;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getPhone() {
@@ -98,14 +90,6 @@ public class OrderCT {
 		this.date = date;
 	}
 
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public String getMessage() {
 		return message;
 	}
@@ -122,20 +106,12 @@ public class OrderCT {
 		this.totalMonney = totalMonney;
 	}
 
-	public Account getAccount() {
-		return account;
+	public Customer getCustomer() {
+		return customer;
 	}
 
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public OrderStatus getOrderStatus() {
-		return orderStatus;
-	}
-
-	public void setOrderStatus(OrderStatus orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 
 	public Collection<OrderDetail> getOrderDetails() {
@@ -146,22 +122,43 @@ public class OrderCT {
 		this.orderDetails = orderDetails;
 	}
 
-	public OrderCT(Long idOrder, String firstName, String lastName, String email, String phone, Date date,
-			String address, String message, Float totalMonney, Account account, OrderStatus orderStatus,
-			Collection<OrderDetail> orderDetails) {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Export getExport() {
+		return export;
+	}
+
+	public void setExport(Export export) {
+		this.export = export;
+	}
+
+	
+
+	public OrderCT(Integer idOrder, String firstName, String lastName, String address, String phone, String email,
+			Date date, String message, Float totalMonney, Customer customer, Collection<OrderDetail> orderDetails,
+			Export export) {
 		this.idOrder = idOrder;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-		this.date = date;
 		this.address = address;
+		this.phone = phone;
+		this.email = email;
+		this.date = date;
 		this.message = message;
 		this.totalMonney = totalMonney;
-		this.account = account;
-		this.orderStatus = orderStatus;
+		this.customer = customer;
 		this.orderDetails = orderDetails;
+		this.export = export;
 	}
 
-	public OrderCT() {}
+	public OrderCT() {
+
+	}
+
 }

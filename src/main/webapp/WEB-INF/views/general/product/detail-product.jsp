@@ -6,11 +6,29 @@
 <script defer="defer" src='<c:url value="/resources/javascript/product.js"/>'></script>
 
 <div class="container" style="margin-top: 140px;margin-bottom: 50px">
+
+	<c:if test="${ not empty result }">
+			<c:choose>
+			<c:when test="${result == true }">
+				<div style="bottom: 24px;right:24px" class="position-fixed  alert alert-success alert-dismissible shadow mt-4" style="width: 300px" role="alert">
+					 <div>Thêm vào giỏ hàng thành công</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</c:when>
+			<c:otherwise>
+				<div style="bottom: 24px;right:24px" class="position-fixed fixed-right-3 alert alert-danger alert-dismissible shadow mt-4" style="width: 300px" role="alert">
+					 <div>Xảy ra lỗi !!!</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+			</c:otherwise>
+		</c:choose>
+	</c:if>
+
 	<div class="row gx-4">
 		<div class="col-5 bg-image hover-zoom">
 			<div class="row gx-3 gy-3">
 				<div class="col-12">
-					<img class="w-100" src="<c:url value="/resources/image/product/${product.getImageName()}"/>" style="height: 350px; object-fit: cover">
+					<img class="w-100" src="<c:url value="/resources/image/product/${product.getImage()}"/>" style="height: 350px; object-fit: cover">
 				</div>
 	
 				<c:forEach items="${product.getThumbnails()}" var="thumbnail">
@@ -18,15 +36,14 @@
 						<img class="w-100" src="<c:url value="/resources/image/thumbnail/${thumbnail.getName()}"/>" >
 					</div>
 				</c:forEach>
-			
 			</div>
-			
 			
 		</div>
 		<div class="col-7 d-flex flex-column gap-3">
 			<h3 class="text-uppercase fs-4 fw-medium">
 				${product.getName()}
 			</h3>
+			
 			
 			<div class="d-flex" style="font-size: 14px;color:#555555">
 				<div class="me-3">
@@ -37,15 +54,18 @@
 					<span><i class="fa fa-star"></i></span>
 				</div>
 				<p>1 Reviews</p>	
-				
 			</div>
 			<p class="fs-3 fw-normal" style="color: #d26b31"> $${product.getCost()}</p>
+			
+			<p class="fs-5 fw-normal"> ${product.getSize()}</p>
+			<p> ${product.getDescription()}</p>
 			
 			<div>
 				<p class="fs-6" style="margin-bottom: 14px">
 					<span class="fw-bolder">Hurry up!</span>
 					<span>offer ends in:</span>
 				</p>
+				
 				<div class="d-flex gap-3">	
 					<div class="px-4 py-2 rounded-2" style="background-color: #eaeaea">
 						<span class="d-block text-center">00</span> 
@@ -66,35 +86,9 @@
 				</div>
 			</div>
 			
-			
-			<p> ${product.getDescription()}</p>
-			<form data-form method="POST" class="d-flex flex-column gap-3">
+		
+			<form method="POST" class="d-flex flex-column gap-3">
 			<div class="row gy-3 gx-3">
-			
-			
-				<p>Select Size</p>
-				<c:forEach items="${product.getProductSizes()}" var="productSize">
-
-					<div class="col-2">
-			
-						<c:choose>
-						    <c:when test="${productSize.getQuantity() == 0}">
-						        <input disabled="disabled" hidden="true" name="radio-size" id="${productSize.getSize().getIdSize()}" value="${productSize.getSize().getIdSize()}" type="radio">
-						    </c:when>
-
-						    <c:otherwise>
-						        <input hidden="true" name="radio-size" id="${productSize.getSize().getIdSize()}" value="${productSize.getSize().getIdSize()}" type="radio">
-						    </c:otherwise>
-						</c:choose>
-			
-						<label for="${productSize.getSize().getIdSize()}" class="text-center d-block rounded-2">	
-							${productSize.getSize().getNameSize()}
-						</label>	
-					</div>
-					
-				</c:forEach>	
-				
-				
 			</div>
 			
 			<div class="d-flex gap-3 align-items-center">
@@ -111,7 +105,7 @@
 								</button>
 					</div>
 				
-				<button type="submit" class="text-white border-0 px-4 rounded-5" style="background-color: #87b106;height: 34px; font-size: 16px">
+				<button type="submit" class="text-white border-0 px-4 rounded-5" style="background-color: #87b106;height: 34px">
 					Add To Cart
 				</button>
 			
@@ -144,15 +138,11 @@
 					<i style="font-size:12px" class="fa-brands fa-google text-white"></i>
 					<span style="font-size:12px" class="text-white">Share</span>
 				</div>
-		
 			</div>
 		
 			
 		</div>
 	</div>
-	
-	
-	
 	
 </div>
 

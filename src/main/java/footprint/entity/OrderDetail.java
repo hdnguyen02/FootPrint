@@ -8,64 +8,28 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class OrderDetail {
+
 	@Id
 	@GeneratedValue
-	private Long idOrderDetail; 
-	
-	private Integer quantity;
-	
-	private Float cost;
-	
-	private Float totalMonney;
-	
-	@ManyToOne	
-	@JoinColumn(name = "idProductSize")
-	private ProductSize productSize;
-	
-	@ManyToOne	
+	private Integer idOrderDetail;
+
+	@ManyToOne
 	@JoinColumn(name = "idOrder")
 	private OrderCT order;
-	
 
+	@ManyToOne
+	@JoinColumn(name = "idProduct")
+	private Product product;
 
-	public Long getIdOrderDetail() {
+	private Float cost;
+	private Integer quantity;
+
+	public Integer getIdOrderDetail() {
 		return idOrderDetail;
 	}
 
-	public void setIdOrderDetail(Long idOrderDetail) {
+	public void setIdOrderDetail(Integer idOrderDetail) {
 		this.idOrderDetail = idOrderDetail;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
-	public Float getCost() {
-		return cost;
-	}
-
-	public void setCost(Float cost) {
-		this.cost = cost;
-	}
-
-	public Float getTotalMonney() {
-		return totalMonney;
-	}
-
-	public void setTotalMonney(Float totalMonney) {
-		this.totalMonney = totalMonney;
-	}
-
-	public ProductSize getProductSize() {
-		return productSize;
-	}
-
-	public void setProductSize(ProductSize productSize) {
-		this.productSize = productSize;
 	}
 
 	public OrderCT getOrder() {
@@ -76,17 +40,45 @@ public class OrderDetail {
 		this.order = order;
 	}
 
-	public OrderDetail(Long idOrderDetail, Integer quantity, Float cost, Float totalMonney, ProductSize productSize,
-			OrderCT order) {
-		this.idOrderDetail = idOrderDetail;
-		this.quantity = quantity;
-		this.cost = cost;
-		this.totalMonney = totalMonney;
-		this.productSize = productSize;
-		this.order = order;
+	
+
+	public Float getCost() {
+		return cost;
 	}
 
-	public OrderDetail() {}
+	public void setCost(Float cost) {
+		this.cost = cost;
+	}
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public OrderDetail(Integer idOrderDetail, OrderCT order, Product product, Float cost, Integer quantity) {
+		this.idOrderDetail = idOrderDetail;
+		this.order = order;
+		this.product = product;
+		this.cost = cost;
+		this.quantity = quantity;
+	}
+	
+	public OrderDetail() { 
+		
+	}
+	
 	
 
 }

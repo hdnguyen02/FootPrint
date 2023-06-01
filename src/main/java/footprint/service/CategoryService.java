@@ -2,16 +2,22 @@ package footprint.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import footprint.dao.CategoryDao;
 import footprint.entity.Category;
 
-public interface CategoryService {
-	public List<Category> getAllCategories(); 
+
+@Service
+public class CategoryService{
 	
-	public int totalPage(); 
+	@Autowired private CategoryDao categoryDao;  
 	
-	public List<Category> getCategoriesPerPage(int curentPage); 
-	public boolean insert(Category category); 
-	public boolean update(Category category); 
-	public Category getCategoryWithId(Long idCategory);
+
+	public List<Category> getAllCategories() {
+		return categoryDao.getAllCategories();
+	}
+	
 	
 }

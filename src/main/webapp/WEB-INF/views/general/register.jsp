@@ -7,7 +7,7 @@
 <c:url var='signIn' value='/sign-in.htm' />
 
 
-<form:form method="POST" modelAttribute="account" id="form-register">
+<form:form method="POST" modelAttribute="customer" id="form-register">
 	<h3 class="fw-bolder">Register</h3>
 	<div class="mt-5"> 
 		<div class="position-relative">
@@ -21,7 +21,7 @@
 			</c:if>
 		</div>
 		
-		<div class="position-relative" style="margin-top: 36px">
+		<%-- <div class="position-relative" style="margin-top: 36px">
 			<form:input required="required" path="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username"/>
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-user"></i>
@@ -30,7 +30,7 @@
 			<c:if test="${not empty resultUsername}">
 			  <span data-result-username class="error"> ${resultUsername}</span>
 			</c:if>
-		</div>
+		</div> --%>
 		
 		<div class="position-relative" style="margin-top: 36px">
 			<form:input required="required" path="password" id="register-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="password"/>

@@ -16,14 +16,14 @@
 
 	<!-- Cấu hình interceptor --> 
 	
-	 <mvc:interceptors>  
+	 <!-- <mvc:interceptors>  
 	 
 		 <mvc:interceptor>
 				<mvc:mapping path="/staff/order/detail.htm"/> 
 				<bean class="footprint.interceptor.StaffOrder" />
 		</mvc:interceptor>
 	 
-	 <!-- Người dùng  -->
+	 Người dùng 
 		<mvc:interceptor>
 			<mvc:mapping path="/checkout.htm"/> 
 			<mvc:mapping path="/order.htm"/>
@@ -36,32 +36,33 @@
 			<bean class="footprint.interceptor.DetailProduct" />
 		</mvc:interceptor>
 		
+		
 		<mvc:interceptor>
 			<mvc:mapping path="/cart.htm"/>
 			<bean class="footprint.interceptor.Cart" />
 		</mvc:interceptor>
 	 
-	 	<!-- Người dùng  -->
+	 	Người dùng 
 		<mvc:interceptor>
 			<mvc:mapping path="/account.htm"/>
 			<mvc:mapping path="/account/**"/>
 			<bean class="footprint.interceptor.UserFilter" />
 		</mvc:interceptor>
 		
-		<!-- Nhân viên  -->
+		Nhân viên 
 		<mvc:interceptor>
 			<mvc:mapping path="/staff.htm"/>
 			<mvc:mapping path="/staff/**"/>
 			<bean class="footprint.interceptor.StaffFilter" />
 		</mvc:interceptor>
 		
-		<!-- admin  -->
+		admin 
 		<mvc:interceptor>
 			<mvc:mapping path="/admin.htm"/>
 			<mvc:mapping path="/admin/**"/>
 			<bean class="footprint.interceptor.AdminFilter" />
 		</mvc:interceptor>
 		
-	</mvc:interceptors> 
+	</mvc:interceptors>  -->
 
 </beans>

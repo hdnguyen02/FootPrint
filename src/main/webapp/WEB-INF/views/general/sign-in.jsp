@@ -12,7 +12,7 @@
 	<div class="mt-5"> 
 	
 		<div class="position-relative" style="margin-top: 36px">
-			<input required="required" name="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username">
+			<input required="required" name="email" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="email">
 			<span class="position-absolute start-0" style="top: 1px">
 				<i class="fa-solid fa-user"></i>
 			</span>
