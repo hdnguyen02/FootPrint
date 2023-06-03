@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -16,11 +15,11 @@
 		<div class="d-flex flex-column gap-2 justify-content-center h-100">
 			<div class="row mt-2">
 				<div class="col-6">
-					<label class="mt-2" style="font-size: 14px">Firtname</label>
+					<label class="mt-2" style="font-size: 14px">Lastname</label>
 					<form:input path="firstName" class="ct-input" />
 				</div>
 				<div class="col-6">
-					<label class="mt-2" style="font-size: 14px">Lastname</label>
+					<label class="mt-2" style="font-size: 14px">Firstname</label>
 					<form:input path="LastName" class="ct-input" />
 				</div>
 			</div>
@@ -40,7 +39,7 @@
 					<form:input type="password" path="password" class="ct-input" />
 				</div>
 				<div class="col-6">
-					<label class="mt-2" style="font-size: 14px">phone</label>
+					<label class="mt-2" style="font-size: 14px">Phone</label>
 					<form:input path="phone" class="ct-input" />
 				</div>
 			</div>
@@ -50,10 +49,10 @@
 					<label class="mt-2" style="font-size: 14px">Trạng thái</label>		
 
 					<form:select path="disable" class="ct-input">
-					<option value="true" <c:if test="${product.disable.equal(false)}">selected</c:if>>
+					<option value="true" <c:if test="${employee.disable.equal(false)}">selected</c:if>>
 							Active</option>
 						<option value="true"
-							<c:if test="${product.disable.equal(true)}">selected</c:if>>
+							<c:if test="${employee.disable.equal(true)}">selected</c:if>>
 							Disable</option>
 					</form:select>
 

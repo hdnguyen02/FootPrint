@@ -152,6 +152,20 @@ public class Employee {
 		this.exports = exports;
 		this.payments = payments;
 	}
+	
+	public Employee(String idEmployee, String firstName, String lastName, String cccd, String email, String password,
+			String phone, String address, String role, boolean disable) {
+		this.idEmployee = idEmployee;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.cccd = cccd;
+		this.email = email;
+		this.password = password;
+		this.phone = phone;
+		this.address = address;
+		this.role = role;
+		this.disable = disable;
+	}
 
 	public Employee() {
 

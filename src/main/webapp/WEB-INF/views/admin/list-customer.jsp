@@ -2,18 +2,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
-
-
 <div class="table-responsive container-fluid p-5 bg-white shadow-lg">
 			<div class="row">
 				<div class="col-6 content-user-filter d-flex justify-content-end align-items-center">
 					<script>
 						var currentUrl = window.location.pathname;
-						var buttonE = document.getElementById('staff-btn');
-						if (currentUrl.includes('staff')) {
-							buttonE.classList.add('action');
+						var buttonC = document.getElementById('guest-btn');
+						if (currentUrl.includes('guest')) {
+							buttonC.classList.add('action');
 						} else {
-							buttonE.classList.remove('action');
+							buttonC.classList.remove('action');
 						}
 					</script>
 				</div>
@@ -22,30 +20,20 @@
 		<thead>
 			<tr>
 				<th class="col">#</th>
-				<th class="col">LastName</th>
-				<th class="col">FirstName</th>
-				<th class="col">CCCD</th>
 				<th class="col">Email</th>
-				<th class="col">Phone</th>
-				<th class="col">Address</th>
 				<th class="col">Status</th>
 			</tr>
 		</thead>
 		<tbody id="body-table">
-			<c:forEach items="${staffs}" var="staff" varStatus="status">
+			<c:forEach items="${customers}" var="customer" varStatus="status">
 				<tr>
-					<td class="col py-y">${staff.idEmployee}</td>
-					<td class="col py-2">${staff.lastName}</td>
-					<td class="col py-2">${staff.firstName}</td>
-					<td class="col py-2">${staff.cccd}</td>
-					<td class="col py-2">${staff.email}</td>
-					<td class="col py-2">${staff.phone}</td>
-					<td class="col py-2">${staff.address}</td>
+					<td class="col py-y">${customer.idCustomer}</td>
+					<td class="col py-2">${customer.email}</td>
 						
 					<td>
 						<div class="h-100 d-flex align-items-center justify-content-start">
 							<c:choose>
-								<c:when test="${staff.disable eq '0'}">
+								<c:when test="${customer.disable eq '0'}">
 									<div class="d-flex align-items-center w-80 h-50 badge rounded-pill text-bg-success">
 										<p class="m-0 w-100 text-center">Enable</p>
 									</div>
@@ -61,10 +49,10 @@
 				
 					<td class="col py-2">
 						<div>
-							<a href="enable${staff.idEmployee}.htm?source=${source}">
+							<a href="disable${customer.idCustomer}.htm?source=${source}">
 								<button class="btn btn-primary" type="button" id="edit_button${status.index}">
 								<c:choose>
-									<c:when test="${staff.disable eq '0'}">
+									<c:when test="${customer.disable eq '0'}">
 										<div class="">
 											<i class="ti-lock"></i>
 										</div>
@@ -109,10 +97,3 @@
 </div>
 
 <jsp:include page="/WEB-INF/views/general/notification.jsp" />
-
-
-
-
-
-
-

@@ -1,9 +1,10 @@
 <%@ page language='java' contentType='text/html; charset=UTF-8' pageEncoding='UTF-8' %>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core' %>
 
+<c:url var='staff' value='/admin.htm' />
 <c:url var='manageStaff' value='/admin/list-staff.htm' />
 <c:url var='addStaff' value='/admin/add-staff.htm' />
-<c:url var='diasbleCustomer' value='/admin/list-customer.htm' />
+<c:url var='disableCustomer' value='/admin/list-customer.htm' />
      <ul class='navbar-nav'>
         <li>
               <div class='nav-link px-3 py-0 active'>
@@ -52,7 +53,7 @@
             </a>
        </li>
        <li class='py-2'>
-        	<a href='${home}' class='nav-link px-3'> 
+        	<a href='${staff}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
         		<span class='text-white'>Trang chủ</span>
             </a>
