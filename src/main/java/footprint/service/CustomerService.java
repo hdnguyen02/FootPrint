@@ -24,7 +24,6 @@ public class CustomerService {
 		return customerDao.getCustomerByEmail(email);
 	}
 
-	
 	public boolean update(Customer customer) {
 		return customerDao.update(customer);
 	}	
@@ -38,6 +37,4 @@ public class CustomerService {
 		return customerDao.getCustomerWithId(idCustomer); 
 		
 	}
-	
-
 }

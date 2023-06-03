@@ -81,9 +81,6 @@ public class RegisterController {
 
 			boolean resultRegister = customerService.insertCustomer(tkdk);
 			if (resultRegister == true) {
-
-				// sau khi xác nhận đăng ký thành công -> Đăng nhập cho người dùng.
-
 				session.removeAttribute("otp");
 				session.removeAttribute("email");
 				session.removeAttribute("password");

@@ -67,6 +67,7 @@ public class ImportDetail {
 	}
 	
 	
+	
 	public ImportDetail(Integer idImportDetail, Integer quantity, Float cost, Import importEntity, Product product) {
 		IdImportDetail = idImportDetail;
 		this.quantity = quantity;

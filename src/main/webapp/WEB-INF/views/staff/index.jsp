@@ -35,7 +35,7 @@
 			<div class="d-flex align-items-center shadow-lg justify-content-between px-4" style="height: 80px">
 				<div class="d-flex align-items-center gap-3">
 					<span><i class="bi bi-balloon-heart-fill fs-1" style="color: #f56876"></i></span>
-					<span class="fs-4">Số lượng đơn hàng trong ngày</span>
+					<span class="fs-4">Đơn đặt hàng trong ngày</span>
 				</div>
 				<span class="fs-4">${sizeOrderDate}</span>
 			</div>
@@ -45,9 +45,9 @@
 			<div class="d-flex align-items-center shadow-lg justify-content-between px-4" style="height: 80px">
 				<div class="d-flex align-items-center gap-3">
 					<span><i class="bi bi-calendar-date fs-1"></i></span>
-					<span class="fs-4">Số lượng đơn hàng trong tháng</span>
+					<span class="fs-4">Số phiếu xuất trong ngày</span>
 				</div>
-				<span class="fs-4">${sizeOrderMonth}</span>
+				<span class="fs-4">${sizeExportDate}</span>
 			</div>
 		</div>
 

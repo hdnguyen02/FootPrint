@@ -27,7 +27,7 @@ public class Import {
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
 	
-	@OneToMany(mappedBy = "importEntity", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "importEntity", fetch = FetchType.EAGER)
 	private Collection<ImportDetail> importDetails;
 
 	public String getIdImport() {

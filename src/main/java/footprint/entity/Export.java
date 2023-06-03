@@ -22,13 +22,15 @@ public class Export {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "idOrder")
 	private OrderCT order;
-
 	@OneToMany(mappedBy = "export", fetch = FetchType.EAGER)
 	private Collection<ExportDetail> exportDetails;
 
 	@ManyToOne
 	@JoinColumn(name = "idEmployee")
 	private Employee employee;
+	
+	@OneToOne(mappedBy = "export")
+	private Payment payment;
 
 	public String getIdExport() {
 		return idExport;
@@ -45,8 +47,6 @@ public class Export {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
-	
 
 	public String getInfoShipment() {
 		return infoShipment;
@@ -90,8 +90,20 @@ public class Export {
 	
 	
 
+	public Payment getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
+
+	
+	
+	
+
 	public Export(String idExport, Date date, String infoShipment, String zipCode, OrderCT order,
-			Collection<ExportDetail> exportDetails, Employee employee) {
+			Collection<ExportDetail> exportDetails, Employee employee, Payment payment) {
 		this.idExport = idExport;
 		this.date = date;
 		this.infoShipment = infoShipment;
@@ -99,9 +111,8 @@ public class Export {
 		this.order = order;
 		this.exportDetails = exportDetails;
 		this.employee = employee;
+		this.payment = payment;
 	}
-
-	
 
 	public Export() {
 

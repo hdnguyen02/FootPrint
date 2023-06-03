@@ -1,10 +1,8 @@
 package footprint.controller.general;
 
-import java.io.Console;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -63,7 +61,8 @@ public class ProductController {
 	// Nhấp thêm vào giỏ hàng nè. 
 	
 	@RequestMapping(value="product/detail",method=RequestMethod.POST)
-	public String postIndex(HttpSession session,ModelMap model,HttpServletResponse response,HttpServletRequest request, 
+	@Transactional
+	public String postIndex(HttpSession session,ModelMap model, 
 			@RequestParam(value = "id", required = true) String idProduct, 
 			@RequestParam(value = "quantity", required = true) Integer quantity
 			) {

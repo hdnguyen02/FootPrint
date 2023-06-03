@@ -5,33 +5,27 @@
 
 <div
 	class="table-responsive container-fluid px-5 pt-5 pb-4 bg-white shadow-lg">
-	<h3 class="border-bottom fs-5 pb-3">Category</h3>
+	<h3 class="border-bottom fs-5 pb-3">Danh sách loại sản phẩm</h3>
 
 
 	<table class="table table-hover table-striped shadow mt-4">
 		<thead>
 			<tr>
-				<th class="col">#</th>
-				<th class="col">Name</th>
-				<th class="col">Create at</th>
-				<th class="col">Update at</th>
-				<th class="col">Status</th>
-
-
+				<th class="col">Mã loại</th>
+				<th class="col">Tên loại</th>
 			</tr>
 		</thead>
 		<tbody id="body-table">
 			<c:forEach items="${categoriesPerPage}" var="category">
-				<div data-id-category="${ category.idCategory }"
+				<%-- <div data-id-category="${ category.idCategory }"
 					data-name-category="${ category.name }"
-					data-diable-category="${ category.disable }" class="d-none"></div>
+					data-diable-category="${ category.disable }" class="d-none"></div> --%>
 				<tr>
 
 					<td class="col py-2">${category.idCategory}</td>
-					<td data-name-category="${ category.idCategory }" class="col py-2">${category.name}</td>
-					<td class="col py-2"><span>${category.createAt}</span></td>
-					<td class="col py-2"><span>${category.updateAt}</span></td>
-					<td class="col py-2"><c:choose>
+					<td class="col py-2">${category.name}</td>
+			
+					<%-- <td class="col py-2"><c:choose>
 							<c:when test="${category.disable == false}">
 								<button class="btn btn-success btn-sm"
 									data-disable-category="${category.idCategory}"
@@ -42,11 +36,12 @@
 									data-disable-category="${category.idCategory}"
 									style="border-radius: 0 !important; width: 80px !important">disable</button>
 							</c:otherwise>
-						</c:choose></td>
+						</c:choose>
+					</td> --%>
 					<td class="col py-2">
 						<div>
 							<a
-								href='<c:url value='/staff/category/edit.htm?id=${category.idCategory}'/>'
+								href='<c:url value='/staff/edit-category.htm?id=${category.idCategory}'/>'
 								class="btn btn-secondary btn-sm"
 								style="border-radius: 0 !important; width: 80px !important">
 								<span class="button breadcrumb-item active px-2">edit</span>
@@ -77,6 +72,6 @@
 </div>
 
 
-
+<jsp:include page="/WEB-INF/views/general/notification.jsp" />
 
 

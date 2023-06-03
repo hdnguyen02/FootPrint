@@ -10,7 +10,7 @@
 
 	<div class="row gx-4 gy-4 mt-4">
 		<div class="col-12 col-md-6 container-input">
-			<label for="id-export" class="form-label">Mã đơn nhập hàng</label> <input
+			<label for="id-export" class="form-label">Mã đơn xuất hàng</label> <input
 				name="id-export" type="text" required class="ct-input"
 				id="id-export" />
 		</div>
@@ -19,11 +19,11 @@
 				name="date" type="date" required class="ct-input"
 				id="date" />
 		</div>
-		<div class="col-12 col-md-12 container-input">
+		<div class="col-12 col-md-6 container-input">
 			<label for="info-shipment" class="form-label">Thông tin đơn
 				vị vận chuyển</label>
-			<textarea name="info-shipment" required class="ct-input"
-				id="info-shipment"></textarea>
+			<input name="info-shipment" required class="ct-input"
+				id="info-shipment">
 		</div>
 		<div class="col-12 col-md-6 container-input">
 			<label for="zip-code" class="form-label">Mã vận chuyển</label> <input
@@ -34,12 +34,12 @@
 		<input name="id-order" type="number" class="d-none" />
 
 
-		<div class="col-12 col-md-6 container-input">
+		<!-- <div class="col-12 col-md-6 container-input">
 			<label for="id-employee" class="form-label">Nhân viên tạo đơn nhập
 				hàng</label> <input name="id-employee" value="1" type="text"
 				readonly="readonly" class="ct-input" id="id-employee" />
 		</div>
-		
+		 -->
 
 
 

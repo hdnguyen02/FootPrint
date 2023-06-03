@@ -42,6 +42,9 @@ public class ProductService {
 		return productDao.getProductCurentSS(id); 
 	}
 	
+	public boolean update(Product product) { 
+		return productDao.update(product); 
+	}
 	
 	
 	public boolean addProductAndThumbnail(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails) {

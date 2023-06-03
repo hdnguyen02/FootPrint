@@ -16,26 +16,40 @@
 				<input name="date" type="date" required="required" class="ct-input" id="date"/> 
 		</div>	
 		
-		<div class="col-12 col-md-4 container-input"> 
-				<label for="nv" class="form-label">Nhân viên tạo đơn nhập hàng</label>
-				<input name="id-employee" value="1" type="text" readonly="readonly" class="ct-input" id="nv"/> 
-		</div>
+		 <div class="col-12 col-md-4 container-input"> 
+				<label for="supplier" class="form-label">Nhà cung cấp</label>
+				<input name="supplier" type="text" class="ct-input" id="supplier"/> 
+		</div> 
 		
-		<div class="col-4 col-md-4 container-input"> 	
-<!-- 				<span class="d-inline me-5">Chi tiết đơn nhập hàng</span> -->
-				<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Chọn sản phẩm</button>			
-				
-		</div>
 		
-		<div class="col-4 col-md-4 container-input"> 
-<!-- 				<span class="d-inline me-5">Chi tiết đơn nhập hàng</span> -->
-				<button class="btn btn-primary">Submit</button>			
-				
-		</div>
+		
+		
+		<div>Chi tiết phiếu nhập</div>
+		<div class="container-product row gx-3 mt-3"> 
+	        		<div class="col-1" style=""><p class="ms-1" style="line-height: 32px">Mã</p></div>
+	        		<div class="col-4"><p style="line-height: 32px">Tên sản phẩm</p></div>
+	<!--         		<div class="col-1"><p style="line-height: 32px">Giá</p></div>  -->
+	        		<div class="col-1"><p class="ms-1" style="line-height: 32px">Size</p></div>
+	        		<div class="col-1"><p class="ms-1" style="line-height: 32px">Số lượng</p></div>
+	        		<div class="col-1"><p class="ms-1" style="line-height: 32px">Màu</p></div>
+	        		<div class="col-1"><p class="ms-1" style="line-height: 32px">Disable</p></div>
+	        		<div class="col-1"><p class="ms-2" style="line-height: 32px">Số lượng</p></div>
+	        		<div class="col-2"><p class="ms-2" style="line-height: 32px">Giá nhập hàng</p></div>
+	      </div>
+	      <hr>
 		
 		<div data-detail-import class="col-12 container-input"> 
 			
 		</div>
+		
+		<div class="col-4 col-md-4 container-input"> 	
+				<button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Chọn sản phẩm</button>			
+		</div>
+		
+		<div class="col-4 col-md-4 container-input"> 
+				<button class="btn btn-primary">Tạo phiếu xuất</button>			
+				
+		</div> 
 		
 		
 		
@@ -45,15 +59,15 @@
 	  <div class="modal-dialog modal-xl">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h1 class="modal-title fs-5">Sản phẩm</h1>
+	        <h1 class="modal-title fs-5">Chọn sản phẩm nhập hàng</h1>
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
 	      
 	      <div class="container-product row gx-3 mt-3"> 
-	        		<div class="col-2"><p style="line-height: 32px">Mã</p></div>
-	        		<div class="col-4"><p style="line-height: 32px">Tên</p></div>
-	        		<div class="col-1"><p style="line-height: 32px">Giá</p></div> 
+	        		<div class="col-1"><p style="line-height: 32px">Mã</p></div>
+	        		<div class="col-4"><p style="line-height: 32px">Tên sản phẩm</p></div>
+	        		<!-- <div class="col-1"><p style="line-height: 32px">Giá</p></div>  -->
 	        		<div class="col-1"><p style="line-height: 32px">Size</p></div>
 	        		<div class="col-1"><p style="line-height: 32px">Số lượng</p></div>
 	        		<div class="col-1"><p style="line-height: 32px">Màu</p></div>
@@ -64,9 +78,9 @@
 	        
 	        <c:forEach var="product" items="${products}">
 	        	<div class="container-product row gx-3 mt-3" data-product="${product.getIdProduct()}"> 
-	        		<div class="col-2"><p style="line-height: 32px">${product.getIdProduct()}</p></div>
+	        		<div class="col-1"><p style="line-height: 32px">${product.getIdProduct()}</p></div>
 	        		<div class="col-4"><p style="line-height: 32px">${product.getName()}</p></div>
-	        		<div class="col-1"><p style="line-height: 32px">$${product.getCost()}</p></div> 
+	        	<!-- 	<div class="col-1"><p style="line-height: 32px">$${product.getCost()}</p></div>  -->
 	        		<div class="col-1"><p style="line-height: 32px">${product.getSize()}</p></div>
 	        		<div class="col-1"><p style="line-height: 32px">${product.getQuantity()}</p></div>
 	        		<div class="col-1"><p style="line-height: 32px">${product.getColor()}</p></div>
@@ -89,6 +103,14 @@
 </div>
 </form>
 
+
+<jsp:include page="/WEB-INF/views/general/notification.jsp" />
+
+<style>
+	p {
+		margin-bottom: 0px;
+	}
+</style>
 
 
 

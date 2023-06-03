@@ -55,10 +55,14 @@
 				</div>
 				<p>1 Reviews</p>	
 			</div>
-			<p class="fs-3 fw-normal" style="color: #d26b31"> $${product.getCost()}</p>
+			<p class="fs-3 fw-bold" style="color: #d26b31"> <span><i class="fa fa-usd" aria-hidden="true"></i></span>${product.getCost()}</p>
+			<div class="d-flex align-items-center gap-3">
+				<span>Color: </span>
+				<span style="display: inline-block;width: 30px;height: 30px;background: ${product.getColor()}" class="fs-5 fw-normal"></span>
+			</div>
+			<span class="fs-5 fw-normal"> ${product.getSize()}</span>
 			
-			<p class="fs-5 fw-normal"> ${product.getSize()}</p>
-			<p> ${product.getDescription()}</p>
+			
 			
 			<div>
 				<p class="fs-6" style="margin-bottom: 14px">
@@ -84,6 +88,11 @@
 						<span class="d-block text-center" style="font-size: 12px">SECS</span>
 					</div>
 				</div>
+				<div class="fw-bold mt-3" style="color: #198754">
+					<span><i class="fa fa-check" aria-hidden="true"></i></span>
+					<span>${product.getQuantity()} TRONG KHO</span>
+				</div>
+				<p class="mt-3"> ${product.getDescription()}</p>
 			</div>
 			
 		
@@ -94,19 +103,19 @@
 			<div class="d-flex gap-3 align-items-center">
 				<span>quantity: </span>
 
-				<div class="rounded-5 d-flex align-items-center justify-content-center py-1 gap-1 mx-3" style="background-color: #efefef;width: 90px">
+				<div class="rounded-5 d-flex align-items-center justify-content-center py-1 gap-1 mx-3" style="background-color: #efefef;width: 150px; height: 50px">
 								<button type="button" style="font-weight: 500" data-subtraction class="border-0 px-0">
 									<i class="fa-solid fa-minus"></i>
 								</button>
-								<input name="quantity" class="border-0" style="width: 36px;text-align: center;background-color: #efefef;font-weight: 500" type="text" value="0">
+								<input name="quantity" class="border-0" style="width: 70px;text-align: center;background-color: #efefef;font-weight: 500" type="text" value="0">
 								
 								<button type="button" style="font-weight: 500" data-plus class="border-0 px-0">
 									<i class="fa-solid fa-plus"></i>
 								</button>
 					</div>
 				
-				<button type="submit" class="text-white border-0 px-4 rounded-5" style="background-color: #87b106;height: 34px">
-					Add To Cart
+				<button type="submit" class="text-white fw-bold fs-5 border-0 px-4 rounded-5" style="background-color: #87b106;height: 50px">
+					Thêm vào giỏ hàng
 				</button>
 			
 				

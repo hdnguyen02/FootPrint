@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid p-5 bg-white shadow-lg">
-	<h3 class="border-bottom fs-5 pb-3">Add product</h3>
+	<h3 class="border-bottom fs-5 pb-3">Thêm sản phẩm</h3>
 	
 	<c:if test="${ not empty result }">
 			<c:choose>
@@ -47,11 +47,11 @@
 		<div class="col-12 col-md-6 container-input">
 			<label class="form-label">màu</label>
 			<form:select path="color" class= "ct-input">
-				<option value="GREEN">Green</option>
-				<option value="RED">Red</option>
-				<option value="ORANGE">Orange</option>
-				<option value="PINK">Pink</option>
-				<option value="WHITE">White</option>
+				<option value="Green">Green</option>
+				<option value="Red">Red</option>
+				<option value="Orange">Orange</option>
+				<option value="Pink">Pink</option>
+				<option value="White">White</option>
 				<option value="Black">Black</option>
 				
 			</form:select>
@@ -88,10 +88,10 @@
 		<div class="col-12 col-md-6 container-input">
 			<label class="form-label">Size</label>
 			<form:select path="size" class= "ct-input">
-				<option value="size37">Size 37</option>
-				<option value="size38">Size 38</option>
-				<option value="size39">Size 39</option>
-				<option value="size40">Size 40</option>
+				<option value="size 37">Size 37</option>
+				<option value="size 38">Size 38</option>
+				<option value="size 39">Size 39</option>
+				<option value="size 40">Size 40</option>
 			</form:select>
 		</div>
  	

@@ -29,5 +29,7 @@
 	</div>
 </form>
 
+<jsp:include page="/WEB-INF/views/general/notification.jsp" />
+
 
 

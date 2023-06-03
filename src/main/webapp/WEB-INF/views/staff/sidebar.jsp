@@ -4,13 +4,16 @@
 <c:url var='addProduct' value='/staff/add-product.htm'/>
 <c:url var='importProduct' value='/staff/import-product.htm'/>
 <c:url var='exportProduct' value='/staff/export-product.htm'/>
-<c:url var='manageCategory' value='/staff/category.htm'/>
-
-<c:url var='addCategory' value='/staff/category/add.htm' />
-<c:url var='manageProduct' value='/staff/product/manage.htm' />
+<c:url var='manageCategory' value='/staff/list-category.htm'/>
+<c:url var='listImport' value='/staff/list-import.htm'/>
+<c:url var='addCategory' value='/staff/add-category.htm' />
+<c:url var='manageProduct' value='/staff/list-product.htm' />
+<c:url var='listExport' value='/staff/list-export.htm' />
 <c:url var='order' value='/staff/order.htm' />
 <c:url var='home' value='/' />
 <c:url var='staff' value='/staff.htm' />
+ <c:url var='addPayment' value='/staff/payment.htm' />
+ <c:url var='listPayment' value='/staff/list-payment.htm' />
 
      <ul class='navbar-nav' style="font-size: 15px">
         <li>
@@ -87,7 +90,7 @@
             <div class='collapse' id='import-collapse'>
                 <ul class='navbar-nav ps-3'>
                     <li>
-                       <a href='${addCategory}' class='nav-link px-3'> 
+                       <a href='${listImport}' class='nav-link px-3'> 
                           <span class='me-2'><i class='fa fa-list-alt'></i></span> 
                           <span class='text-white'>Danh sách Phiếu nhập</span>
                        </a>
@@ -111,13 +114,37 @@
             <div class='collapse' id='export-collapse'>
                 <ul class='navbar-nav ps-3'>
                     <li>
-                       <a href='${addCategory}' class='nav-link px-3'> 
+                       <a href='${listExport}' class='nav-link px-3'> 
                           <span class='me-2'><i class='fa fa-list-alt'></i></span> 
                           <span class='text-white'>Danh sách Phiếu xuất</span>
                        </a>
                        <a href='${exportProduct}' class='nav-link px-3'> 
 			                <span class='me-2'><i class='fa fa-plus'></i></span> 
 			                <span class='text-white'>Thêm Phiếu xuất</span>
+             			</a>
+                     </li>
+                </ul>
+            </div>
+        </li>
+        
+         <li class='py-2'>
+            <a class='nav-link px-3 sidebar-link' data-bs-toggle='collapse' href='#payment-collapse'> 
+            	<span class='me-2'><i
+                        class='fa fa-truck'></i></span> <span class='text-white' >Thanh toán</span> <span class='ms-auto'> <span
+                        class='right-icon'> <i class='bi bi-chevron-down'></i>
+                    </span>
+                </span>
+            </a>
+            <div class='collapse' id='payment-collapse'>
+                <ul class='navbar-nav ps-3'>
+                    <li>
+                       <a href='${listPayment}' class='nav-link px-3'> 
+                          <span class='me-2'><i class='fa fa-list-alt'></i></span> 
+                          <span class='text-white'>Danh sách thanh toán</span>
+                       </a>
+                       <a href='${addPayment}' class='nav-link px-3'> 
+			                <span class='me-2'><i class='fa fa-plus'></i></span> 
+			                <span class='text-white'>Thêm thanh toán</span>
              			</a>
                      </li>
                 </ul>
@@ -130,6 +157,10 @@
         		<span class='text-white'>Đơn đặt hàng</span>
             </a>
        </li>
+       
+       
+       
+       
        <li class='py-2'>
         	<a href='${home}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 

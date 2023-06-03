@@ -22,6 +22,6 @@
  				<jsp:include page="/WEB-INF/views/layout/sidebar-dashboard.jsp" />
  				<jsp:include page="/WEB-INF/views/layout/nav-dashboard.jsp" />
  				<jsp:include page="/WEB-INF/views/layout/body-dashboard.jsp" />
-				<!-- <div class="py-3 ct-navbar text-sm text-center bg-white shaldow-lg fixed-bottom">Copyright © hdnguyen7702</div> -->
+			
  </body>
 </html>

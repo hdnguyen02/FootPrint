@@ -81,5 +81,24 @@ public class ProductDao {
 	}
 	
 	
+	public boolean update(Product product) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			session.update(product);
+			
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			transaction.rollback();
+			return false;
+		} finally {
+			session.close();
+		}
+	}
+	
+	
+	
 
 }

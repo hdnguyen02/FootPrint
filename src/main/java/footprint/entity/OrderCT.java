@@ -18,8 +18,6 @@ public class OrderCT {
 	@Id
 	@GeneratedValue
 	private Integer idOrder;
-
-	
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -28,6 +26,7 @@ public class OrderCT {
 	private Date date;
 	private String message;
 	private Float totalMonney;
+	private Boolean isCancelled; 
 	
 
 	@ManyToOne
@@ -63,8 +62,6 @@ public class OrderCT {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
-	
 
 	public String getAddress() {
 		return address;
@@ -98,14 +95,6 @@ public class OrderCT {
 		this.message = message;
 	}
 
-	public Float getTotalMonney() {
-		return totalMonney;
-	}
-
-	public void setTotalMonney(Float totalMonney) {
-		this.totalMonney = totalMonney;
-	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -137,12 +126,20 @@ public class OrderCT {
 	public void setExport(Export export) {
 		this.export = export;
 	}
-
+	
 	
 
+	public Float getTotalMonney() {
+		return totalMonney;
+	}
+
+	public void setTotalMonney(Float totalMonney) {
+		this.totalMonney = totalMonney;
+	}
+
 	public OrderCT(Integer idOrder, String firstName, String lastName, String address, String phone, String email,
-			Date date, String message, Float totalMonney, Customer customer, Collection<OrderDetail> orderDetails,
-			Export export) {
+			Date date, String message, Float totalMonney, Boolean isCancelled, Customer customer,
+			Collection<OrderDetail> orderDetails, Export export) {
 		this.idOrder = idOrder;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -152,9 +149,19 @@ public class OrderCT {
 		this.date = date;
 		this.message = message;
 		this.totalMonney = totalMonney;
+		this.isCancelled = isCancelled;
 		this.customer = customer;
 		this.orderDetails = orderDetails;
 		this.export = export;
+	}
+
+
+	public Boolean getIsCancelled() {
+		return isCancelled;
+	}
+
+	public void setIsCancelled(Boolean isCancelled) {
+		this.isCancelled = isCancelled;
 	}
 
 	public OrderCT() {

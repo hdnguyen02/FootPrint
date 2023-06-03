@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -58,5 +57,17 @@ public class ExportService {
 
 		return exportDao.addExportAndDetail(export, exportsDetail);
 
+	}
+	
+	public Export getExportWidhId(String id) {
+		return exportDao.getExportWidhId(id);
+	}
+	 
+	public List<Export> filterExport(Date fromDate, Date toDate) { 
+		return exportDao.filterExport(fromDate, toDate); 
+	}
+	
+	public List<Export> getExportsNotPayment() { 
+		return exportDao.getExportsNotPayment(); 
 	}
 }

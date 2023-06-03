@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<h3 class="border-bottom fs-5 pb-3">Order</h3>
+<h3 class="border-bottom fs-5 pb-3">Đơn hàng chờ duyệt</h3>
 
 <c:if test="${orders.size()==0}">
 	<div class="container py-5" style="min-height: 80vh">
@@ -27,7 +27,7 @@
 				<p class="fw-bolder" style="color: #999999">#</p>
 			</div>
 			<div class="col-2">
-				<p class="fw-bolder" style="color: #999999">Date</p>
+				<p class="fw-bolder" style="color: #999999">Date order</p>
 			</div>
 			<div class="col-2">
 				<p class="fw-bolder" style="color: #999999">Phone</p>
@@ -83,6 +83,10 @@
 		</c:forEach>
 	</div>
 </c:if>
+
+
+	
+<jsp:include page="/WEB-INF/views/general/notification.jsp" />
 
 
 <style>

@@ -11,7 +11,6 @@
 						src="<c:url value="/resources/image/product/${product.getImageName()}"/>"
 						style="height: 350px; object-fit: cover">
 				</div>
-
 				<c:forEach items="${product.getThumbnails()}" var="thumbnail">
 					<div class="col-3">
 						<img class="w-100"

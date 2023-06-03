@@ -34,6 +34,8 @@ public class OrderService {
 		order.setMessage(message);
 		order.setTotalMonney(totalMonney);
 		
+		order.setIsCancelled(false);  
+		
 		order.setDate(new Date()); 
 		
 		Customer customer = new Customer(); 
@@ -65,6 +67,11 @@ public class OrderService {
 	
 	public OrderCT getOrderWithIdOpenSS(Integer idOrder) {
 		return orderDao.getOrderWithIdOpenSS(idOrder); 
+	}
+	
+	public void update(OrderCT order) { 
+		orderDao.update(order);
+		
 	}
 	
 	

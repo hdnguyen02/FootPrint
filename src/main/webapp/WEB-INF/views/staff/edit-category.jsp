@@ -4,7 +4,7 @@
 
 
 <div class="container-fluid px-5 pt-5 pb-4 bg-white shadow-lg">
-	<h3 class="border-bottom fs-5 pb-3">Thêm danh mục</h3>
+	<h3 class="border-bottom fs-5 pb-3">Chỉnh sữa danh mục</h3>
 	
 	<c:if test="${ not empty result }">
 			<c:choose>
@@ -24,23 +24,21 @@
 	
 	</c:if>
 	<form:form modelAttribute="category" class="shadow mt-4 row">
-		<input hidden="true" name="status-category" value="${category.getDisable()}">
+
 		<div class="col-12 col-md-6 container-input"> 
-			<label for="name-category" class="form-label">tên</label>
+			<label for="name-category" class="form-label">mã loại</label>
+			<form:input path="idCategory" required="required" readonly="true" class="ct-input" id="name-category"/> 
+		</div>	
+		
+		<div class="col-12 col-md-6 container-input"> 
+			<label for="name-category" class="form-label">tên loại</label>
 			<form:input path="name" required="required" class="ct-input" id="name-category"/> 
 		</div>	
-		<div class="col-12 col-md-6 container-input"> 
-			<label for="name-product" class="form-label">Trạng thái</label>
-			
-			<form:select path="disable" class="ct-input">
-				<option value="false">Active</option>
-				<option value="true">Disable</option>
-			</form:select>
-		</div>	
-			<div class="w-100 mt-4">
+		
+		<div class="col-12 mt-3 container-input"> 
 			<button type="submit"
 				class="btn btn-primary rounded-0 border-0 w-100"
-				style="background-color: #87b106 !important">Cập nhập danh mục
+				style="background-color: #87b106 !important">Hiệu chỉnh danh mục
 			</button>
 		</div>
 	</form:form>
@@ -49,10 +47,10 @@
 
 </div>
 
-<script>
+<!-- <script>
 
 document.querySelector("[name='disable']").value = document.querySelector("input[name='status-category']").value
-</script>
+</script> -->
 
 
 

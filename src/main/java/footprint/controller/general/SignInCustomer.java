@@ -47,7 +47,17 @@ public class SignInCustomer{
 		
 		session.setAttribute("idCustomer", customer.getIdCustomer());
 		return "redirect:/";
-	
-		
 	}
+	
+	
+	@RequestMapping("/sign-out")
+	public String signOut(HttpSession session) {
+		System.out.println("da vao day");
+		
+		session.removeAttribute("idCustomer"); 
+
+		return "redirect:/";
+	}
+	
+	
 }

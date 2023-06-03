@@ -5,41 +5,33 @@
 
 
 <div class="table-responsive container-fluid p-5 bg-white shadow-lg">
-	<h3 class="border-bottom fs-5 pb-3">Product</h3>
+	<h3 class="border-bottom fs-5 pb-3">Danh sách sản phẩm</h3>
 	<table class="table table-hover table-striped shadow mt-4">
 		<thead>
 			<tr>
 				<th class="col">#</th>
-				<th class="col">Name</th>
-				<th class="col">Category</th>
-				<th class="col">Cost</th>
-				<th class="col">Create at</th>
-				<th class="col">Update at</th>
-				<th class="col">Status</th>
+				<th class="col">Tên</th>
+				<th class="col">Giá</th>
+				<th class="col">Size</th>
+				<th class="col">Kho</th>
+				<th class="col">Loại</th>
+				<th class="col">Màu</th>
+				<th class="col">Trạng thái</th>
 			</tr>
 		</thead>
 		<tbody id="body-table">
 			<c:forEach items="${productsWithPage}" var="product">
 				<tr>
-					<td class="col py-2">${product.idProduct}</td>
+					<td class="col py-y">${product.idProduct}</td>
 					<td class="col py-2">${product.name}</td>
-					<td class="col py-2">${product.category.name}</td>
 					<td class="col py-2">${product.cost}</td>
-					<td class="col py-2"> 
-						<fmt:formatDate value="${product.createAt}" pattern="dd/MM/yyyy" />
-					</td>
-					<td class="col py-2"> 
-						<fmt:formatDate value="${product.updateAt}" pattern="dd/MM/yyyy" />
-					</td>
-					<%-- <td class="col py-2"><c:choose>
-							<c:when test="${product.updateAt}">
-								<span>${product.updateAt}</span>
-							</c:when>	
-							<c:otherwise>
-								<span>not update</span>
-							</c:otherwise>
-						</c:choose>
-					</td> --%>
+					<td class="col py-2">${product.size}</td>
+					<td class="col py-2">${product.quantity}</td>
+					<td class="col py-2">${product.category.name}</td>
+					<td class="col py-2">${product.color}</td>
+					
+					
+					
 					<td class="col py-2">
 					<c:choose>
 							<c:when test="${product.disable == false}">active</c:when>
@@ -48,21 +40,13 @@
 						
 					<td class="col py-2">
 						<div>
-							<a href='<c:url value='/staff/product/detail.htm?id=${product.idProduct}'/>' class="btn btn-dark btn-sm" style="border-radius: 0 !important;width: 80px !important"> 
-								<span class="button breadcrumb-item active px-2">detail</span>
+							<a href='<c:url value='/staff/edit-product.htm?id=${product.idProduct}'/>' class="btn btn-dark btn-sm" style="border-radius: 0 !important;width: 80px !important"> 
+								<span class="button breadcrumb-item active px-2">edit</span>
 							</a>
 						</div>
 
 					</td>	
-					<td class="col py-2">
-						<div>
-							<a href='<c:url value='/staff/product/edit.htm?id=${product.idProduct}'/>' class="btn btn-secondary btn-sm" 
-								style="border-radius: 0 !important;width: 80px !important"> <span
-								class="button breadcrumb-item active px-2">edit</span>
-							</a>
-						</div>
 
-					</td>
 			</c:forEach>
 
 		</tbody>
@@ -85,6 +69,7 @@
 	</div>
 </div>
 
+<jsp:include page="/WEB-INF/views/general/notification.jsp" />
 
 
 

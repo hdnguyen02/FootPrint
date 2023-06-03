@@ -2,13 +2,14 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <div class="container py-5">
-	<form method="POST" action="${action}" class="row">
+	<form method="POST" action="cancel.htm" class="row">
 		<div class="col-7">
-			<p style="font-weight: 500;font-size:18px">Billing Details</p>
+			<p style="font-weight: 500;font-size:18px">Chi tiết đơn hàng</p>
 			<hr>
+			<input name="id-order" value="${order.getIdOrder()}" readonly="readonly" hidden="true"  type="text"/>
 			<div class="row" >
 				<div class="col-6 container-input">
-					<label class="form-label">First Name <span style="color: #ff5a66">*</span></label>
+					<label class="form-label">First Name</label>
 			
 			  		<input name="first-name" readonly="readonly" value="${order.getFirstName()}" class="ct-input" placeholder="First Name" type="text"/>
 				</div>
@@ -54,14 +55,12 @@
 					<c:forEach items="${order.getOrderDetails()}" var="orderDetail">
 						<div class="d-flex justify-content-between">
 							<div>
-								<p><span>${orderDetail.getProductSize().getProduct().getName()} x <span>${orderDetail.getQuantity()}</span></span></p>
-								<p style="font-size: 14px;color:#868487"><span>${orderDetail.getProductSize().getSize().getNameSize()}</span>, 
-									<span>${orderDetail.getProductSize().getProduct().getColor().getNameColor()}</span>
+								<p><span>${orderDetail.getProduct().getName()} x <span>${orderDetail.getQuantity()}</span></span></p>
+								<p style="font-size: 14px;color:#868487"><span>${orderDetail.getProduct().getSize()}</span>, 
+									<span>${orderDetail.getProduct().getColor()}</span>
 								</p>
-								
 							</div>
-							
-						<span style="font-weight: 500;font-size:14px">$${orderDetail.getTotalMonney()}</span>
+						<span style="font-weight: 500;font-size:14px">$${orderDetail.getQuantity() * orderDetail.getCost()}</span>
 					</div>	
 					</c:forEach>
 					
@@ -71,9 +70,7 @@
 						<span>Free</span>
 					</div>
 		
-					
-					<!-- <hr style="border: 0.2px solid rgba(0,0,0,0.5) !important"> -->
-					
+		
 					<div>
 						<p class="d-flex align-items-center gap-2" style="color:#87b106">
 							<Span>Add coupon code</Span>
@@ -89,25 +86,20 @@
 			</div>
 			</div> 
 			
-			<!-- tạo ra 1 biến trong này. -->
 			
-			<c:if test="${not empty cancel}">
-				<c:set var="handleOrder" value="Hủy đơn hàng"/> 
-			</c:if>
+			<div class="mt-4">
+				<button type="submit" class="btn btn-danger w-100 rounded-0 border-0 py-2">
+				Hủy đơn hàng
+			</button>
+			</div>
+
 			
-			<c:if test="${not empty success}">
-				<c:set var="handleOrder" value="Đã nhận được hàng"/>
-			</c:if>
-			
-			<!-- Khi submit lên cần nhận được id của order -->	
-			<input name="id-order" hidden="true" value="${order.getIdOrder()}">
-			
-			
+		<%-- 	
 			<div class="mt-2">
 				<button type="submit" class="btn btn-primary w-100 rounded-0 border-0 py-2" style="background-color: #87b106">
 				${handleOrder}
 			</button>
-			</div>
+			</div> --%>
 			
 			
 		</div>

@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -42,6 +41,20 @@ public class OrderDao {
 			session.close();
 		}
 
+	}
+	
+	public void update(OrderCT order) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		try {
+			session.update(order);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		} finally {
+			session.close();
+		}
+			
 	}
 
 	public OrderCT getOrderWidhId(Integer idOrder) {
@@ -81,6 +94,9 @@ public class OrderDao {
 		List<OrderCT> orderResult = new ArrayList<>();
 
 		for (OrderCT order : orders) {
+			if (order.getIsCancelled() == true) { // đơn hàng đã hủy. 
+				continue; 
+			}
 			if (isExistExport == true && order.getExport() == null) {
 
 				continue;
@@ -103,8 +119,9 @@ public class OrderDao {
 			clearTime(cFrom);
 			clearTime(cTo);
 			clearTime(cDateOrder);
+			
 
-			if (cDateOrder.compareTo(cFrom) >= 0 && cDateOrder.compareTo(cTo) <= 0) {
+			if (cDateOrder.compareTo(cFrom) >= 0 && cDateOrder.compareTo(cTo) <= 0 && order.getIsCancelled() == false) {
 				orderResult.add(order);
 			}
 
