@@ -46,6 +46,25 @@ public class ProductService {
 		return productDao.update(product); 
 	}
 	
+	public List<Product> searchProducts(String name) {
+		return productDao.searchProducts(name);
+	}
+	
+	public List<Product> filterByCategory(String idCategory) {
+		return productDao.filterByCategory(idCategory);
+	}
+
+	public List<Product> filterByPrice(float min, float max) {
+		return productDao.filterByPrice(min, max);
+	}
+	
+	public List<Product> filterByColor(String color) {
+		return productDao.filterByColor(color);
+	}
+	
+	public List<Product> filterBySize(String size) {
+		return productDao.filterBySize(size);
+	}
 	
 	public boolean addProductAndThumbnail(Product product,MultipartFile imageProduct,Thumbnail [] thumbnails,MultipartFile [] imageThumbnails) {
 			

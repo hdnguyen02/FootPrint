@@ -10,6 +10,8 @@ import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -89,28 +91,60 @@ public class ProductController {
 	
 	
 
-	/*
-	 * @RequestMapping(value = "product", method = RequestMethod.POST) public String
-	 * searchProduct(@ModelAttribute("product") Product product, ModelMap
-	 * model, @RequestParam("searchProductName") String searchProductName) {
-	 * model.addAttribute("product", new Product()); List<Product> lstSearch =
-	 * productService.searchProducts(searchProductName);
-	 * model.addAttribute("productsActive", lstSearch);
-	 * 
-	 * List<Category> lstCategory = categoryService.getAllCategories();
-	 * model.addAttribute("cate", lstCategory);
-	 * 
-	 * return "general/product/index"; }
-	 * 
-	 * @RequestMapping("product/list-by-category/{cid}") public String
-	 * filterByCategory(ModelMap model, @PathVariable("cid") long idCategory) {
-	 * List<Product> list = productService.filterByCategory(idCategory);
-	 * model.addAttribute("productsActive", list);
-	 * 
-	 * List<Category> lstCategory = categoryService.getAllCategories();
-	 * model.addAttribute("cate", lstCategory);
-	 * 
-	 * return "general/product/index"; }
-	 */
+	@RequestMapping(value = "product", method = RequestMethod.POST)
+	public String searchProduct(@ModelAttribute("product") Product product, ModelMap model, @RequestParam("searchProductName") String searchProductName) {
+		model.addAttribute("product", new Product());
+		List<Product> lstSearch = productService.searchProducts(searchProductName);
+		model.addAttribute("productsActive", lstSearch);
+
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);
+
+		return "general/product/index";
+	}
+
+	@RequestMapping("product/list-by-category/{cid}")
+	public String filterByCategory(ModelMap model, @PathVariable("cid") String idCategory) {		
+		List<Product> list = productService.filterByCategory(idCategory);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);	
+
+		return "general/product/index";
+	}
+
+	@RequestMapping("product/list-by-price/{min}/{max}")
+	public String filterByPrice(ModelMap model, @PathVariable("min") int min, @PathVariable("max") int max) {		
+		List<Product> list = productService.filterByPrice(min, max);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-color/{color}")
+	public String filterByColor(ModelMap model, @PathVariable("color") String color) {		
+		List<Product> list = productService.filterByColor(color);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-size/{size}")
+	public String filterBySize(ModelMap model, @PathVariable("size") String size) {		
+		List<Product> list = productService.filterBySize(size);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+
+		return "general/product/index";
+	}
 
 }

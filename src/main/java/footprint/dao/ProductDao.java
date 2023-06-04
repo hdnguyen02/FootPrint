@@ -98,7 +98,55 @@ public class ProductDao {
 		}
 	}
 	
+	public List<Product> searchProducts(String name) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where name like :name";
+		Query query = session.createQuery(hql);
+		query.setParameter("name", "%" + name + "%"); 
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
 	
+	public List<Product> filterByCategory(String idCategory) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where idCategory like :cid";
+		Query query = session.createQuery(hql);
+		query.setParameter("cid", "%" + idCategory + "%");
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
 	
-
+	public List<Product> filterByPrice(float min, float max) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where cost between :min and :max";
+		Query query = session.createQuery(hql);
+		query.setParameter("min", min);
+		query.setParameter("max", max);
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	public List<Product> filterByColor(String color) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where color like :color";
+		Query query = session.createQuery(hql);
+		query.setParameter("color", "%" + color + "%");
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;
+	}
+	
+	public List<Product> filterBySize(String size) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Product where size like :size";
+		Query query = session.createQuery(hql);
+		query.setParameter("size", "%" + size + "%");
+		@SuppressWarnings("unchecked")
+		List<Product> list = query.list();
+		return list;		
+	}
+	
 }

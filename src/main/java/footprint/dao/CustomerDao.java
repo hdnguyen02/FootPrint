@@ -1,4 +1,6 @@
 package footprint.dao; 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.hibernate.Query;
@@ -23,6 +25,14 @@ public class CustomerDao  {
 		return account; 
 	}
 	
+	public List<Customer> getAllCustomer() {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Customer";
+		Query query = session.createQuery(hql);
+		@SuppressWarnings("unchecked")
+		List<Customer> customer = query.list();
+		return customer;
+	}
 	
 	public boolean insert(Customer customer) {
 		Session session = sessionFactory.openSession();

@@ -20,6 +20,24 @@
 <script defer="defer"
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
+<c:url var='listByPrice1' value='/product/list-by-price/10/15.htm'/>
+<c:url var='listByPrice2' value='/product/list-by-price/16/20.htm'/>
+<c:url var='listByPrice3' value='/product/list-by-price/21/25.htm'/>
+<c:url var='listByPrice4' value='/product/list-by-price/26/30.htm'/>
+<c:url var='listByPrice5' value='/product/list-by-price/31/35.htm'/>
+
+<c:url var='listByColor1' value='/product/list-by-color/RED.htm'/>
+<c:url var='listByColor2' value='/product/list-by-color/WHITE.htm'/>
+<c:url var='listByColor3' value='/product/list-by-color/BROWN.htm'/>
+<c:url var='listByColor4' value='/product/list-by-color/GREEN.htm'/>
+<c:url var='listByColor5' value='/product/list-by-color/BLACK.htm'/>
+
+<c:url var='listBySize1' value='/product/list-by-size/(36).htm'/>
+<c:url var='listBySize2' value='/product/list-by-size/(37).htm'/>
+<c:url var='listBySize3' value='/product/list-by-size/(38).htm'/>
+<c:url var='listBySize4' value='/product/list-by-size/(39).htm'/>
+<c:url var='listBySize5' value='/product/list-by-size/(40).htm'/>
+
 </head>
 <body style="overflow-x: hidden">
 
@@ -32,44 +50,13 @@
                         <!-- single sidebar start -->
                         <div class="sidebar-single">
                             <h6 class="sidebar-title">Price</h6>
-                            <div class="sidebar-body">
-                                <ul class="radio-container search-list">
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customCheck50">
-                                            <label class="custom-control-label" for="customCheck50">$5.00 - $9.00 (2)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customCheck51">
-                                            <label class="custom-control-label" for="customCheck51">$10.00 - $15.00 (3)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customCheck52">
-                                            <label class="custom-control-label" for="customCheck52">$15.00 - $20.00 (3)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customCheck53">
-                                            <label class="custom-control-label" for="customCheck53"> $21.00 - $25.00 (1)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" id="customCheck54">
-                                            <label class="custom-control-label" for="customCheck54">$26.00 - $30.00 (3)</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            	<a href="${listByPrice1}" class="list-group-item">$10.00 - $15.00</a>
+                            	<a href="${listByPrice2}" class="list-group-item">$16.00 - $20.00</a>
+                            	<a href="${listByPrice3}" class="list-group-item">$21.00 - $25.00</a>
+                            	<a href="${listByPrice4}" class="list-group-item">$26.00 - $30.00</a>
+                            	<a href="${listByPrice5}" class="list-group-item">$31.00 - $35.00</a>                          
                         </div>
                         <!-- single sidebar end -->
-
-
 
                         <!-- single sidebar start -->
                         <div class="sidebar-single">
@@ -78,15 +65,7 @@
                                 <ul class="checkbox-container search-list">
                                 	<c:forEach items="${cate}" var="c">
                                 	<c:url var='listByCategory' value='/product/list-by-category/${c.idCategory}.htm'/>
-                                		<a href="${listByCategory}" class="list-group-item">${c.name}</a>
-                                		<!--  
-                                		<li>
-                                        	<div class="custom-control custom-checkbox">
-                                            	<input type="checkbox" class="custom-control-input" id="customCheck11"/>
-                                            	<label class="custom-control-label" for="customCheck11">${c.name}</label>
-                                        	</div>
-                                    	</li>
-                                    	-->
+                                		<a href="${listByCategory}" class="list-group-item">${c.name}</a>                           
                                 	</c:forEach>                                                                       
                                 </ul>
                             </div>
@@ -95,78 +74,24 @@
 
                         <!-- single sidebar start -->
                         <div class="sidebar-single">
-                            <h6 class="sidebar-title">size</h6>
-                            <div class="sidebar-body">
-                                <ul class="checkbox-container search-list">
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck111">
-                                            <label class="custom-control-label" for="customCheck111">35 (4)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck222">
-                                            <label class="custom-control-label" for="customCheck222">36 (5)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck333">
-                                            <label class="custom-control-label" for="customCheck333">37 (7)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">38 (3)</label>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck555">
-                                            <label class="custom-control-label" for="customCheck444">39 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck666">
-                                            <label class="custom-control-label" for="customCheck444">40 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">41 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">42 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">43 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">44 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">45 (3)</label>
-                                        </div>
-                                    </li><li>
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="customCheck444">
-                                            <label class="custom-control-label" for="customCheck444">46 (3)</label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                            <h6 class="sidebar-title">Color</h6>                           
+                                    <a href="${listByColor1}" class="list-group-item">RED</a>
+                                    <a href="${listByColor2}" class="list-group-item">WHITE</a>
+                                    <a href="${listByColor3}" class="list-group-item">BROWN</a>
+                                    <a href="${listByColor4}" class="list-group-item">GREEN</a>
+                                	<a href="${listByColor5}" class="list-group-item">BLACK</a>                          
                         </div>
-                     
+                        
+                  		<!-- single sidebar start -->
+                        <div class="sidebar-single">
+                            <h6 class="sidebar-title">Size</h6>
+                            	<a href="${listBySize1}" class="list-group-item">(36)</a>
+                            	<a href="${listBySize2}" class="list-group-item">(37)</a>
+                            	<a href="${listBySize3}" class="list-group-item">(38)</a>
+                            	<a href="${listBySize4}" class="list-group-item">(39)</a>
+                            	<a href="${listBySize5}" class="list-group-item">(40)</a>
+                        </div>
+                        
                     </aside>
 			</div>
 

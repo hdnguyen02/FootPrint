@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import footprint.entity.Category;
-import footprint.entity.Product;
 import footprint.service.CategoryService;
-import footprint.service.ProductService;
 
 @Controller
 public class CategoryController {
