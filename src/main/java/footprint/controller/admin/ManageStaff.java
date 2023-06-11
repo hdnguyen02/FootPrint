@@ -24,7 +24,6 @@ public class ManageStaff {
 	public String getStaff(ModelMap model) {
 		List<Employee> employee = employeeService.getEmployeeWithRole("STAFF");
 		model.addAttribute("staffs", employee);
-		
 		model.addAttribute("sidebarDashboard", "admin/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "admin/list-staff.jsp");
 		return "layout/main-dashboard";

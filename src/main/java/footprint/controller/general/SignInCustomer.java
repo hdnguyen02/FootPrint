@@ -19,13 +19,10 @@ public class SignInCustomer{
 	@Autowired private CustomerService customerService;
 	@RequestMapping("/sign-in")
 	public String Getlogin(ModelMap model, HttpSession session) {
-		
-
 		if (session.getAttribute("successRegister") != null) {
 			model.addAttribute("successRegister", session.getAttribute("successRegister"));
 			session.removeAttribute("successRegister");
 		}
-		
 		model.addAttribute("content", "general/sign-in.jsp"); 
 		model.addAttribute("nameBreadcrumb", "login"); 
 		
@@ -37,12 +34,19 @@ public class SignInCustomer{
 			@RequestParam("email") String email,@RequestParam("password") String password) 
 	{
 		Customer customer = customerService.getCustomerByEmail(email); 
-	
 		if (customer == null || !BCrypt.checkpw(password,customer.getPassword())) { 
 			model.addAttribute("resultLogin", "Tài khoản hoặc mật khẩu không tồn tại"); 
 			model.addAttribute("content", "general/sign-in.jsp"); 
 			model.addAttribute("nameBreadcrumb", "login"); 
-			return "layout/main-login-register"; 
+			return "layout/main-login-register";  
+		}
+		else { 
+			if (customer.getDisable() == true) { 
+				model.addAttribute("resultLogin", "Tài khoản hoặc mật khẩu không tồn tại"); 
+				model.addAttribute("content", "general/sign-in.jsp"); 
+				model.addAttribute("nameBreadcrumb", "login"); 
+				return "layout/main-login-register"; 
+			}
 		}
 		
 		session.setAttribute("idCustomer", customer.getIdCustomer());
@@ -52,12 +56,17 @@ public class SignInCustomer{
 	
 	@RequestMapping("/sign-out")
 	public String signOut(HttpSession session) {
-		System.out.println("da vao day");
-		
-		session.removeAttribute("idCustomer"); 
-
+		if (session.getAttribute("idCustomer") != null) {
+			session.removeAttribute("idCustomer"); 
+		}
+		else if(session.getAttribute("idEmployee") != null) {
+			session.removeAttribute("idEmployee"); 
+		}
 		return "redirect:/";
 	}
 	
-	
+	@RequestMapping("/dont-permission")
+	public String dontPermission() {
+		return "/general/dont-permission";
+	}
 }

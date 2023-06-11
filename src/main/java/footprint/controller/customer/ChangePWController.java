@@ -26,24 +26,15 @@ public class ChangePWController {
 	}
 	
 	@RequestMapping(value="/change-password",method=RequestMethod.POST) 
-	public String postChangePassword(ModelMap model, HttpSession session,
-			@RequestParam("new-password") String newPassword
-			) { 
-	
+	public String postChangePassword(ModelMap model, HttpSession session,@RequestParam("new-password") String newPassword) { 
 		Integer idCustomer = (Integer) session.getAttribute("idCustomer");
 		Customer customer = customerService.getAccountWithId(idCustomer);
-		
 		boolean result = customerService.changePassword(customer, newPassword);
-		
 		model.addAttribute("result", result);
 		model.addAttribute("success", "Cập nhập mật khẩu thành công!"); 
 		model.addAttribute("failure", "xảy ra lỗi!!!"); 
-		
-		
-
 		model.addAttribute("content", "layout/main-account.jsp"); 
 		model.addAttribute("bodyAccount", "user/change-password.jsp"); 
 		return "layout/main-user"; 
 	}
-
 }

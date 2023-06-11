@@ -77,11 +77,7 @@
 								</c:choose>
 								</button></a>
 								
-								<!--  
-								<a href='<c:url value='/admin/edit-staff.htm?id=${staff.idEmployee}'/>' class="btn btn-dark btn-sm" style="border-radius: 0 !important;width: 80px !important"> 
-								<span class="button breadcrumb-item active px-2">edit</span>
-								</a>
-								-->
+				
 								
 						</div>
 					</td>	

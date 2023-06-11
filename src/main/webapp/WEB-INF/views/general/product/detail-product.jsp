@@ -60,7 +60,7 @@
 				<span>Color: </span>
 				<span style="display: inline-block;width: 30px;height: 30px;background: ${product.getColor()}" class="fs-5 fw-normal"></span>
 			</div>
-			<span class="fs-5 fw-normal"> ${product.getSize()}</span>
+			<span class="fs-5 fw-normal">size ${product.getSize()}</span>
 			
 			
 			

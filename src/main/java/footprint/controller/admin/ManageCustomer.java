@@ -22,7 +22,6 @@ public class ManageCustomer {
 	public String getCustomer(ModelMap model) {
 		List<Customer> customer = customerService.getAllCustomer();
 		model.addAttribute("customers", customer);
-		
 		model.addAttribute("sidebarDashboard", "admin/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "admin/list-customer.jsp");
 		return "layout/main-dashboard";

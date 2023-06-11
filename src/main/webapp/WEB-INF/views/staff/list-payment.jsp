@@ -5,11 +5,11 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 
-<div class="container-fluid p-5 bg-white shadow-lg" style="min-height: 100vh">
+<form method="post" class="container-fluid p-5 bg-white shadow-lg" style="min-height: 100vh">
 	<div class="row align-items-center mb-5">
 		<h3 class="fs-5 col-5 mb-0">Danh sách thanh toán</h3> 
 		<div class="row col-5">
-			<div class="col-6"> 
+			<div class="col-6"> 	
 				<span>Từ :</span> 
 				<input name="from" value="${from}" type="date" class=""/>
 			</div>
@@ -24,7 +24,20 @@
 		</div>
 	</div>
 	
-
+	
+		
+	<c:if test="${payments.size()==0}">
+	<div class="container py-5" style="min-height: 80vh">
+			<div class="col-sm-12 empty-cart-cls text-center">
+				<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+					class="img-fluid mb-4 mr-3">
+				<h3>
+					<strong>Không tồn tại thanh toán</strong>
+				</h3>
+			</div>
+		</div>
+	</c:if>
+<c:if test="${payments.size()!=0}">
 	<div class="mt-4">
 		<div class="row text-uppercase text-center mb-3" style="font-size: 13px">
 			<div class="col-1">
@@ -64,12 +77,7 @@
 					</p>
 
 				</div>
-				
-			<%-- 	<div class="col-1">
-					<p>${payment.getExport().getIdExport()}</p>
-				</div> --%>
-		
-
+			
 				<div class="col-1">
 					<p>${payment.getMethod()}</p>
 				</div>
@@ -79,8 +87,6 @@
 				<div class="col-1">
 					<p>${payment.getExport().getIdExport()}</p>
 				</div>
-
-
 				<div class="col-3">
 					<p>${payment.getEmployee().getFirstName()} ${payment.getEmployee().getLastName()}</p>
 				</div>
@@ -97,7 +103,8 @@
 
 		
 	</div>
-</div>
+	</c:if>
+</form>
 
 
 <style>

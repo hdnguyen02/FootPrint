@@ -35,7 +35,6 @@ public class ImportProductController {
 
 		List<Product> products = productService.getAllProducts();
 		model.addAttribute("products", products);
-
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/import-product.jsp");
 		return "layout/main-dashboard";
@@ -70,11 +69,9 @@ public class ImportProductController {
 		for (int i = 0; i < productsImport.length; i++) {
 			importDetails[i] = new ImportDetail();
 			String idProduct = productsImport[i];
-
 			Product product = productService.getProductWithId(idProduct);
 			Integer quantity = Integer.valueOf(request.getParameter("quantity-" + idProduct));
 			Float cost = Float.valueOf(request.getParameter("cost-" + idProduct));
-
 			importDetails[i].setProduct(product);
 			importDetails[i].setImportEntity(importEntity);
 			importDetails[i].setQuantity(quantity);
@@ -84,7 +81,6 @@ public class ImportProductController {
 		}
 
 		boolean result = importDao.addImportAndDetail(importEntity, importDetails, productsUpdate);
-
 		model.addAttribute("result", result);
 		model.addAttribute("success", "Tạo phiếu nhập hàng thành công");
 		model.addAttribute("failure", "Đã xảy ra lỗi!!!");
@@ -95,15 +91,32 @@ public class ImportProductController {
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/import-product.jsp");
 		return "layout/main-dashboard";
-
 	}
 
 	@RequestMapping(value = "/staff/list-import", method = RequestMethod.GET)
 	public String listImport(ModelMap model) {
 
 		List<Import> imports = importDao.getAllImports();
+		model.addAttribute("imports", imports);
+		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
+		model.addAttribute("bodyDashboard", "staff/list-import.jsp");
+		return "layout/main-dashboard";
+	}
 
-		// xuất ra coi số thông tin import
+	@RequestMapping(value = "/staff/list-import", method = RequestMethod.POST)
+	public String postListImport(ModelMap model, @RequestParam("from") String from, @RequestParam("to") String to) {
+		Date fromDate = new Date();
+		Date toDate = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			fromDate = dateFormat.parse(from);
+			toDate = dateFormat.parse(to);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		List<Import> imports = importDao.filterImport(fromDate, toDate);
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
 		model.addAttribute("imports", imports);
 
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
@@ -113,18 +126,14 @@ public class ImportProductController {
 
 	@RequestMapping("/staff/import/detail")
 	public String detailImport(ModelMap model, @RequestParam("id") String idImport) {
-
 		Import importEntity = importDao.getImportWithId(idImport);
-
-		// kiểm tra xem có tồn tại hay không
 		if (importEntity == null) {
 			return "general/not-found";
 		}
-		model.addAttribute("importEntity", importEntity); 
+		model.addAttribute("importEntity", importEntity);
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/detail-import.jsp");
 		return "layout/main-dashboard";
-
 	}
 
 }

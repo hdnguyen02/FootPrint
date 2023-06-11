@@ -25,17 +25,14 @@
 	</c:if>
 	<form:form modelAttribute="category" class="shadow mt-4 row">
 		<div class="col-12 col-md-6 container-input"> 
+			<label for="name-category" class="form-label">Mã danh mục</label>
+			<form:input path="idCategory" required="required" class="ct-input" id="name-category"/> 
+		</div>
+		<div class="col-12 col-md-6 container-input"> 
 			<label for="name-category" class="form-label">tên</label>
 			<form:input path="name" required="required" class="ct-input" id="name-category"/> 
 		</div>	
-		<div class="col-12 col-md-6 container-input"> 
-			<label for="name-product" class="form-label">Trạng thái</label>
-			
-			<form:select path="disable" class="ct-input">
-				<option value="false">Active</option>
-				<option value="true">Disable</option>
-			</form:select>
-		</div>	
+		
 			<div class="w-100 mt-4">
 			<button type="submit"
 				class="btn btn-primary rounded-0 border-0 w-100"

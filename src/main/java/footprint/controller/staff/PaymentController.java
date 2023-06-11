@@ -22,22 +22,19 @@ import footprint.entity.Payment;
 import footprint.service.ExportService;
 
 @Controller
+@Transactional
 public class PaymentController {
 	
 	@Autowired private PaymentDao paymentDao; 
-
 	@Autowired
 	private ExportService exportService;
 
 	@RequestMapping("/staff/payment")
-	@Transactional
 	public String createPayment(ModelMap model) {
-
 		List<Export> exports = exportService.getExportsNotPayment();
 		for(Export export : exports) { 
 			Hibernate.initialize(export.getOrder());
 		}
-
 		model.addAttribute("exports", exports);
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/payment.jsp");
@@ -46,22 +43,18 @@ public class PaymentController {
 	}
 	
 	@RequestMapping(value="/staff/payment",method=RequestMethod.POST)
-	@Transactional
+
 	public String createPaymentPost(ModelMap model,@RequestParam("id-payment") String idPayment, 
 			@RequestParam("amount") Float amount, 
 			@RequestParam("date") String date,@RequestParam("method") String method,@RequestParam("id-export")
-	String idExport
-			) {
-		
+	String idExport) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date datePayment = null;
-
 		try {
 			datePayment = dateFormat.parse(date);
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 		Employee employee = new Employee(); 
 		employee.setIdEmployee("1"); 
 		Export exportPayment = new Export(); 
@@ -94,7 +87,6 @@ public class PaymentController {
 	}
 	
 	@RequestMapping("/staff/list-payment")
-	@Transactional
 	public String createPaymentPost(ModelMap model){ 
 		
 		List<Payment> payments = paymentDao.getAllPayment(); 
@@ -103,6 +95,29 @@ public class PaymentController {
 			Hibernate.initialize(payment.getExport());
 		}
 		model.addAttribute("payments", payments); 
+		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
+		model.addAttribute("bodyDashboard", "staff/list-payment.jsp");
+		return "layout/main-dashboard";
+	}
+	
+	@RequestMapping(value="/staff/list-payment",method=RequestMethod.POST)
+	public String postListPayment(ModelMap model,@RequestParam("from") String from, @RequestParam("to") String to){ 
+		Date fromDate = new Date();
+		Date toDate = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			fromDate = dateFormat.parse(from);
+			toDate = dateFormat.parse(to);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		List<Payment> payments = paymentDao.filterPayment(fromDate, toDate);
+		for(Payment payment : payments) { 
+			Hibernate.initialize(payment.getExport());
+		}
+		model.addAttribute("payments", payments); 
+		model.addAttribute("from", from);
+		model.addAttribute("to", to);
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/list-payment.jsp");
 		return "layout/main-dashboard";

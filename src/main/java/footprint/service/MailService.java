@@ -1,4 +1,5 @@
 package footprint.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,56 +14,45 @@ import footprint.service.MailService;
 
 @Service
 public class MailService {
-	
+
 	@Autowired
 	private JavaMailSender javaMailSender;
 
-	
 	public String createOTP() {
-		Random random = new Random(); 
-
-		
-		String otp = ""; 
-		
-		for (int i = 0;i < 6;i++) {
+		Random random = new Random();
+		String otp = "";
+		for (int i = 0; i < 6; i++) {
 			otp = otp + random.nextInt(10);
 		}
 		return otp;
 	}
-	
 
-	public void sendOTP(String mailUser,String otp) {
-		String subject = "OTP"; 
-		this.sendMailAsync("hdnguyen7702@gmail.com",mailUser,"hdnguyen7702@gmail.com",subject,otp);
+	public void sendOTP(String mailUser, String otp) {
+		String subject = "OTP";
+		this.sendMailAsync("hdnguyen7702@gmail.com", mailUser, "hdnguyen7702@gmail.com", subject, otp);
 	}
-	
-	
 
-	public boolean sendMail (String from,String to,String reppy,String subject,String text) { 
+	public boolean sendMail(String from, String to, String reppy, String subject, String text) {
 		try {
-			MimeMessage message  = javaMailSender.createMimeMessage(); 
+			MimeMessage message = javaMailSender.createMimeMessage();
 			MimeMessageHelper helper = new MimeMessageHelper(message, true);
-			helper.setFrom(from, from); 
-			helper.setReplyTo(from); 
-			helper.setTo(to); 
-			helper.setSubject(subject); 
-			helper.setText(text); 
-			javaMailSender.send(message); 
-			return true; 
-		}
-		catch (Exception e) {
+			helper.setFrom(from, from);
+			helper.setReplyTo(from);
+			helper.setTo(to);
+			helper.setSubject(subject);
+			helper.setText(text);
+			javaMailSender.send(message);
+			return true;
+		} catch (Exception e) {
 			return false;
 		}
 	}
-	
-	public void sendMailAsync(String from,String to,String reppy,String subject,String text) { 
+
+	public void sendMailAsync(String from, String to, String reppy, String subject, String text) {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
-        executorService.submit(() -> { // cơ chế aysnc 
-        	sendMail(from,to,reppy,subject,text); 
-        });	
-        
-    
-       
-        executorService.shutdown();
+		executorService.submit(() -> {
+			sendMail(from, to, reppy, subject, text);
+		});
+		executorService.shutdown();
 	}
 }

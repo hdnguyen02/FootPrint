@@ -14,12 +14,13 @@
 <c:url var='staff' value='/staff.htm' />
  <c:url var='addPayment' value='/staff/payment.htm' />
  <c:url var='listPayment' value='/staff/list-payment.htm' />
+  <c:url var='signOut' value='/sign-out.htm' />
 
      <ul class='navbar-nav' style="font-size: 15px">
         <li>
               <div class='nav-link px-3 py-0 active'>
                 <span class='me-2'><i class='bi bi-speedometer2 fs-4'></i></span>
-                <span class='fs-4'>Dashboard</span>
+                <span class='fs-4'>Staff</span>
               </div>
             </li>
             <li><hr style='margin-top:16px; margin-bottom:22px;color: white !important'/>
@@ -165,6 +166,12 @@
         	<a href='${home}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
         		<span class='text-white'>Trang chủ</span>
+            </a>
+       </li>
+       <li class='py-2'>
+        	<a href='${signOut}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa fa-sign-out"></i></span> 
+        		<span class='text-white'>Đăng xuất</span>
             </a>
        </li>
     </ul> 

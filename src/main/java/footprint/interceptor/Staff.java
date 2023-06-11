@@ -14,15 +14,13 @@ public class Staff extends HandlerInterceptorAdapter {
 
 		
 		HttpSession session = request.getSession();
-		String idAccount = (String) session.getAttribute("idEmployee"); // 
-		System.out.println("ROLE" + " " + (String) session.getAttribute("role"));
- 
-		if (idAccount == null) { // chưa có đăng nhập
+		String idAccount = (String) session.getAttribute("idEmployee"); 
+
+		if (idAccount == null) {
 			response.sendRedirect(request.getContextPath() + "/sign-in-employee.htm");
 			return false;
 		}	
-		String role = (String) session.getAttribute("role"); // 
-		System.out.println(role + " role nè");
+		String role = (String) session.getAttribute("role"); 
 		if (!role.equals("STAFF")) {
 			response.sendRedirect(request.getContextPath() + "/dont-permission.htm"); 
 			return false; 

@@ -27,19 +27,15 @@ public class ProductStaffController {
 	private CategoryService categoryService;
 
 	@RequestMapping("staff/list-product")
-	public String index(HttpSession session,ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-
-		
-		if (session.getAttribute("resultEditProduct") != null) { 
+	public String index(HttpSession session,ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {	
+		if (session.getAttribute("resultEditProduct") != null) {
 			model.addAttribute("result",(Boolean)session.getAttribute("resultEditProduct") );
 			model.addAttribute("success", "Hiệu chỉnh sản phẩm thành công");
 			model.addAttribute("failure", "Đã xảy ra lỗi!!!");
 			session.removeAttribute("resultEditProduct"); 
 		}
-		
-		
 		List<Product> products = productService.getAllProducts();							
-		int productPerPage = 12;
+		int productPerPage = 5;
 		int totalPage = productService.computedTotalPage(products, productPerPage);
 
 		List<Product> productsWithPage = productService.getProductPerPage(products, productPerPage, page);
@@ -53,7 +49,6 @@ public class ProductStaffController {
 
 	@RequestMapping("staff/edit-product")
 	public String index(ModelMap model, @RequestParam(value = "id", required = true) String idProduct) {
-
 		Product product = productService.getProductCurentSS(idProduct);
 		if (product == null)
 			return "general/not-found";
@@ -63,19 +58,14 @@ public class ProductStaffController {
 		model.addAttribute("sidebarDashboard", "staff/sidebar.jsp");
 		model.addAttribute("bodyDashboard", "staff/edit-product.jsp");
 		return "layout/main-dashboard";
-
 	}
 
 	// lúc postl lên tại đây.
 
 	@RequestMapping(value = "staff/edit-product", method = RequestMethod.POST)
 	public String postIndex(HttpSession session,ModelMap model, @ModelAttribute("product") Product product) {
-	
-	
 		boolean result = productService.update(product);
 		session.setAttribute("resultEditProduct", result);  
 		return "redirect:/staff/list-product.htm";
-
 	}
-
 }

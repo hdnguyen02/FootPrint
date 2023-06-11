@@ -5,8 +5,6 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <script defer="defer" src='<c:url value="/resources/javascript/list-order.js"/>'></script> 
 
-<%-- <c:url var='timeDate' value='/staff/order.htm?time=date' />
-<c:url var='timeMonth' value='/staff/order.htm?time=month' /> --%>
 
 <form method="POST" onSubmit="handleSubmit(event)" class="container-fluid p-5 bg-white shadow-lg" style="min-height: 100vh">
 	<div class="row align-items-center mb-5">
@@ -30,13 +28,27 @@
 		<div class="col-2">
 			<button class="btn btn-primary w-100">Lọc</button>
 		</div>
-		
-		
 	</div>
 	
 
 	<div class="mt-4">
-		<div class="row text-uppercase text-center mb-3" style="font-size: 13px">
+		
+		
+		<c:if test="${orders.size()==0}">
+	<div class="container py-5" style="min-height: 80vh">
+			<div class="col-sm-12 empty-cart-cls text-center">
+				<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+					class="img-fluid mb-4 mr-3">
+				<h3>
+					<strong>Không tồn tại phiếu đặt hàng</strong>
+				</h3>
+			<!-- 	<h4>Add something to make me happy :)</h4> -->
+				<!-- <a href="order.htm" class="btn btn-primary m-3 text-white">Danh sách phiếu nhập</a> -->
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${orders.size()!=0}">
+	<div class="row text-uppercase text-center mb-3" style="font-size: 13px">
 			<div class="col-1">
 				<p class="fw-bolder" style="color: #999999">#</p>
 			</div>
@@ -57,7 +69,6 @@
 			</div>
 
 		</div>
-
 		<c:forEach items="${orders}" var="order" varStatus="index">
 			<div class="row mt-3 align-items-center text-center">
 				<div class="col-1">
@@ -95,6 +106,7 @@
 			</div>
 			<hr>
 		</c:forEach>
+		</c:if>
 	</div>
 </form>
 

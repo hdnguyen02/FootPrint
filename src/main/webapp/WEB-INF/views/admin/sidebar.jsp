@@ -5,6 +5,7 @@
 <c:url var='manageStaff' value='/admin/list-staff.htm' />
 <c:url var='addStaff' value='/admin/add-staff.htm' />
 <c:url var='disableCustomer' value='/admin/list-customer.htm' />
+<c:url var='signOut' value='/sign-out.htm' />
      <ul class='navbar-nav'>
         <li>
               <div class='nav-link px-3 py-0 active'>
@@ -52,13 +53,8 @@
         		<span class='text-white'>Khóa TK khách hàng</span>
             </a>
        </li>
-       <li class='py-2'>
-        	<a href='${staff}' class='nav-link px-3'> 
-        		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
-        		<span class='text-white'>Trang chủ</span>
-            </a>
-       </li>
-        <li class='py-2'>
+     
+       <%--  <li class='py-2'>
         	<a href='${home}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
         		<span class='text-white'>Hiệu chỉnh phiếu nhập</span>
@@ -69,11 +65,23 @@
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
         		<span class='text-white'>Hiệu chỉnh phiếu xuất</span>
             </a>
-       </li>
-         <li class='py-2'>
+       </li> --%>
+         <%-- <li class='py-2'>
         	<a href='${home}' class='nav-link px-3'> 
         		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
         		<span class='text-white'>Hiệu chỉnh thanh toán</span>
+         </a>
+       </li> --%>
+        <li class='py-2'>
+        	<a href='${signOut}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa fa-sign-out"></i></span> 
+        		<span class='text-white'>Đăng xuất</span>
+            </a>
+       </li>
+         <li class='py-2'>
+        	<a href='${staff}' class='nav-link px-3'> 
+        		<span class='me-2'><i class="fa-solid fa-house"></i></span> 
+        		<span class='text-white'>Trang chủ</span>
             </a>
        </li>
     </ul> 

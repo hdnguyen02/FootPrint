@@ -15,7 +15,7 @@
 	</head>
 	<body style="overflow-x: hidden; height: 100vh"
 		class="d-flex justify-content-center align-items-center flex-column">
-		<div class="fw-bolder" style="font-size:30px">OOPS! RESOUCRCE NOT FOUND</div>
+		<div class="fw-bolder" style="font-size:30px">OOPS! Không tìm thấy tài nguyên</div>
 		<div class="fw-bolder" style="font-size:120px">404</div>
 		<a href="${home}" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 50px !important;background-color: #87b106 !important">Home</a>
 	</body>

@@ -29,20 +29,15 @@ public class OrderShippedController {
 	@RequestMapping("order-shipped")
 	@Transactional
 	public String getOrder(HttpSession session, ModelMap model) {
-
 		Integer idCustomer = (Integer) session.getAttribute("idCustomer");
-
 		Customer customer = customerService.getAccountWithId(idCustomer);
-
 		Hibernate.initialize(customer.getOrders());
 
 		List<OrderCT> orders = new ArrayList<>();
 		for (OrderCT order : customer.getOrders()) {
-			Hibernate.initialize(order.getExport());  
+			Hibernate.initialize(order.getExport());
 			if (order.getExport() != null) orders.add(order);
 		}
-		
-
 
 		model.addAttribute("orders", orders);
 		model.addAttribute("content", "layout/main-account.jsp");
@@ -50,14 +45,12 @@ public class OrderShippedController {
 		return "layout/main-user";
 
 	}
-	
+
 	@RequestMapping("/order-shipped/detail")
 	@Transactional
 	public String detailOrder(HttpSession session, ModelMap model,
 			@RequestParam(value = "id", required = true) Integer idOrder) {
-
 		OrderCT order = orderService.getOrderWidhId(idOrder);
-
 		if (order == null) {
 			return "general/not-found";
 		}
@@ -66,23 +59,13 @@ public class OrderShippedController {
 		if (!idCustomer.equals(customer.getIdCustomer())) {
 			return "general/not-found";
 		}
-		
-		
-		
 		if (order.getIdOrder() == null) {
 			return "general/not-found";
 		}
-		
-		Hibernate.initialize(order.getExport());  
-		
-				
+		Hibernate.initialize(order.getExport());
 		model.addAttribute("order", order);
 		model.addAttribute("content", "user/detail-order-shipped.jsp");
 		return "layout/main-user";
 	}
-	
-	
-	
-	
-	
+
 }

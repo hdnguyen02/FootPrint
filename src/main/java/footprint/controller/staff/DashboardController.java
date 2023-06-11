@@ -75,7 +75,6 @@ public class DashboardController {
 	public String addProductPost(ModelMap model, @ModelAttribute("product") Product product,
 			@RequestParam("imageProduct") MultipartFile imageProduct,
 			@RequestParam("imageThumbnails") MultipartFile[] imageThumbnails) {
-
 		product.setQuantity(0);
 		List<Category> categories = categorySv.getAllCategories();
 		Thumbnail[] thumbnails = new Thumbnail[imageThumbnails.length];
@@ -95,11 +94,8 @@ public class DashboardController {
 	
 	@RequestMapping(value="/sign-in-employee", method = RequestMethod.POST)
 	public String postSignEmployee(HttpSession session,ModelMap model,@RequestParam("email") String email,@RequestParam("password") String password) { 
-		
 		Employee employee = employeeDao.getEmployeeByEmail(email); 
-		
 		if (employee == null || !BCrypt.checkpw(password,employee.getPassword())) { 
-			
 			return "general/sign-in-employee";
 		}
 		// thành công nè. 

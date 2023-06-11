@@ -95,10 +95,4 @@ public class OrderStaffController {
 		model.addAttribute("bodyDashboard", "staff/detail-order.jsp");
 		return "layout/main-dashboard";
 	}
-	
-	// sử lý tạo phiếu xuất nè. 
-	
-
-	
-
 }

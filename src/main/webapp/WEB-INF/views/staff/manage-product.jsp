@@ -3,6 +3,7 @@
 <%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 
+ 
 
 <div class="table-responsive container-fluid p-5 bg-white shadow-lg">
 	<h3 class="border-bottom fs-5 pb-3">Danh sách sản phẩm</h3>
@@ -19,7 +20,7 @@
 				<th class="col">Trạng thái</th>
 			</tr>
 		</thead>
-		<tbody id="body-table">
+		<tbody id="body-table" style="min-height:500px !important">
 			<c:forEach items="${productsWithPage}" var="product">
 				<tr>
 					<td class="col py-y">${product.idProduct}</td>
@@ -60,7 +61,7 @@
 				 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
 				<c:forEach var="page" begin="1" end="${totalPage }">
 					<li data-page="${page}" class="page-item"><a
-						href='<c:url value='/staff/product/manage.htm?page=${ page }'/>'
+						href='<c:url value='/staff/list-product.htm?page=${ page }'/>'
 						class="page-link">${ page }</a></li>	
 				</c:forEach>
 				 <li class="page-item"><a class="page-link" href="#">Next</a></li>

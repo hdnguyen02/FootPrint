@@ -1,17 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url var='home' value='/' />
 <c:url var='product' value='/product.htm' />
 <c:url var='signIn' value='/sign-in.htm' />
 <c:url var='SignOut' value='/sign-out.htm' />
-<c:url var='account' value='/account.htm' />
+<c:url var='order' value='/order.htm' />
 <c:url var='register' value='/register.htm' /> 
-<c:url var='staff' value='/staff.htm' />
-<c:url var='admin' value='/admin.htm' />
 <c:url var='cart' value='/cart.htm' />
-<%-- <c:url var='order' value='/order.htm' /> --%>
+
 
 
 <div class="fixed-top">
@@ -77,17 +75,17 @@
 							
 				
 
-							<c:if test="${not empty sessionScope.idAccount && sessionScope.role == 'user'}">
+							<c:if test="${not empty sessionScope.idCustomer}">
 								<div>
-									<a href="${ account }"> <span><i
-											class="bi bi-person-circle"></i></span> <span>My account</span>
+									<a href="${ order }"> <span><i
+											class="bi bi-person-circle"></i></span> <span>Đơn hàng</span>
 									</a>
 								</div>
 							</c:if>
 							<!-- Chỉ hiển thị khi đã đăng nhập -->
 							
 
-							<c:if test="${not empty sessionScope.idAccount }">
+							<c:if test="${not empty sessionScope.idCustomer }">
 								<div>
 									<a href="${SignOut}" style="color: #999999"> <span><i
 											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign out</span>
@@ -95,7 +93,7 @@
 								</div>
 							</c:if>
 
-							<c:if test="${empty sessionScope.idAccount }">
+							<c:if test="${empty sessionScope.idCustomer }">
 								<div>
 									<a href="${register}" style="color: #999999"> <span><i
 											class="fa-solid fa-address-card"></i></span> <span>Register</span>
@@ -104,7 +102,7 @@
 							</c:if>
 
 
-							<c:if test="${empty sessionScope.idAccount }">
+							<c:if test="${empty sessionScope.idCustomer }">
 								<div>
 									<a href="${signIn}" style="color: #999999"> <span><i
 											class="fa-solid fa-right-from-bracket"></i></span> <span>Sign in</span>
@@ -135,29 +133,19 @@
 					style="margin-left: 220px">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex gap-4" >
 						<li class="nav-item"><a href="${home}" 
-							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">Home</a>
-						</li>
-						<li class="nav-item"><a href="${product}"
-							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">product</a>
-						</li>
-						<li class="nav-item"><a
-							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">blog</a></li>
-						<li class="nav-item"><a
-							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500">contact us</a></li>
-						<li>
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"><fmt:message key="navbar.home" /></a>
 						</li>
 						
-							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'staff' }">
-								<li class="nav-item"><a
-								class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"
-								href="${staff}">Dashboard</a></li>
-							</c:if>
-							<c:if test="${ not empty sessionScope.idAccount && sessionScope.role == 'admin' }">
-								<li class="nav-item"><a
-								class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"
-								href="${admin}">Dashboard</a></li>
-							</c:if>
-
+						
+						<li class="nav-item"><a href="${product}"
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"><fmt:message key="navbar.product" /></a>
+						</li>
+						<li class="nav-item"><a
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"><fmt:message key="navbar.blog" /></a></li>
+						<li class="nav-item"><a
+							class="nav-link active text-uppercase text-white" aria-current="page" style="font-weight: 500"><fmt:message key="navbar.contact" /></a></li>
+						<li>
+						</li>
 					</ul>
 					<!-- icon  -->
 					<div class="d-flex gap-5" style="color: #fff !important;">
@@ -170,7 +158,9 @@
 								</div>
 							</form>
 							
-							<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
+							<c:if test="${not empty sessionScope.idCustomer }">
+								<a href="${cart}"><span><i class="fa-solid fs-5 fa-cart-shopping text-white"></i></span></a>
+							</c:if>
 						</div>
 						
 					</div>
@@ -191,7 +181,6 @@ i:hover {
 	color: #87b106 !important;
 }
 a {
-
 	color: #999999 !important;
 }
 </style>

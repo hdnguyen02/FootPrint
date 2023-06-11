@@ -24,7 +24,6 @@ public class CartController {
 	@Autowired
 	private CustomerService customerService;
 
-
 	@Autowired
 	private CartService cartService;
 
@@ -58,27 +57,4 @@ public class CartController {
 		}
 		return "edit cart";
 	}
-
-	/*
-	 * @RequestMapping(value = "cart/not-account", method = RequestMethod.GET)
-	 * public String cartNotSignIn(ModelMap model, HttpServletRequest request) {
-	 * 
-	 * List<Cart> carts = new ArrayList<>(); Cookie[] cookies =
-	 * request.getCookies();
-	 * 
-	 * if (cookies != null) { for (Cookie cookie : cookies) { if
-	 * (cookie.getName().contains("cart")) { String idCartCookie = cookie.getName();
-	 * Cart cart = new Cart(); Long idProductSize =
-	 * Long.valueOf(idCartCookie.substring(4)); ProductSize productSize =
-	 * productSizeSerice.getProductSizeWithId(idProductSize);
-	 * cart.setProductSize(productSize); int quantity =
-	 * Integer.valueOf(cookie.getValue()); cart.setQuantity(quantity);
-	 * carts.add(cart); } }
-	 * 
-	 * } model.addAttribute("carts", carts); model.addAttribute("content",
-	 * "general/cart.jsp"); return "layout/main-user";
-	 * 
-	 * }
-	 */
-
 }

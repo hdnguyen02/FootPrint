@@ -49,6 +49,7 @@
 			<form:select path="color" class= "ct-input">
 				<option value="Green">Green</option>
 				<option value="Red">Red</option>
+				<option value="Blue">Blue</option>
 				<option value="Orange">Orange</option>
 				<option value="Pink">Pink</option>
 				<option value="White">White</option>
@@ -88,10 +89,12 @@
 		<div class="col-12 col-md-6 container-input">
 			<label class="form-label">Size</label>
 			<form:select path="size" class= "ct-input">
-				<option value="size 37">Size 37</option>
-				<option value="size 38">Size 38</option>
-				<option value="size 39">Size 39</option>
-				<option value="size 40">Size 40</option>
+				<option value="(36)">(36)</option>
+				<option value="(37)">(37)</option>
+				<option value="(38)">(38)</option>
+				<option value="(39)">(39)</option>
+				<option value="(40)">(40)</option>
+			<!-- 	<option value="(36)">(36)</option> -->
 			</form:select>
 		</div>
  	

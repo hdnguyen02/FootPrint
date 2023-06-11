@@ -20,17 +20,7 @@
 			  <span data-result-email class="error">${ resultEmail }</span>
 			</c:if>
 		</div>
-		
-		<%-- <div class="position-relative" style="margin-top: 36px">
-			<form:input required="required" path="username" id="register-username" class="ct-input w-100 border-bottom border-bottom-1" type="text" placeholder="username"/>
-			<span class="position-absolute start-0" style="top: 1px">
-				<i class="fa-solid fa-user"></i>
-			</span>
-			<span data-error-username class="error"></span>
-			<c:if test="${not empty resultUsername}">
-			  <span data-result-username class="error"> ${resultUsername}</span>
-			</c:if>
-		</div> --%>
+	
 		
 		<div class="position-relative" style="margin-top: 36px">
 			<form:input required="required" path="password" id="register-password" class="ct-input w-100 border-bottom border-bottom-1" type="password" placeholder="password"/>
@@ -57,7 +47,7 @@
 	  		</label>
 		</div>
 		<div class="d-flex justify-content-between align-items-center mt-5">
-			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Register</button>
+			<button type="submit" class="btn btn-primary border-0 round-0 rounded rounded-0" style="padding: 14px 34px !important;background-color: #87b106 !important">Submit</button>
 			<a href="${ signIn }" class="underline" style="cursor: pointer;text-decoration:underline !important">Đăng nhập</a>
 		</div>
 		

@@ -25,8 +25,20 @@
 			<button class="btn btn-primary w-100">Lọc</button>
 		</div>
 	</div>
-
-
+	
+	<c:if test="${exports.size()==0}">
+	<div class="container py-5" style="min-height: 80vh">
+			<div class="col-sm-12 empty-cart-cls text-center">
+				<img src="https://i.imgur.com/dCdflKN.png" width="130" height="130"
+					class="img-fluid mb-4 mr-3">
+				<h3>
+					<strong>Không tồn tại phiếu xuất</strong>
+				</h3>
+			</div>
+		</div>
+	</c:if>
+	
+	<c:if test="${exports.size()!=0}">
 	<div class="mt-4">
 		<div class="row text-uppercase text-center mb-3"
 			style="font-size: 13px">
@@ -94,8 +106,21 @@
 			</div>
 			<hr>
 		</c:forEach>
+		
+	
 	</div>
+		</c:if>
 </form>
+
+
+<script>
+	function handleSubmit(event) {
+		if (fromEl.value == "" || toEl.value == "") {
+			event.preventDefault()
+			return;
+		}
+	}
+</script>
 
 
 <style>
