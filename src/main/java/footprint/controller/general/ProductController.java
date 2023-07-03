@@ -1,14 +1,140 @@
 package footprint.controller.general;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import footprint.entity.Category;
+import footprint.entity.Color;
+import footprint.entity.Product;
+import footprint.entity.Size;
+import footprint.service.CategoryService;
+import footprint.service.ColorService;
+import footprint.service.ProductService;
+import footprint.service.SizeService;
 
 @Controller
 public class ProductController {
-	@RequestMapping(value = "product")
-	public String index(ModelMap model) {
-		model.addAttribute("content","general/product/index.jsp");
-		return "layout/main-user"; 
+
+	@Autowired
+	private ProductService productService;
+	@Autowired
+	private CategoryService categoryService;
+	@Autowired
+	private ColorService colorService;
+	@Autowired
+	private SizeService sizeService;
+
+	@RequestMapping("product")
+	public String index(ModelMap model, @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+
+		int productPerPage = 12;
+		List<Product> products = productService.getProductsActive();
+		model.addAttribute("totalPage", productService.computedTotalPage(products, productPerPage));
+		model.addAttribute("productsActive", productService.getProductPerPage(products, productPerPage, page));
+
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+
+	@RequestMapping(value = "product", method = RequestMethod.POST)
+	public String searchProduct(@ModelAttribute("product") Product product, ModelMap model, @RequestParam("searchProductName") String searchProductName) {
+		model.addAttribute("product", new Product());
+		List<Product> lstSearch = productService.searchProducts(searchProductName);
+		model.addAttribute("productsActive", lstSearch);
+
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+
+	@RequestMapping("product/list-by-category/{cid}")
+	public String filterByCategory(ModelMap model, @PathVariable("cid") long idCategory) {		
+		List<Product> list = productService.filterByCategory(idCategory);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);	
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+
+	@RequestMapping("product/list-by-price/{min}/{max}")
+	public String filterByPrice(ModelMap model, @PathVariable("min") int min, @PathVariable("max") int max) {		
+		List<Product> list = productService.filterByPrice(min, max);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-color/{idColor}")
+	public String filterByColor(ModelMap model, @PathVariable("idColor") String idColor) {		
+		List<Product> list = productService.filterByColor(idColor);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
+	}
+	
+	@RequestMapping("product/list-by-size/{idSize}")
+	public String filterBySize(ModelMap model, @PathVariable("idSize") int idSize) {		
+		List<Product> list = productService.filterBySize(idSize);
+		model.addAttribute("productsActive", list);
+		 
+		List<Category> lstCategory = categoryService.getAllCategories();
+		model.addAttribute("cate", lstCategory);		 
+		
+		List<Color> lstColor = colorService.getAllColors();
+		model.addAttribute("color", lstColor);
+		
+		List<Size> lstSize = sizeService.getAllSizes();
+		model.addAttribute("size", lstSize);
+
+		return "general/product/index";
 	}
 }

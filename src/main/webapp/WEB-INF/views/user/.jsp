@@ -8,7 +8,5 @@
 </head>
 <body>
 
-	<jsp:include page="/WEB-INF/views/${ content }" />
-
 </body>
 </html>

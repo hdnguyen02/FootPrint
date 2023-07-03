@@ -9,11 +9,10 @@ import footprint.dao.CategoryDao;
 import footprint.entity.Category;
 import footprint.service.CategoryService;
 
-
 @Service
 public class CategoryServiceImpl implements CategoryService {
 	@Autowired
-	CategoryDao categoryDao; 
+	private CategoryDao categoryDao; 
 	private int categoryPerPage = 6; // 3 phần tử trên mỗi table 
 	
 	
@@ -47,7 +46,9 @@ public class CategoryServiceImpl implements CategoryService {
 	public boolean update(Category category) {
 		return categoryDao.update(category); 
 	}
-
 	
-	
+	@Override
+	public Category getCategoryWithId(Long idCategory) { 
+		return categoryDao.getCategoryWithId(idCategory); 
+	}
 }

@@ -5,11 +5,7 @@
 
 
 <div class="container-fluid p-5 bg-white shadow-lg">
-
-		<div class="d-flex">
-			<span class="me-2"><i class="bi bi-bookmarks-fill fs-3"></i></span>
-			<h2 class="mb-0">Add product</h2>
-		</div>
+	<h3 class="border-bottom fs-5 pb-3">Add product</h3>
 	
 	<c:if test="${ not empty result }">
 			<c:choose>
@@ -20,96 +16,114 @@
 				</div>
 			</c:when>
 			<c:otherwise>
-				<div class="alert alert-danger alert-dismissible shadow mt-4" role="alert">
+				<div class="alert alert-danger alert-dismissible shadow mt-4" style="border-radius: none" role="alert">
 					 <div>Thêm thất bại</div>
 					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
 			</c:otherwise>
-			
 		</c:choose>
 	
 	</c:if>
-	<form:form class="mt-4 row gy-4" style="margin-top:0 !important" method="POST" modelAttribute="product" enctype="multipart/form-data">
+	<form:form class="row mt-4 gy-4" style="margin-top:0 !important" method="POST" modelAttribute="product" enctype="multipart/form-data">
 	
-		<div class="col-12 col-md-6 mt-2">
-			<div>
-			   <label for="name-product" class="form-label">Tên giày</label>
-			  <form:input path="name" class="form-control" id="name-product"/> 
-			</div>
+		<div class="col-12 col-md-6 container-input"> 
+			<label for="name-product" class="form-label">tên</label>
+			<form:input path="name" required="required" class="ct-input" id="name-product"/> 
+		</div>	
+			
+	
+		<div class="col-12 col-md-6 container-input">
+			<label for="exampleFormControlTextarea1" class="form-label">loại</label>
+			<form:select path="category.idCategory" items="${categories}" itemLabel="name" itemValue="idCategory" class="ct-input"></form:select>
+		</div>
+	
 		
-			<div class="mt-4">
-				<label for="description-product" class="form-label">Mô tả</label>
-	  			<form:textarea path="description" class="form-control" id="description-product" rows="3"/>
-			</div>
+		<div class="col-12 col-md-6 container-input">
+			<label for="exampleFormControlTextarea1" class="form-label">Màu</label>
+			<form:select path="color.idColor" items="${colors}" itemLabel="nameColor" itemValue="idColor" class="ct-input"></form:select>
+		</div>
 			
-			<div class="row"> 
-				<div class="mt-4 col-12 col-md-6">
-					<label for="exampleFormControlTextarea1" class="form-label">Loại giày</label>
-					<form:select path="category.idCategory" items="${categories}" itemLabel="name" itemValue="idCategory" class="form-select"></form:select>
-				</div>
-				
-				<div class="mt-4 col-12 col-md-6">
-					<label for="exampleFormControlTextarea1" class="form-label">Màu</label>
-					<select class="form-select" aria-label="Default select example">
-					  <option selected>Open this select menu</option>
-					  <option value="1">Xanh</option>
-					  <option value="2">Đỏ</option>
-					  <option value="3">Vàng</option>
-					</select>
-				</div>
+		<div class="mt-4 col-12 col-md-6 container-input"> 
+				<label for="cost-product" class="form-label">giá tiền</label>
+			 	<form:input path="cost" min="1" required="required" type="number" class="ct-input" id="cost-product"/>	
+		</div>
 			
-			</div>
 			
-			<div class="mt-4"> 
-				<label for="cost-product" class="form-label">Giá tiền</label>
-			   <form:input path="cost" type="number" class="form-control" id="cost-product"/>
-			</div>
-		
-			<div class="row mt-4">
-				<div class="col-6">
+		<div class="col-12 col-md-6">
+			<div class="row">
+				<div class="col-6 container-input">
 					<label for="image-product" class="form-label">image</label>
-					<input type="file" name="imageProduct" id="image-product">
+					<input required type="file" class="" accept="image/*" name="imageProduct" id="image-product">
 				</div>
-				<!-- <div class="col-6">
+				<div class="col-6 container-input">
 					<label for="exampleFormControlInput1" class="form-label">thumbnail images</label>
-					<input type="file" multiple id="exampleFormControlInput1">
-				</div> -->
+					<input required type="file" class="" accept="image/*" name="imageThumbnails" multiple id="exampleFormControlInput1">
+				</div> 
 			</div>
-		 
 		</div>
 		
-		<div class="col-12 col-md-6 mt-2">
-			
-			<div class="row gx-3 gy-5">
-			
-			 <label for="exampleFormControlInput1" class="form-label">Số lượng</label>
-			 
-
-			 	
-			 	<c:forEach var = "i" begin = "35" end = "46">
-         			
-         			
-	         		<div class="col-3 col-md-4 col-xl-3">
-				 		<div class="form-floating">
-						  <input type="number" class="form-control" min="0" id="floatingInput" placeholder="size-${i}">
-						  <label for="floatingInput"><c:out value = "size ${i}"/></label>
-						</div>
-				 	</div>
-      			</c:forEach>
-			 </div>
+		<div class="col-12 col-md-6 container-input">
+			<label class="form-label">status</label>
+			<form:select path="disable" class= "ct-input">
+				<option value="true">Disable</option>
+				<option value="false">Active</option>
+			</form:select>
+		</div>
+ 	
+		<div class="col-12 mt-4 container-input">
+			<label for="description-product" class="form-label">Mô tả</label>
+	  		<form:textarea path="description" required="required" class="ct-input" id="description-product" rows="3"/>
 		</div>
 		
-	
-		<div class="col-12">
-			<button style="background-color:#4e73df !important" type="submit" class="btn btn-success btn-block w-100 fw-bolder">Thêm</button>
+		<div class="col-12 mt-4 container-input">
+			<span style="font-size: 14px" class="form-label">Số lượng</span>
+			<div class="row">
+				<c:forEach items="${sizes}" var="size">
+		         <div class="col-3 col-md-2 mt-2">
+					 <label style="font-size: 14px;margin-bottom:19px">${size.getNameSize()}</label>
+					<input name="${size.getIdSize()}" type="number" class="ct-input" min="0">
+				</div>
+	      	</c:forEach>
+			</div>
+		</div>
+		<div class="w-100 mt-4">
+			<button type="submit"
+				class="btn btn-primary rounded-0 border-0 w-100"
+				style="background-color: #87b106 !important">Save product
+			</button>
 		</div>
 	
-
 	</form:form>
-	
-
-
-	
-	
-	
 </div>
+
+
+<style>
+	.ct-input {
+		width: 100%;  
+		padding: 12px; 
+		border: 1px solid #ccc;
+		font-size: 14px;
+   	    background-color: #f7f7f7;
+	}
+	.ct-input:focus {
+		outline: 1px solid #87b106;
+	}
+	
+	.ct-select { 
+		border: 1px solid #ccc;
+		font-size: 14px;
+		background-color: #f7f7f7;
+		padding: 12px;
+	}
+	
+	.container-input {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-bottom: 14px;
+		
+	}
+	.container-input > label {
+		 font-size: 14px;
+	} 
+</style>

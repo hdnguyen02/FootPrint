@@ -18,8 +18,15 @@
 			
 	<!-- Đường dẫn lưu ảnh product -->
 	<bean id="imageProduct" class="footprint.bean.UploadFile">
-		<property name="basePath" value="D:\WEB-SPRING\FootPrint\src\main\webapp\resources\image\product"></property>
+		<property name="basePath" value="C:\Users\hello\GitHub\FootPrint\src\main\webapp\resources\image\product"></property>
 	</bean>
-
+	
+	<bean id="imageThumbnail" class="footprint.bean.UploadFile">
+		<property name="basePath" value="C:\Users\hello\GitHub\FootPrint\src\main\webapp\resources\image\thumbnail"></property>
+	</bean>
+	
+	<bean id="accountImgDir" class="footprint.bean.UploadFile">
+		<property name="basePath" value="C:\Users\hello\GitHub\FootPrint\src\main\webapp\resources\image\avatar"/>
+	</bean>
 
 </beans>

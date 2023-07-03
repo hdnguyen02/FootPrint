@@ -1,35 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<div class="modal fade" id="model-add-category" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content p-3" style="border-radius: 0px !important">
-				<div class="modal-header border border-0 pt-2 pb-0">
-					<h3 class="modal-title fs-5" id="exampleModalLabel">add
-						category</h3>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
+
+<div class="container-fluid px-5 pt-5 pb-4 bg-white shadow-lg">
+	<h3 class="border-bottom fs-5 pb-3">Thêm danh mục</h3>
+	
+	<c:if test="${ not empty result }">
+			<c:choose>
+			<c:when test="${result == true }">
+				<div class="alert alert-success alert-dismissible shadow mt-4" role="alert">
+					 <div>Thêm thành công</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
-				<div class="modal-body" >
-					<form:form method="post" modelAttribute="category" action='category/add'>
-						<div class="mb-3">
-							<label for="name-category" class="col-form-label">Name</label> 
-							<form:input path="name" type="text" class="form-control" id="name-category"/>
-						</div>
-						<div class="mb-4">
-							<label for="message-text" class="col-form-label">Status</label> 
-							<form:select path="disable" class="form-select" aria-label="Default select example">
-								<option value="0">active</option>
-								<option value="1">disable</option>
-								
-							</form:select>
-						</div>
-						<div class="d-flex justify-content-end">
-							<button type="button" data-bs-dismiss="modal" class="btn btn-outline-secondary me-3">cancel</button>
-							<button type="submit" class="btn btn-outline-success">Submit</button>
-						</div>
-					</form:form>
+			</c:when>
+			<c:otherwise>
+				<div class="alert alert-danger alert-dismissible shadow mt-4" style="border-radius: none" role="alert">
+					 <div>Thêm thất bại</div>
+					 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
-			</div>
+			</c:otherwise>
+		</c:choose>
+	
+	</c:if>
+	<form:form modelAttribute="category" class="shadow mt-4 row">
+		<div class="col-12 col-md-6 container-input"> 
+			<label for="name-category" class="form-label">tên</label>
+			<form:input path="name" required="required" class="ct-input" id="name-category"/> 
+		</div>	
+		<div class="col-12 col-md-6 container-input"> 
+			<label for="name-product" class="form-label">Trạng thái</label>
+			
+			<form:select path="disable" class="ct-input">
+				<option value="false">Active</option>
+				<option value="true">Disable</option>
+			</form:select>
+		</div>	
+			<div class="w-100 mt-4">
+			<button type="submit"
+				class="btn btn-primary rounded-0 border-0 w-100"
+				style="background-color: #87b106 !important">Lưu danh mục
+			</button>
 		</div>
-	</div>
+	</form:form>
+
+
+
+</div>
+
+
+
+
+
