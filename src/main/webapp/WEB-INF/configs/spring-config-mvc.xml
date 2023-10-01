@@ -24,7 +24,7 @@
 
 	<!-- Cấu hình package chứa các controller -->
 	<context:component-scan
-		base-package="footprint.controller, footprint.service, footprint.dao, footprint.bean" />
+		base-package="footprint.controller, footprint.service, footprint.dao, footprint.bean,footprint.helper" />
 		
 		
 <!-- Cấu hình resources -->

@@ -1,23 +1,54 @@
 package footprint.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="Thumbnail")
 public class Thumbnail {
 	@Id
-	@Column(name="idThumbnail")
-	private Long idThumbnail; 
+	@GeneratedValue
+	private Integer idThumbnail; 
 	
-	@Column(name="name")
 	private String name; 
 	
 	@ManyToOne
 	@JoinColumn(name="idProduct")
-	private Product product;
+	private Product product;	
+
+	public Integer getIdThumbnail() {
+		return idThumbnail;
+	}
+
+	public void setIdThumbnail(Integer id) {
+		this.idThumbnail = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Thumbnail(Integer id, String name, Product product) {
+		this.idThumbnail = id;
+		this.name = name;
+		this.product = product;
+	}
+
+	public Thumbnail() {}
+	
+	
 }

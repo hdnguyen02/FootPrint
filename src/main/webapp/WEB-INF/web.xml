@@ -16,8 +16,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>dispatcher-config</servlet-name>
-		<url-pattern>/</url-pattern> <!-- Thêm vào đây -->
-
+		<url-pattern>*.htm</url-pattern>
 	</servlet-mapping>
 
 	<!-- CharacterEncodingFilter -->
@@ -37,9 +36,8 @@
 		<filter-name>UTF8-config</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-
-	<!-- <welcome-file-list>
+	<welcome-file-list>
 		<welcome-file>home.htm</welcome-file>
-	</welcome-file-list> -->
+	</welcome-file-list>
 </web-app>
 

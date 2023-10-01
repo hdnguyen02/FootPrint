@@ -18,11 +18,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
 		p:driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-		p:url="jdbc:sqlserver://DESKTOP-JNU1A1J:1433;DatabaseName=FOOTPRINT;encrypt=false"
+		p:url="jdbc:sqlserver://DESKTOP-JNU1A1J:1433;DatabaseName=WEB_SHOSE;encrypt=false"
 		p:username="sa" p:password="sa">
 	</bean>
-
-
 
 	<!-- Cấu hình Hibernate -->
 	<bean id="sessionFactory"
@@ -32,8 +30,9 @@
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
 				<prop key="hibernate.show_sql">false</prop>
-			</props>
+			</props>	
 		</property>
+		
 		<property name="packagesToScan" value="footprint.entity" />
 	</bean>
 
